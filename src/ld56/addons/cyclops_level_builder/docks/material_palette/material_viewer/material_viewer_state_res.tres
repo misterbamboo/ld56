@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_3sifp")
-active_material_path = "res://materials/dirt(lowrez)/dirt_low_rez.tres"
+active_material_path = "res://materials/roughstone/roughstone.tres"
