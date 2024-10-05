@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_ig3mx"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_078dq"]
 [ext_resource type="Material" path="res://materials/new_dirt/dirt.tres" id="6_duexb"]
-[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="8_l1jth"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="8_l1jth"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yydyh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -460,8 +460,8 @@ stride = 6
 
 [sub_resource type="Resource" id="Resource_hqawg"]
 script = ExtResource("2_jy7i7")
-data = PackedByteArray(1, 1, 1, 1, 1, 1)
-name = &"visible"
+data = PackedByteArray(0, 0, 0, 0, 0, 0)
+name = &"selected"
 category = ""
 data_type = 0
 stride = 1
@@ -960,8 +960,8 @@ stride = 1
 
 [sub_resource type="Resource" id="Resource_0ca2a"]
 script = ExtResource("2_jy7i7")
-data = PackedByteArray(1, 1, 1, 1, 1, 1)
-name = &"visible"
+data = PackedByteArray(0, 0, 0, 0, 0, 0)
+name = &"selected"
 category = ""
 data_type = 0
 stride = 1
