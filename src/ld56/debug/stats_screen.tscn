@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwrtkfrtgji4f"]
+
+[ext_resource type="Script" path="res://debug/stats_screen.gd" id="1_qfe56"]
+
+[node name="StatsScreenUI" type="Node3D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_qfe56")
+label = NodePath("CanvasLayer/Label")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 45.0
+offset_bottom = 24.0
+text = "stats:"
