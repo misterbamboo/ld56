@@ -1,4 +1,4 @@
-[gd_scene load_steps=260 format=3 uid="uid://bllrrf5t4j4pt"]
+[gd_scene load_steps=258 format=3 uid="uid://bllrrf5t4j4pt"]
 
 [ext_resource type="PackedScene" uid="uid://bwrtkfrtgji4f" path="res://debug/stats_screen.tscn" id="1_5r3ys"]
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="1_n5cg6"]
@@ -9,21 +9,7 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="6_awn4n"]
 [ext_resource type="Material" path="res://materials/dirt(lowrez)/dirt_low_rez.tres" id="7_p4lcu"]
 [ext_resource type="PackedScene" uid="uid://cye8c2yhcsa6a" path="res://creature1/creature1.tscn" id="8_2ijcv"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bj3c8"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-sky_energy_multiplier = 0.0
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_381xu"]
-sky_material = SubResource("ProceduralSkyMaterial_bj3c8")
-
-[sub_resource type="Environment" id="Environment_cnmmr"]
-background_mode = 2
-background_energy_multiplier = 0.0
-sky = SubResource("Sky_381xu")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="Script" path="res://nico_map_1/runtime_roof_placement.gd" id="9_lvu53"]
 
 [sub_resource type="Resource" id="Resource_lftwp"]
 script = ExtResource("3_8oh5m")
@@ -2518,13 +2504,6 @@ face_vertex_data = {
 
 [node name="Debug" parent="." instance=ExtResource("1_5r3ys")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_cnmmr")
-
 [node name="Player" parent="." instance=ExtResource("1_n5cg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.75507, 2.00347, 11.5528)
 
@@ -2536,10 +2515,13 @@ mesh_vector_data = SubResource("Resource_emivn")
 materials = Array[Material]([ExtResource("7_p4lcu")])
 
 [node name="block3_roof" type="Node3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 16)
 script = ExtResource("2_551vx")
 mesh_vector_data = SubResource("Resource_xvl25")
 materials = Array[Material]([ExtResource("7_p4lcu")])
+
+[node name="roof_placement" type="Node" parent="Map/block3_roof"]
+script = ExtResource("9_lvu53")
 
 [node name="block1_leftwall" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
