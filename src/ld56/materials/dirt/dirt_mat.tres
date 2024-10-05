@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dvlf4wtnkse0y"]
+
+[ext_resource type="Texture2D" uid="uid://b8dkato1bi2sq" path="res://materials/dirt/GroundDirtRocky020_COL_1K.jpg" id="1_p0nqj"]
+[ext_resource type="Texture2D" uid="uid://krdbwn62jphh" path="res://materials/dirt/GroundDirtRocky020_NRM_1K.jpg" id="2_68su3"]
+[ext_resource type="Texture2D" uid="uid://i8qe40ustlrl" path="res://materials/dirt/GroundDirtRocky020_AO_1K.jpg" id="2_lhstl"]
+[ext_resource type="Texture2D" uid="uid://c08qfnm0kwlnm" path="res://materials/dirt/GroundDirtRocky020_GLOSS_1K.jpg" id="3_5iag7"]
+[ext_resource type="Texture2D" uid="uid://bermw2wuoauum" path="res://materials/dirt/GroundDirtRocky020_REFL_1K.jpg" id="5_15dph"]
+
+[resource]
+albedo_texture = ExtResource("1_p0nqj")
+metallic = 1.0
+metallic_texture = ExtResource("3_5iag7")
+normal_enabled = true
+normal_texture = ExtResource("2_68su3")
+ao_enabled = true
+ao_texture = ExtResource("2_lhstl")
+refraction_enabled = true
+refraction_texture = ExtResource("5_15dph")
