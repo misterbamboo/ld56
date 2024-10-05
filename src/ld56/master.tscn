@@ -1,4 +1,4 @@
-[gd_scene load_steps=378 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=380 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_kykoy"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
+[ext_resource type="PackedScene" uid="uid://f124j4bqakjx" path="res://mine_cart_model.tscn" id="9_olxs4"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kskm8"]
@@ -1992,6 +1993,13 @@ face_vertex_data = {
 "vertex_index": SubResource("Resource_3qns8")
 }
 
+[sub_resource type="Curve3D" id="Curve3D_xsurh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15.9595, 0, 11.1867, 0, 0, 0, 0, 0, 0, 15.5943, 0, 15.5697, 0, 0, 0, 0, 0, 0, 14.255, 0, 19.7091, 0, 0, 0, 0, 0, 0, 13.8898, 0, 24.3356, 0, 0, 0, 0, 0, 0, 14.8638, 0, 42.111, 0, 0, 0, 0, 0, 0, 14.9855, 0, 44.7894, 0, 0, 0, 0, 0, 0, 14.1333, 0, 48.5637, 0, 0, 0, 0, 0, 0, 11.8201, 0, 52.3379, 0, 0, 0, 0, 0, 0, 8.04583, 0, 54.4076, 0, 0, 0, 0, 0, 0, -7.90329, 0, 54.2859),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
 [sub_resource type="Resource" id="Resource_mmkgk"]
 script = ExtResource("2_kykoy")
 data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -3911,6 +3919,19 @@ mesh_vector_data = SubResource("Resource_dwkw3")
 materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
+[node name="Path3D" type="Path3D" parent="Rails"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424183, 0)
+curve = SubResource("Curve3D_xsurh")
+
+[node name="MineCart" type="PathFollow3D" parent="Rails/Path3D"]
+transform = Transform3D(0.852581, 0, -0.522551, 0, 1.00008, 0, 0.522551, 0, 0.852581, 13.0946, 0, 50.2584)
+progress = 39.73
+rotation_mode = 1
+use_model_front = true
+
+[node name="MineCartModel" parent="Rails/Path3D/MineCart" instance=ExtResource("9_olxs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.277965, 0)
+
 [node name="Player" parent="." instance=ExtResource("6_queu5")]
 transform = Transform3D(-0.476898, 0, -0.878959, 0, 1, 0, 0.878959, 0, -0.476898, 2.68195, 1.31808, 2.15753)
 
@@ -3923,7 +3944,7 @@ mesh_vector_data = SubResource("Resource_s3tja")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 
 [node name="block1" type="Node3D" parent="Area1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.89733, 16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.005, 4.89733, 16.5)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_thc1p")
 materials = Array[Material]([ExtResource("6_c7pdw")])
@@ -3989,7 +4010,7 @@ mesh_vector_data = SubResource("Resource_i0y3g")
 materials = Array[Material]([ExtResource("10_bqetd")])
 
 [node name="Block_10" type="Node3D" parent="Area1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.89733, 16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.005, 4.89733, 16.5)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_6kno8")
 materials = Array[Material]([ExtResource("6_c7pdw")])
