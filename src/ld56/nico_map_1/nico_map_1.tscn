@@ -2533,7 +2533,7 @@ mesh_vector_data = SubResource("Resource_af8gm")
 materials = Array[Material]([ExtResource("7_2beol")])
 
 [node name="block3_roof" type="Node3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 16)
 script = ExtResource("2_551vx")
 mesh_vector_data = SubResource("Resource_km51p")
 materials = Array[Material]([ExtResource("7_2beol")])
@@ -2639,8 +2639,9 @@ script = ExtResource("2_551vx")
 mesh_vector_data = SubResource("Resource_oj64b")
 materials = Array[Material]([ExtResource("7_2beol")])
 
-[node name="Creature1" parent="." instance=ExtResource("8_2ijcv")]
+[node name="Creature1_Model" parent="." node_paths=PackedStringArray("path_points") instance=ExtResource("8_2ijcv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5462, 1, 6.41401)
+path_points = [NodePath("../Creature1_Path/Path1"), NodePath("../Creature1_Path/Path2"), NodePath("../Creature1_Path/Path3"), NodePath("../Creature1_Path/Path4"), NodePath("../Creature1_Path/Path5"), NodePath("../Creature1_Path/Path6"), NodePath("../Creature1_Path/Path7"), NodePath("../Creature1_Path/Path8"), NodePath("../Creature1_Path/Path9"), NodePath("../Creature1_Path/Path10")]
 
 [node name="Creature1_Path" type="Node3D" parent="."]
 
@@ -2657,16 +2658,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0635, 1, 14.0976)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1058, 1, 14.1837)
 
 [node name="Path5" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0519, 1, 6.07879)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4397, 1, 11.056)
 
 [node name="Path6" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1581, 1, 6.93199)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0519, 1, 6.07879)
 
 [node name="Path7" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.077, 1, 1.86794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1581, 1, 6.93199)
 
 [node name="Path8" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8428, 1, 1.82848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.077, 1, 1.86794)
 
 [node name="Path9" type="Node3D" parent="Creature1_Path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8428, 1, 1.82848)
+
+[node name="Path10" type="Node3D" parent="Creature1_Path"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1656, 1, 4.10481)
