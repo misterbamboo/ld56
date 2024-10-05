@@ -1,4 +1,4 @@
-[gd_scene load_steps=255 format=3 uid="uid://bllrrf5t4j4pt"]
+[gd_scene load_steps=258 format=3 uid="uid://bllrrf5t4j4pt"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_7o58n"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_6x6nb"]
@@ -7,6 +7,21 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_irnu0"]
 [ext_resource type="PackedScene" path="res://player.tscn" id="6_0o3j7"]
 [ext_resource type="Material" path="res://materials/new_dirt/dirt.tres" id="7_omdol"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bj3c8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_energy_multiplier = 0.0
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_381xu"]
+sky_material = SubResource("ProceduralSkyMaterial_bj3c8")
+
+[sub_resource type="Environment" id="Environment_cnmmr"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_381xu")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="Resource" id="Resource_ge2r4"]
 script = ExtResource("2_6x6nb")
@@ -2498,6 +2513,13 @@ face_vertex_data = {
 }
 
 [node name="NicoMap1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cnmmr")
 
 [node name="Player" parent="." instance=ExtResource("6_0o3j7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.484752, 2.00347, 1.89113)
