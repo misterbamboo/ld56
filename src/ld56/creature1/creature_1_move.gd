@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 	var weight = clampf(t / currentDistanceToDo, 0, 1)
 	var currentPoint = fromPoint.slerp(toPoint, weight)
 	position = currentPoint
+	look_at(fromPoint)
 	
 	if(weight >= 1):
 		t -= currentDistanceToDo

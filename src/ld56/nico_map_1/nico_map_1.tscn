@@ -2640,16 +2640,16 @@ mesh_vector_data = SubResource("Resource_kx333")
 materials = Array[Material]([ExtResource("7_p4lcu")])
 
 [node name="Creature1_Model" parent="." node_paths=PackedStringArray("path_points") instance=ExtResource("8_2ijcv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5462, 1, 6.41401)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5462, 1, 5.7255)
 path_points = [NodePath("../Creature1_Path/Path1"), NodePath("../Creature1_Path/Path2"), NodePath("../Creature1_Path/Path3"), NodePath("../Creature1_Path/Path4"), NodePath("../Creature1_Path/Path5"), NodePath("../Creature1_Path/Path6"), NodePath("../Creature1_Path/Path7"), NodePath("../Creature1_Path/Path8"), NodePath("../Creature1_Path/Path9"), NodePath("../Creature1_Path/Path10")]
 
 [node name="Creature1_Path" type="Node3D" parent="."]
 
 [node name="Path1" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5462, 1, 6.41401)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5462, 1, 5.7255)
 
 [node name="Path2" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4914, 1, 8.00331)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9481, 1, 8.00331)
 
 [node name="Path3" type="Node3D" parent="Creature1_Path"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0635, 1, 14.0976)
@@ -2673,4 +2673,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.077, 1, 1.86794)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8428, 1, 1.82848)
 
 [node name="Path10" type="Node3D" parent="Creature1_Path"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1656, 1, 4.10481)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1656, 1, 3.58174)
