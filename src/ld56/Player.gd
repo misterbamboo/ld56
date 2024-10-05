@@ -4,19 +4,29 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var sensitivity = 0.001
+@export var ambientLightStrenghtoff = 0.05
+@export var ambientLightStrenghton = 0.5
 
 @onready var neck := $Neck
 @onready var cam := $Neck/Camera3D
+@onready var flashlight := $Neck/Camera3D/SpotLight3D
+@onready var ambientlight := $OmniLight3D
 
 var CameraRotation = Vector2(0,0)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"):
 		if(Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE):
 			get_tree().quit()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	elif event.is_action_pressed("action"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		flashlight.visible = !flashlight.visible
+		if flashlight.visible:
+			ambientlight.light_energy = ambientLightStrenghton
+		else:
+			ambientlight.light_energy = ambientLightStrenghtoff
 		
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
