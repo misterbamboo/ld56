@@ -8,10 +8,15 @@ var path_points_distance: Array[float] = [];
 var path_index = 0
 var path_count = 0
 var t = 0.0
+var lastCreatureT = 0.0
 
 var player: Player
 
 var player_in_range: bool = false
+var previous_player_in_range: bool = false
+
+var retrieve_path: bool = false
+var lastCreaturePos: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,10 +30,17 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if player == null:
+		return
+	
+	StatsScreen.update_line(StatsScreen.LINE2, var_to_str(retrieve_path))
+	
 	_check_player_distance()
 	if player_in_range:
 		_move_to_player(delta)
 		_look_at_player()
+	elif retrieve_path:
+		_move_to_retrive_path(delta)
 	else:
 		_move_on_path(delta)
 	
@@ -42,6 +54,24 @@ func _look_at_player():
 	var direction = player.position - position
 	var look_pos = position - direction
 	look_at(look_pos)
+	
+func _move_to_retrive_path(delta: float):
+	if(len(path_points_distance) == 0):
+		return
+	
+	var retrive_path_done: bool = false
+	var direction = lastCreaturePos - position
+	var movement = direction.normalized() * delta
+	if movement.length() > direction.length():
+		movement = direction
+		retrive_path_done = true
+		
+	position += movement
+
+	if retrive_path_done:
+		t = lastCreatureT
+		lastCreaturePos = Vector3.ZERO
+		retrieve_path = false;
 	
 func _move_on_path(delta: float):
 	if(len(path_points_distance) == 0):
@@ -67,13 +97,21 @@ func _check_player_distance():
 	var playerAtLevel = Vector3(player.position.x, position.y, player.position.z)
 	var distance = (playerAtLevel - position).length()
 	
+	previous_player_in_range = player_in_range
 	player_in_range = distance < base_detection_radius
 	
 	var distance_text = ""
 	if player_in_range:
 		distance_text = "InRange"
-	
-	StatsScreen.distance(var_to_str(distance) + distance_text)
+		if lastCreaturePos == Vector3.ZERO:
+			lastCreaturePos = position
+			
+	elif previous_player_in_range:
+		lastCreatureT = t
+		t = 0
+		retrieve_path = true
+		
+	StatsScreen.update_line(StatsScreen.LINE_DISTANCE, var_to_str(distance) + distance_text)
 	
 func _next_index(index: int) -> int:
 	var nextIndex = index + 1
