@@ -4,13 +4,10 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var sensitivity = 0.001
-@export var ambientLightStrenghtoff = 0.05
-@export var ambientLightStrenghton = 0.5
+@export var run_speed_modifier = 1.5;
 
 @onready var neck := $Neck
 @onready var cam := $Neck/Camera3D
-@onready var flashlight := $Neck/Camera3D/SpotLight3D
-@onready var ambientlight := $OmniLight3D
 
 var CameraRotation = Vector2(0,0)
 
@@ -22,11 +19,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	elif event.is_action_pressed("action"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		flashlight.visible = !flashlight.visible
-		if flashlight.visible:
-			ambientlight.light_energy = ambientLightStrenghton
-		else:
-			ambientlight.light_energy = ambientLightStrenghtoff
 		
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
@@ -53,11 +45,17 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	var speed:float = SPEED;
+	
+	if Input.is_action_pressed("run"):
+		speed = SPEED * run_speed_modifier
+		
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
