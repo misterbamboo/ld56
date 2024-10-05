@@ -2244,7 +2244,7 @@ script = ExtResource("1_7o58n")
 mesh_vector_data = SubResource("Resource_106lx")
 
 [node name="block3_roof" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
 script = ExtResource("1_7o58n")
 mesh_vector_data = SubResource("Resource_106lx")
 
