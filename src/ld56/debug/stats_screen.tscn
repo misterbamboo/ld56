@@ -11,7 +11,7 @@ label = NodePath("CanvasLayer/Label")
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 5.0
 offset_top = 1.0
-offset_right = 45.0
-offset_bottom = 24.0
+offset_right = 374.0
+offset_bottom = 206.0
 theme_override_font_sizes/font_size = 10
 text = "stats:"

@@ -33,9 +33,11 @@ func _process(delta: float) -> void:
 	if player == null:
 		return
 	
-	StatsScreen.update_line(StatsScreen.LINE2, var_to_str(retrieve_path))
+	StatsScreen.update_line(StatsScreen.LINE2, var_to_str(player_in_range))
+	StatsScreen.update_line(StatsScreen.LINE3, var_to_str(retrieve_path))
 	
 	_check_player_distance()
+	
 	if player_in_range:
 		_move_to_player(delta)
 		_look_at_player()
@@ -66,7 +68,11 @@ func _move_to_retrive_path(delta: float):
 		movement = direction
 		retrive_path_done = true
 		
-	position += movement
+	var lookPos = position
+	var newPos = position + movement
+	position = newPos
+	if 	position != lookPos:
+		look_at(lookPos)
 
 	if retrive_path_done:
 		t = lastCreatureT
@@ -76,6 +82,8 @@ func _move_to_retrive_path(delta: float):
 func _move_on_path(delta: float):
 	if(len(path_points_distance) == 0):
 		return
+	
+	StatsScreen.update_line(StatsScreen.LINE4, var_to_str(t))
 	
 	t += delta
 	var currentDistanceToDo = path_points_distance[path_index]
@@ -108,10 +116,9 @@ func _check_player_distance():
 			
 	elif previous_player_in_range:
 		lastCreatureT = t
-		t = 0
 		retrieve_path = true
 		
-	StatsScreen.update_line(StatsScreen.LINE_DISTANCE, var_to_str(distance) + distance_text)
+	StatsScreen.update_line(StatsScreen.LINE1, var_to_str(distance) + distance_text)
 	
 func _next_index(index: int) -> int:
 	var nextIndex = index + 1

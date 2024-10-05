@@ -2,12 +2,12 @@ extends Node
 
 @export var label:Label
 
-const LINE_DISTANCE: int = 0
+const LINE1: int = 0
 const LINE2: int = 1
 const LINE3: int = 2
 const LINE4: int = 3
 const LINE5: int = 4
-var lines_names: Array[String] = ["distance: ", "retrieve_path: ", "", "", "", ""]
+var lines_names: Array[String] = ["distance: ", "player_in_range: ", "retrieve_path: ", "t : ", "", ""]
 
 var lines: Array[String] = ["", "", "", "", "", ""]
 
@@ -25,7 +25,8 @@ func update_line(line_index: int, text:String) -> void:
 	
 func _print_lines() -> void:
 	var concat: String = ""
-	for line in lines:
+	for i in range(0, len(lines)):
+		var line = lines[i]
 		concat += line + "\n"
 		
 	label.text = concat

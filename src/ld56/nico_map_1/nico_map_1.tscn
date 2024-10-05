@@ -2624,9 +2624,10 @@ script = ExtResource("2_551vx")
 mesh_vector_data = SubResource("Resource_kx333")
 materials = Array[Material]([ExtResource("7_p4lcu")])
 
-[node name="Creature1_Model" parent="." instance=ExtResource("8_2ijcv")]
+[node name="Creature1_Model" parent="." node_paths=PackedStringArray("path_points") instance=ExtResource("8_2ijcv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5462, 1, 5.7255)
 base_detection_radius = 4.0
+path_points = [NodePath("../Creature1_Path/Path1"), NodePath("../Creature1_Path/Path2"), NodePath("../Creature1_Path/Path3"), NodePath("../Creature1_Path/Path4"), NodePath("../Creature1_Path/Path5"), NodePath("../Creature1_Path/Path6"), NodePath("../Creature1_Path/Path7"), NodePath("../Creature1_Path/Path8"), NodePath("../Creature1_Path/Path9"), NodePath("../Creature1_Path/Path10")]
 
 [node name="Creature1_Path" type="Node3D" parent="."]
 
