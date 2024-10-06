@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://8rerogu6gar5"]
+
+[ext_resource type="Script" path="res://MineCart.gd" id="1_5n14d"]
+[ext_resource type="PackedScene" uid="uid://f124j4bqakjx" path="res://mine_cart_model.tscn" id="2_2byue"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jx50r"]
+size = Vector3(0.849731, 1, 0.695313)
+
+[node name="MineCart" type="PathFollow3D"]
+transform = Transform3D(0.996521, 0, -0.0830319, 0, 1.00008, 0, 0.0830319, 0, 0.996521, 15.9595, 0, 11.1867)
+rotation_mode = 1
+use_model_front = true
+script = ExtResource("1_5n14d")
+
+[node name="MineCartModel" parent="." instance=ExtResource("2_2byue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.277965, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.00001, 0, 7.7486e-07, 0, 1, 0, -7.7486e-07, 0, 1.00001, 0.098793, 0.550631, -1.10949)
+shape = SubResource("BoxShape3D_jx50r")
+
+[node name="PlayerTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 2.23517e-08, 0, 1, 0, -2.23517e-08, 0, 1, -0.0980015, 1.318, -1.181)
+
+[connection signal="body_entered" from="Area3D" to="." method="bodyEnter"]
+[connection signal="body_exited" from="Area3D" to="." method="bodyExit"]
