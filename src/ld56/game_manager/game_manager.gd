@@ -23,9 +23,11 @@ func register(eventName: String, callback: Callable) -> void:
 		callbacks.append(callback)
 
 func raise(eventName: String) -> void:
+	print("raise: " + eventName)
 	if !_registered_callbacks.has(eventName):
 		return
 	
+	print_rich("[color=cyan]raised event "  + eventName + "![/color]")
 	var callbacks: Array = _registered_callbacks[eventName]
 	for callback: Callable in callbacks:
 		if callback != null:

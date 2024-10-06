@@ -23,6 +23,7 @@ var distance_between_footsteps = 120
 var distance_until_next_footsetp = 120
 
 func _ready() -> void:
+	print_rich("[color=green] playerReady![/color]")
 	GameManager.register("gamestart", func(): can_move = true)
 	GameManager.register("gameover", _uncapture_mouse)
 	GameManager.register("hitplayer", _on_receive_hit)
