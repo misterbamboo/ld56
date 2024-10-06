@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dveja88ubh5k4"]
+[gd_scene load_steps=10 format=3 uid="uid://dveja88ubh5k4"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_nfej1"]
 [ext_resource type="Script" path="res://battery_hud.gd" id="2_2tviy"]
 [ext_resource type="Script" path="res://flashlight.gd" id="2_jst3g"]
+[ext_resource type="Script" path="res://hands_for_ray_cast.gd" id="2_str7r"]
 [ext_resource type="AudioStream" uid="uid://b1dxgcy6cflyk" path="res://sounds/flash_on.mp3" id="3_e6qeo"]
 [ext_resource type="Texture2D" uid="uid://4gfyntjnkgkv" path="res://icons/battery-0.png" id="4_7135u"]
 [ext_resource type="AudioStream" uid="uid://bidye6yt2is4f" path="res://sounds/flash_off.mp3" id="4_ocrwn"]
@@ -28,10 +29,15 @@ stream_2/stream = ExtResource("12_47ptn")
 stream_3/stream = ExtResource("15_1a06v")
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 3)
 collision_layer = 128
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("1_nfej1")
 sensitivity = 0.004
+
+[node name="Hands_ForRayCast" type="Node3D" parent="." node_paths=PackedStringArray("cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_str7r")
+cam = NodePath("../Neck/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_c2unh")

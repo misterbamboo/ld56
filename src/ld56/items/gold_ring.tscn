@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwqd7dkrvo7uw"]
+
+[ext_resource type="Script" path="res://items/base_item.gd" id="1_p61c0"]
+[ext_resource type="Material" path="res://materials/items/gold/gold.tres" id="2_fx4jg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lwg24"]
+height = 0.115596
+radius = 0.288573
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_78v0d"]
+height = 0.0115378
+radius = 0.341497
+
+[node name="GoldRing" type="Node3D" node_paths=PackedStringArray("rb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_p61c0")
+rb = NodePath("RigidBody3D")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="RigidBody3D"]
+material_override = ExtResource("2_fx4jg")
+inner_radius = 0.2
+outer_radius = 0.353
+sides = 10
+
+[node name="CollisionShape3D_big" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_lwg24")
+
+[node name="CollisionShape3D_small" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_78v0d")

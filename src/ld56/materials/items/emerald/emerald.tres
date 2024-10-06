@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cd7c37qvv080q"]
+
+[ext_resource type="Texture2D" uid="uid://b8brmh4570t2i" path="res://materials/items/emerald/emerald_normal.png" id="3"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0.124792, 0.421875, 0.124792, 1)
+metallic = 1.0
+roughness = 0.0
+normal_enabled = true
+normal_scale = -0.75
+normal_texture = ExtResource("3")

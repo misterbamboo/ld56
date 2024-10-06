@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_87hf6"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="5_7yoiw"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="6_awn4n"]
-[ext_resource type="Material" path="res://materials/dirt(lowrez)/dirt_low_rez.tres" id="7_p4lcu"]
+[ext_resource type="Material" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="7_p4lcu"]
 [ext_resource type="PackedScene" uid="uid://cye8c2yhcsa6a" path="res://creature1/creature1.tscn" id="8_2ijcv"]
 [ext_resource type="Script" path="res://nico_map_1/runtime_roof_placement.gd" id="9_lvu53"]
 

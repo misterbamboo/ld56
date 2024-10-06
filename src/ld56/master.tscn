@@ -1,4 +1,4 @@
-[gd_scene load_steps=363 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=386 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5tp6sabqqkn5" path="res://UIs/title_screen/title_screen.tscn" id="3_armyj"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
-[ext_resource type="Material" path="res://materials/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
+[ext_resource type="Material" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Material" path="res://materials/grass/grass.tres" id="11_5i2vl"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 [ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="16_bdq5f"]
+[ext_resource type="PackedScene" uid="uid://dwqd7dkrvo7uw" path="res://items/gold_ring.tscn" id="17_dlste"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
 sky_top_color = Color(0.0191466, 0.00478081, 0.172609, 1)
@@ -3771,55 +3772,63 @@ materials = Array[Material]([ExtResource("6_c7pdw")])
 [node name="NicoMap1" parent="." instance=ExtResource("13_wbm2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.745, -0.735, 53.955)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 15.4463, 1.18647, 63.9786)
+[node name="Flames" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4594, 0.0658126, 63.9774)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -1.01307, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 13.4463, 1.18647, 63.9786)
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -3.01307, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 11.4463, 1.18647, 63.9786)
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -5.01307, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 9.44633, 1.18647, 63.9786)
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -7.01304, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 7.44633, 1.18647, 63.9786)
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -9.01304, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 5.44633, 1.18647, 63.9786)
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -11.013, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D7" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 3.44633, 1.18647, 63.9786)
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -13.013, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D8" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 1.44633, 1.18647, 63.9786)
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -15.013, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D9" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -0.553673, 1.18647, 63.9786)
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -17.013, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
-[node name="CSGMesh3D10" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -2.55367, 1.18647, 63.9786)
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Flames"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -19.013, 1.12066, 0.00119781)
 mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="GoldRing" parent="Items" instance=ExtResource("17_dlste")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72038, 1.6584, 6.19942)
 
 [node name="InsideTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1011, 1.59769, 17.527)
