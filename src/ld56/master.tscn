@@ -1,7 +1,9 @@
-[gd_scene load_steps=378 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=380 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
+[ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_kykoy"]
+[ext_resource type="PackedScene" uid="uid://dkarfm3j81bq5" path="res://UIs/game_over_screen/game_over_screen.tscn" id="2_mt0q1"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
@@ -3696,6 +3698,7 @@ face_vertex_data = {
 }
 
 [node name="Master" type="Node3D"]
+script = ExtResource("1_udyua")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y75gs")
@@ -3993,3 +3996,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.89733, 16.5)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_6kno8")
 materials = Array[Material]([ExtResource("6_c7pdw")])
+
+[node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]
