@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dveja88ubh5k4"]
+[gd_scene load_steps=20 format=3 uid="uid://dveja88ubh5k4"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_nfej1"]
 [ext_resource type="Script" path="res://battery_hud.gd" id="2_2tviy"]
@@ -29,8 +29,8 @@ stream_2/stream = ExtResource("12_47ptn")
 stream_3/stream = ExtResource("15_1a06v")
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 128
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 128
 script = ExtResource("1_nfej1")
 sensitivity = 0.004
 
