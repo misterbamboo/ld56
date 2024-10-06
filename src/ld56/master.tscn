@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
+[ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="16_bdq5f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kskm8"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -3707,6 +3708,8 @@ face_vertex_data = {
 "vertex_index": SubResource("Resource_0x0eq")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_s0nw8"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_46ols"]
 size = Vector3(8.03906, 3.97217, 1)
 
@@ -4026,6 +4029,56 @@ materials = Array[Material]([ExtResource("6_c7pdw")])
 
 [node name="NicoMap1" parent="." instance=ExtResource("13_wbm2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.745, -0.735, 53.955)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 15.4463, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 13.4463, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 11.4463, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 9.44633, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 7.44633, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 5.44633, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 3.44633, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 1.44633, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -0.553673, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, -2.55367, 1.18647, 63.9786)
+mesh = SubResource("PlaneMesh_s0nw8")
+material = ExtResource("16_bdq5f")
 
 [node name="InsideTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1011, 1.59769, 17.527)
