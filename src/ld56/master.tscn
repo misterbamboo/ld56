@@ -1,4 +1,4 @@
-[gd_scene load_steps=382 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=383 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -13,6 +13,7 @@
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
 [ext_resource type="PackedScene" path="res://mine_cart_model.tscn" id="9_olxs4"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
+[ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kskm8"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -3927,7 +3928,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424183, 0)
 curve = SubResource("Curve3D_xsurh")
 
 [node name="MineCart" type="PathFollow3D" parent="Rails/Path3D"]
-transform = Transform3D(0.852581, 0, -0.522551, 0, 1.00008, 0, 0.522551, 0, 0.852581, 13.0946, 0, 50.2584)
+transform = Transform3D(0.852583, 0, -0.522547, 0, 1.00008, 0, 0.522547, 0, 0.852583, 13.0946, 0, 50.2584)
 progress = 39.73
 rotation_mode = 1
 use_model_front = true
@@ -4017,5 +4018,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.005, 4.89733, 16.5)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_6kno8")
 materials = Array[Material]([ExtResource("6_c7pdw")])
+
+[node name="NicoMap1" parent="." instance=ExtResource("13_wbm2w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.745, -0.735, 53.955)
 
 [node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]

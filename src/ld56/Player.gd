@@ -11,11 +11,20 @@ const JUMP_VELOCITY = 4.5
 
 var CameraRotation = Vector2(90, 0)
 
+var can_move: bool = false
+
 func _ready() -> void:
+	GameManager.register("gamestart", func(): can_move = true)
 	GameManager.register("gameover", _uncapture_mouse)
+	GameManager.register("hitplayer", _on_receive_hit)
+	GameManager.register_player(self)
 
 func _uncapture_mouse() -> void:
+	can_move = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+func _on_receive_hit() -> void:
+	GameManager.player_die()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -39,6 +48,9 @@ func CameraLook (movement: Vector2):
 	cam.rotate_object_local(Vector3(1,0,0), -CameraRotation.y)
 			
 func _physics_process(delta: float) -> void:
+	if !can_move:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
