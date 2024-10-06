@@ -14,7 +14,7 @@
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="8_ckis4"]
 [ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" path="res://materials/surfaces/roughstone/roughstone.tres" id="10_bqetd"]
-[ext_resource type="Material" path="res://materials/grass/grass.tres" id="11_5i2vl"]
+[ext_resource type="Material" uid="uid://poamfxbl457o" path="res://materials/grass/grass.tres" id="11_5i2vl"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 [ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="16_bdq5f"]
 [ext_resource type="PackedScene" uid="uid://dwqd7dkrvo7uw" path="res://items/gold_ring.tscn" id="17_dlste"]
@@ -3479,7 +3479,6 @@ environment = SubResource("Environment_h6e2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0389032, 0.998058, 0.048646, 0.499925, -0.0227115, 0.865771, 0.865194, 0.0580006, -0.498071, 13.0812, 15.5289, 11.5561)
-light_energy = 0.01
 shadow_enabled = true
 
 [node name="MainRoom" type="Node3D" parent="."]
@@ -3687,7 +3686,6 @@ transform = Transform3D(0.994209, 0, -0.107221, 0, 1.00008, 0, 0.107221, 0, 0.99
 
 [node name="Player" parent="." instance=ExtResource("6_queu5")]
 transform = Transform3D(-0.476898, 0, -0.878959, 0, 1, 0, 0.878959, 0, -0.476898, 15.828, 1.31808, 5.66969)
-collision_layer = 2
 
 [node name="Area1" type="Node3D" parent="."]
 

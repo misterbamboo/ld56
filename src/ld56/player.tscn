@@ -30,7 +30,7 @@ stream_3/stream = ExtResource("15_1a06v")
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-collision_layer = 128
+collision_layer = 2
 script = ExtResource("1_nfej1")
 sensitivity = 0.004
 
