@@ -10,7 +10,7 @@ func _on_transition(_delta: float, _actor: Node, _blackboard: Blackboard) -> voi
 # Evaluates true, if the transition conditions are met.
 func is_valid(actor: Node, _blackboard: Blackboard) -> bool:
 	actor = actor as FireGuy
-	return !actor.player_in_range || !actor.see_player
+	return !actor.see_player && !actor.player_in_range
 
 
 # Add custom configuration warnings

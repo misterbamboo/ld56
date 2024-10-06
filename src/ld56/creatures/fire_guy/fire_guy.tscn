@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://creatures/fire_guy/transitions/patrol_node_reached.gd" id="5_h21ob"]
 [ext_resource type="Script" path="res://creatures/fire_guy/states/chase.gd" id="5_v3m4v"]
 [ext_resource type="Script" path="res://creatures/fire_guy/transitions/player_in_sight.gd" id="6_l3pp6"]
-[ext_resource type="Script" path="res://creatures/fire_guy/transitions/cant_see_player.gd" id="8_v8d8e"]
+[ext_resource type="Script" path="res://creatures/fire_guy/transitions/player_lost.gd" id="8_v8d8e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wwyw5"]
 
@@ -87,7 +87,7 @@ next_state = NodePath("../../Chase")
 [node name="Chase" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("5_v3m4v")
 
-[node name="FSMTransition" type="Node" parent="FiniteStateMachine/Chase" node_paths=PackedStringArray("next_state")]
+[node name="PlayerLost" type="Node" parent="FiniteStateMachine/Chase" node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_v8d8e")
 next_state = NodePath("../../RandomPatrol")
 
