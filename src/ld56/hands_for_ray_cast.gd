@@ -2,6 +2,7 @@ extends Node3D
 
 const RAY_LENGTH = 1000
 
+@export var pick_distance: float = 3
 @export var cam: Camera3D
 @export var selectionDot: Control
 
@@ -13,7 +14,7 @@ var _last_mouse_pressed: bool = false
 func _ready() -> void:
 	selectionDot.visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_update_selection_dot()
 	_hold_item()
 	_move_picked_item()
@@ -48,7 +49,7 @@ func _move_picked_item() -> void:
 	_picked_item.rb.global_position = target_pos
 	_picked_item.rb.rotation = Vector3(_picked_item.rb.global_rotation.x, yaw, _picked_item.rb.global_rotation.z)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var new_hover_item: BaseItem = null
 	
 	var space_state = get_world_3d().direct_space_state
@@ -61,10 +62,13 @@ func _physics_process(delta: float) -> void:
 
 	var result = space_state.intersect_ray(query)
 	if result and result.collider is RigidBody3D:
-		var collider: RigidBody3D = result.collider
-		var parent = collider.get_parent()
-		if parent is BaseItem:
-			new_hover_item = parent
+		var distanceVector: Vector3 = result.position - global_position
+		var distance = distanceVector.length()
+		if distance <= pick_distance:
+			var collider: RigidBody3D = result.collider
+			var parent = collider.get_parent()
+			if parent is BaseItem:
+				new_hover_item = parent
 	
 	_hover_item = new_hover_item
 
