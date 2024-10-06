@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=4 uid="uid://f124j4bqakjx"]
 
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="1_0t8vo"]
-[ext_resource type="Material" path="res://materials/wood/wood.tres" id="2_lqqxa"]
+[ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/wood/wood.tres" id="2_lqqxa"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rw5wj"]
 _surfaces = [{

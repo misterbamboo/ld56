@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
-[ext_resource type="PackedScene" uid="uid://f124j4bqakjx" path="res://mine_cart_model.tscn" id="9_olxs4"]
+[ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="9_fiqxl"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kskm8"]
@@ -3923,14 +3923,8 @@ collision_type = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424183, 0)
 curve = SubResource("Curve3D_xsurh")
 
-[node name="MineCart" type="PathFollow3D" parent="Rails/Path3D"]
-transform = Transform3D(0.852581, 0, -0.522551, 0, 1.00008, 0, 0.522551, 0, 0.852581, 13.0946, 0, 50.2584)
-progress = 39.73
-rotation_mode = 1
-use_model_front = true
-
-[node name="MineCartModel" parent="Rails/Path3D/MineCart" instance=ExtResource("9_olxs4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.277965, 0)
+[node name="MineCart" parent="Rails/Path3D" instance=ExtResource("9_fiqxl")]
+transform = Transform3D(0.996521, 0, -0.0830319, 0, 1.00008, 0, 0.0830319, 0, 0.996521, 15.9595, 0, 11.1867)
 
 [node name="Player" parent="." instance=ExtResource("6_queu5")]
 transform = Transform3D(-0.476898, 0, -0.878959, 0, 1, 0, 0.878959, 0, -0.476898, 2.68195, 1.31808, 2.15753)
@@ -4004,7 +3998,7 @@ mesh_vector_data = SubResource("Resource_bp5jc")
 materials = Array[Material]([ExtResource("10_bqetd")])
 
 [node name="Block_9" type="Node3D" parent="Area1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0.25, 49.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0.25, 49.25)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_i0y3g")
 materials = Array[Material]([ExtResource("10_bqetd")])
@@ -4014,3 +4008,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.005, 4.89733, 16.5)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_6kno8")
 materials = Array[Material]([ExtResource("6_c7pdw")])
+
+[node name="Area3D" type="Area3D" parent="."]
