@@ -29,6 +29,7 @@ stream_3/stream = ExtResource("15_1a06v")
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 3)
+collision_layer = 128
 script = ExtResource("1_nfej1")
 sensitivity = 0.004
 
@@ -55,7 +56,7 @@ spot_angle = 30.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.660457, 0)
 light_color = Color(0.654267, 0.654267, 0.654267, 1)
 light_energy = 0.2
-omni_attenuation = 2.0
+omni_attenuation = 3.0
 
 [node name="audio_flash_on" type="AudioStreamPlayer3D" parent="Neck/Camera3D/Lights"]
 stream = ExtResource("3_e6qeo")
@@ -116,7 +117,6 @@ bus = &"Ambiance"
 [node name="AudioOutsideAmbiance" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_75cni")
 volume_db = 0.964
-autoplay = true
 max_distance = 2.0
 bus = &"Ambiance"
 
