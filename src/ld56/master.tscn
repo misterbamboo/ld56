@@ -9,12 +9,12 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
 [ext_resource type="Material" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
-[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
+[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player/player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/surfaces/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="8_ckis4"]
-[ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="10_543e4"]
+[ext_resource type="PackedScene" path="res://MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" path="res://materials/surfaces/roughstone/roughstone.tres" id="10_bqetd"]
-[ext_resource type="Material" uid="uid://poamfxbl457o" path="res://materials/grass/grass.tres" id="11_5i2vl"]
+[ext_resource type="Material" path="res://materials/grass/grass.tres" id="11_5i2vl"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 [ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="16_bdq5f"]
 [ext_resource type="PackedScene" uid="uid://dwqd7dkrvo7uw" path="res://items/gold_ring.tscn" id="17_dlste"]
@@ -3826,7 +3826,7 @@ material = ExtResource("16_bdq5f")
 [node name="Items" type="Node3D" parent="."]
 
 [node name="GoldRing" parent="Items" instance=ExtResource("17_dlste")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72038, 1.6584, 6.19942)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9142, 1.6584, 8.57847)
 
 [node name="InsideTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1011, 1.59769, 17.527)

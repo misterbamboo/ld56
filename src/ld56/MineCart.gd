@@ -11,13 +11,13 @@ func _input(event: InputEvent) -> void:
 		if playerRef != null && !playerRef.is_attached_to_cart:
 			playerRef.AttachToCart()
 			playerRef.reparent(self)
-		print("click")
+		#print("click")
 	
 	if event.is_action_released("action"):
 		if playerRef != null && playerRef.is_attached_to_cart:
 			playerRef.DetachFromCart()
 			playerRef.reparent(find_parent("Master"))
-		print("unclick")
+		#print("unclick")
 	
 func _physics_process(delta: float) -> void:
 	if playerRef == null || !playerRef.is_attached_to_cart:

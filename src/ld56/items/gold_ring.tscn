@@ -12,7 +12,6 @@ height = 0.0115378
 radius = 0.341497
 
 [node name="GoldRing" type="Node3D" node_paths=PackedStringArray("rb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_p61c0")
 rb = NodePath("RigidBody3D")
 

@@ -9,4 +9,8 @@ func _process(delta: float) -> void:
 	pass
 	
 func freeze() -> void:
+	rb.rotation = Vector3.ZERO
 	rb.freeze = true
+	
+func unfreeze() -> void:
+	rb.freeze = false
