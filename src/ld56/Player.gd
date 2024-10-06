@@ -9,7 +9,7 @@ const JUMP_VELOCITY = 4.5
 @onready var neck := $Neck
 @onready var cam := $Neck/Camera3D
 
-var CameraRotation = Vector2(0,0)
+var CameraRotation = Vector2(90, 0)
 
 func _ready() -> void:
 	GameManager.register("gameover", _uncapture_mouse)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=380 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=382 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
-[ext_resource type="PackedScene" uid="uid://f124j4bqakjx" path="res://mine_cart_model.tscn" id="9_olxs4"]
+[ext_resource type="PackedScene" path="res://mine_cart_model.tscn" id="9_olxs4"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kskm8"]
