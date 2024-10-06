@@ -131,8 +131,9 @@ offset_right = 44.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.733333, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_6ylx5")
 theme_override_font_sizes/font_size = 18
-text = "replay"
+text = "exit hell"
 
 [connection signal="pressed" from="Button" to="AnimationPlayer" method="_on_button_pressed"]

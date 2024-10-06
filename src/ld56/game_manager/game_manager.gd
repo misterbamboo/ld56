@@ -4,9 +4,6 @@ var _registered_callbacks = {}
 
 var _player_alive: bool = true
 var _player: Player
-
-func _ready() -> void:
-	GameManager.raise("gamestart")
 	
 func register_player(player: Player) -> void:
 	_player = player
@@ -14,10 +11,8 @@ func register_player(player: Player) -> void:
 func get_player() -> Player:
 	return _player
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
-	#if Input.is_key_pressed(KEY_R):
-		#GameManager.raise("gameover")
 
 func register(eventName: String, callback: Callable) -> void:
 	if !_registered_callbacks.has(eventName):
@@ -40,7 +35,7 @@ func reset_game() -> void:
 	get_tree().reload_current_scene()
 	_registered_callbacks.clear()
 	_player_alive = true
-	GameManager.raise("gamestart")
+	GameManager.raise("titlescreen")
 	
 func is_player_hitable() -> bool:
 	return _player_alive
