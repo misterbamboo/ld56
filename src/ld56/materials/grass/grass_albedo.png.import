@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmkme8fj0owt1"
-path.s3tc="res://.godot/imported/purple_gem_emission.png-5dd75d64fffa133126d79d986bf8ed1d.s3tc.ctex"
+uid="uid://bc7pxixgorw58"
+path.s3tc="res://.godot/imported/grass_albedo.png-0494b86ae7731b8e5a11c306ddc68d91.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://materials/items/purple_gem/purple_gem_emission.png"
-dest_files=["res://.godot/imported/purple_gem_emission.png-5dd75d64fffa133126d79d986bf8ed1d.s3tc.ctex"]
+source_file="res://materials/grass/grass_albedo.png"
+dest_files=["res://.godot/imported/grass_albedo.png-0494b86ae7731b8e5a11c306ddc68d91.s3tc.ctex"]
 
 [params]
 

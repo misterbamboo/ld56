@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_axis("back", "forward")
 	
 	var speed:float = playerRef.SPEED * playerRef.CART_SPEED_MOD;
-	print(speed)
 	if Input.is_action_pressed("run"):
 		speed = speed * playerRef.run_speed_modifier
 	
