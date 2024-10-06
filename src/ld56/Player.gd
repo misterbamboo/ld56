@@ -2,7 +2,7 @@ class_name Player extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const CART_SPEED_MOD = 0.001
+const CART_SPEED_MOD = 0.01
 
 @export var sensitivity = 0.001
 @export var run_speed_modifier = 1.5;
@@ -10,8 +10,23 @@ const CART_SPEED_MOD = 0.001
 @onready var neck := $Neck
 @onready var cam := $Neck/Camera3D
 
-var CameraRotation = Vector2(0,0)
+var CameraRotation = Vector2(90, 0)
 var is_attached_to_cart = false
+
+var can_move: bool = false
+
+func _ready() -> void:
+	GameManager.register("gamestart", func(): can_move = true)
+	GameManager.register("gameover", _uncapture_mouse)
+	GameManager.register("hitplayer", _on_receive_hit)
+	GameManager.register_player(self)
+
+func _uncapture_mouse() -> void:
+	can_move = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+func _on_receive_hit() -> void:
+	GameManager.player_die()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -35,6 +50,9 @@ func CameraLook (movement: Vector2):
 	cam.rotate_object_local(Vector3(1,0,0), -CameraRotation.y)
 			
 func _physics_process(delta: float) -> void:
+	if !can_move:
+		return
+	
 	if is_attached_to_cart:
 		return
 		

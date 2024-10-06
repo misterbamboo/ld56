@@ -1,5 +1,7 @@
 class_name CreatureMove extends Node3D
 
+@export var hit_distance: float = 0.1
+
 @export var base_detection_radius: float = 3.0
 
 @export var path_points: Array[Node3D] = [];
@@ -20,12 +22,12 @@ var lastCreaturePos: Vector3 = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player = get_node("../Player")
+	player = GameManager.get_player()
 	
 	path_count = len(path_points)
 	for i in range(0, path_count):
 		var nextIndex = _next_index(i)
-		var diff = path_points[i].position - path_points[nextIndex].position
+		var diff = path_points[i].global_position - path_points[nextIndex].global_position
 		path_points_distance.append(diff.length())
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,37 +43,44 @@ func _process(delta: float) -> void:
 	if player_in_range:
 		_move_to_player(delta)
 		_look_at_player()
+		_try_to_hit_player()
 	elif retrieve_path:
 		_move_to_retrive_path(delta)
 	else:
 		_move_on_path(delta)
 	
 func _move_to_player(delta: float):
-	var playerAtLevel = Vector3(player.position.x, position.y, player.position.z)
-	var direction = playerAtLevel - position
+	var playerAtLevel = Vector3(player.global_position.x, global_position.y, player.global_position.z)
+	var direction = playerAtLevel - global_position
 	var movement = direction.normalized() * delta
-	position += movement
+	global_position += movement
 	
 func _look_at_player():
-	var direction = player.position - position
-	var look_pos = position - direction
+	var direction = player.global_position - global_position
+	var look_pos = global_position - direction
 	look_at(look_pos)
+	
+func _try_to_hit_player():
+	var playerAtLevel = Vector3(player.global_position.x, global_position.y, player.global_position.z)
+	var distance = (playerAtLevel - global_position).length()
+	if distance <= hit_distance and GameManager.is_player_hitable():
+		GameManager.raise("hitplayer")
 	
 func _move_to_retrive_path(delta: float):
 	if(len(path_points_distance) == 0):
 		return
 	
 	var retrive_path_done: bool = false
-	var direction = lastCreaturePos - position
+	var direction = lastCreaturePos - global_position
 	var movement = direction.normalized() * delta
 	if movement.length() > direction.length():
 		movement = direction
 		retrive_path_done = true
 		
-	var lookPos = position
-	var newPos = position + movement
-	position = newPos
-	if 	position != lookPos:
+	var lookPos = global_position
+	var newPos = global_position + movement
+	global_position = newPos
+	if 	global_position != lookPos:
 		look_at(lookPos)
 
 	if retrive_path_done:
@@ -89,12 +98,12 @@ func _move_on_path(delta: float):
 	var currentDistanceToDo = path_points_distance[path_index]
 	
 	var nextIndex = _next_index(path_index)
-	var fromPoint = path_points[path_index].position
-	var toPoint = path_points[nextIndex].position
+	var fromPoint = path_points[path_index].global_position
+	var toPoint = path_points[nextIndex].global_position
 	
 	var weight = clampf(t / currentDistanceToDo, 0, 1)
 	var currentPoint = fromPoint.slerp(toPoint, weight)
-	position = currentPoint
+	global_position = currentPoint
 	look_at(fromPoint)
 	
 	if(weight >= 1):
@@ -102,8 +111,8 @@ func _move_on_path(delta: float):
 		path_index = _next_index(path_index)
 	
 func _check_player_distance():
-	var playerAtLevel = Vector3(player.position.x, position.y, player.position.z)
-	var distance = (playerAtLevel - position).length()
+	var playerAtLevel = Vector3(player.global_position.x, global_position.y, player.global_position.z)
+	var distance = (playerAtLevel - global_position).length()
 	
 	previous_player_in_range = player_in_range
 	player_in_range = distance < base_detection_radius
@@ -112,7 +121,7 @@ func _check_player_distance():
 	if player_in_range:
 		distance_text = "InRange"
 		if lastCreaturePos == Vector3.ZERO:
-			lastCreaturePos = position
+			lastCreaturePos = global_position
 			
 	elif previous_player_in_range:
 		lastCreatureT = t

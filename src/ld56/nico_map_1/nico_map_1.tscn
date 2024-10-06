@@ -1,7 +1,6 @@
-[gd_scene load_steps=258 format=3 uid="uid://bllrrf5t4j4pt"]
+[gd_scene load_steps=257 format=3 uid="uid://bllrrf5t4j4pt"]
 
 [ext_resource type="PackedScene" uid="uid://bwrtkfrtgji4f" path="res://debug/stats_screen.tscn" id="1_5r3ys"]
-[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="1_n5cg6"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="2_551vx"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="3_8oh5m"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_87hf6"]
@@ -2503,9 +2502,6 @@ face_vertex_data = {
 [node name="NicoMap1" type="Node3D"]
 
 [node name="Debug" parent="." instance=ExtResource("1_5r3ys")]
-
-[node name="Player" parent="." instance=ExtResource("1_n5cg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.75507, 2.00347, 11.5528)
 
 [node name="Map" type="Node3D" parent="."]
 
