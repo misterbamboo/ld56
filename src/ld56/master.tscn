@@ -1,4 +1,4 @@
-[gd_scene load_steps=384 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=386 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
-[ext_resource type="PackedScene" path="res://MineCart.tscn" id="10_543e4"]
+[ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 
@@ -1999,7 +1999,7 @@ face_vertex_data = {
 
 [sub_resource type="Curve3D" id="Curve3D_xsurh"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15.9595, 0, 11.1867, 0.313161, 1.13249e-05, -1.66371, -0.313161, -1.13249e-05, 1.66371, 15.5943, 0, 15.5697, 0.440728, 1.13249e-05, -1.70942, -0.440728, -1.13249e-05, 1.70942, 14.4665, 1.13249e-05, 19.8337, -0.0399427, 1.13249e-05, -1.52412, 0.0399427, -1.13249e-05, 1.52412, 14.1119, 1.13249e-05, 25.0385, 0.0982475, 0, -1.80123, -0.0982475, 0, 1.80123, 15.2195, 1.13249e-05, 41.153, 0.360245, 0, -1.73573, -0.360245, 0, 1.73573, 14.7938, 1.13249e-05, 46, 0.384533, 1.13249e-05, -1.24242, -0.384533, -1.13249e-05, 1.24242, 14.1333, 0, 48.5637, 0.962006, 1.13249e-05, -0.824669, -0.962006, -1.13249e-05, 0.824669, 11.8324, 1.13249e-05, 52.1682, 2.09597, 0, -0.196499, -2.09597, 0, 0.196499, 6.85443, 1.13249e-05, 54.5262, 0, 0, 0, 0, 0, 0, -7.81738, 1.13249e-05, 54.6244),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 16.25, 1.13249e-05, 11.1887, 0.313161, 1.13249e-05, -1.66371, -0.313161, -1.13249e-05, 1.66371, 15.7671, 1.13249e-05, 15.6664, 0.440728, 1.13249e-05, -1.70942, -0.440728, -1.13249e-05, 1.70942, 14.798, 1.13249e-05, 20.1817, -0.0399427, 1.13249e-05, -1.52412, 0.0399427, -1.13249e-05, 1.52412, 14.381, 1.13249e-05, 25.1642, 0.0982475, 0, -1.80123, -0.0982475, 0, 1.80123, 15.3626, 1.13249e-05, 41.108, 0.360245, 0, -1.73573, -0.360245, 0, 1.73573, 14.9676, 1.13249e-05, 46.1783, 0.384533, 1.13249e-05, -1.24242, -0.384533, -1.13249e-05, 1.24242, 14.2641, 1.13249e-05, 48.9232, 0.962006, 1.13249e-05, -0.824669, -0.962006, -1.13249e-05, 0.824669, 11.7838, 1.13249e-05, 52.479, 2.09597, 0, -0.196499, -2.09597, 0, 0.196499, 6.95622, 1.13249e-05, 54.7072, 0, 0, 0, 0, 0, 0, -7.84018, 1.13249e-05, 54.8104),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
@@ -3707,6 +3707,12 @@ face_vertex_data = {
 "vertex_index": SubResource("Resource_0x0eq")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_46ols"]
+size = Vector3(8.03906, 3.97217, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qpni6"]
+size = Vector3(8.94293, 3.91028, 1)
+
 [node name="Master" type="Node3D"]
 script = ExtResource("1_udyua")
 
@@ -3803,14 +3809,14 @@ materials = Array[Material]([ExtResource("8_btndr")])
 [node name="Rails" type="Node3D" parent="."]
 
 [node name="block0" type="Node3D" parent="Rails"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 53.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 54.25)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_dwkw3")
 materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block2" type="Node3D" parent="Rails"]
-transform = Transform3D(0.886624, 0, 0.462492, 0, 1, 0, -0.462492, 0, 0.886624, 8.42047, 0, 53.0137)
+transform = Transform3D(0.886624, 0, 0.462492, 0, 1, 0, -0.462492, 0, 0.886624, 8.67047, 0, 53.7637)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3824,7 +3830,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block4" type="Node3D" parent="Rails"]
-transform = Transform3D(0.569882, 0, 0.821727, 0, 1, 0, -0.821727, 0, 0.569882, 11.5264, 0, 50.8872)
+transform = Transform3D(0.569882, 0, 0.821727, 0, 1, 0, -0.821727, 0, 0.569882, 12.0264, 0, 51.3872)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3838,7 +3844,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block6" type="Node3D" parent="Rails"]
-transform = Transform3D(0.199898, 0, 0.979817, 0, 1, 0, -0.979817, 0, 0.199898, 13.3422, 0, 47.5241)
+transform = Transform3D(0.199898, 0, 0.979817, 0, 1, 0, -0.979817, 0, 0.199898, 14.0922, 0, 47.7741)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3852,7 +3858,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block8" type="Node3D" parent="Rails"]
-transform = Transform3D(0.0270666, 0, 0.999634, 0, 1, 0, -0.999634, 0, 0.0270666, 13.9848, 0.00581646, 43.0951)
+transform = Transform3D(0.0270666, 0, 0.999634, 0, 1, 0, -0.999634, 0, 0.0270666, 14.7348, 0.00581646, 43.3451)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3866,7 +3872,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block12" type="Node3D" parent="Rails"]
-transform = Transform3D(0.104685, 0, 0.994506, 0, 1, 0, -0.994506, 0, 0.104685, 13.2618, 0.00581646, 22.8644)
+transform = Transform3D(0.104685, 0, 0.994506, 0, 1, 0, -0.994506, 0, 0.104685, 14.0118, 0.00581646, 23.1144)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3880,7 +3886,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block14" type="Node3D" parent="Rails"]
-transform = Transform3D(0.213644, 0, 0.976912, 0, 1, 0, -0.976912, 0, 0.213644, 13.9299, 0.00581646, 18.2327)
+transform = Transform3D(0.213644, 0, 0.976912, 0, 1, 0, -0.976912, 0, 0.213644, 14.6799, 0.00581646, 18.7327)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3894,7 +3900,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block16" type="Node3D" parent="Rails"]
-transform = Transform3D(0.110879, 0, 0.993834, 0, 1, 0, -0.993834, 0, 0.110879, 14.7157, 0.00581551, 14.011)
+transform = Transform3D(0.110879, 0, 0.993834, 0, 1, 0, -0.993834, 0, 0.110879, 15.4657, 0.00581551, 14.261)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_jhklk")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3915,7 +3921,7 @@ materials = Array[Material]([ExtResource("8_ckis4")])
 collision_type = 0
 
 [node name="block10" type="Node3D" parent="Rails"]
-transform = Transform3D(-0.0683984, 0, 0.997658, 0, 1, 0, -0.997658, 0, -0.0683984, 13.5974, -1.90735e-06, 32.2974)
+transform = Transform3D(-0.0683984, 0, 0.997658, 0, 1, 0, -0.997658, 0, -0.0683984, 14.3474, -1.90735e-06, 32.2974)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_dwkw3")
 materials = Array[Material]([ExtResource("8_ckis4")])
@@ -3933,7 +3939,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424183, 0)
 curve = SubResource("Curve3D_xsurh")
 
 [node name="MineCart" parent="Rails/Path3D" instance=ExtResource("10_543e4")]
-transform = Transform3D(0.996521, 0, -0.0830319, 0, 1.00008, 0, 0.0830319, 0, 0.996521, 15.9595, 0, 11.1867)
+transform = Transform3D(0.994209, 0, -0.107221, 0, 1.00008, 0, 0.107221, 0, 0.994209, 16.25, 1.13249e-05, 11.1887)
 
 [node name="Player" parent="." instance=ExtResource("6_queu5")]
 transform = Transform3D(-0.476898, 0, -0.878959, 0, 1, 0, 0.878959, 0, -0.476898, 2.68195, 1.31808, 2.15753)
@@ -3947,7 +3953,7 @@ mesh_vector_data = SubResource("Resource_s3tja")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 
 [node name="block1" type="Node3D" parent="Area1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.005, 4.89733, 16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.45717, 4.89733, 15.9281)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_thc1p")
 materials = Array[Material]([ExtResource("6_c7pdw")])
@@ -4013,10 +4019,25 @@ mesh_vector_data = SubResource("Resource_i0y3g")
 materials = Array[Material]([ExtResource("10_bqetd")])
 
 [node name="Block_10" type="Node3D" parent="Area1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.005, 4.89733, 16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.45717, 4.89733, 15.9281)
 script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_6kno8")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 
 [node name="NicoMap1" parent="." instance=ExtResource("13_wbm2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.745, -0.735, 53.955)
+
+[node name="InsideTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1011, 1.59769, 17.527)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InsideTrigger"]
+shape = SubResource("BoxShape3D_46ols")
+
+[node name="OutsideTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7458, 1.36322, 14.8995)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OutsideTrigger"]
+shape = SubResource("BoxShape3D_qpni6")
+
+[connection signal="body_entered" from="InsideTrigger" to="Player" method="PlayInsideSound"]
+[connection signal="body_entered" from="OutsideTrigger" to="Player" method="PlayOutsideSound"]

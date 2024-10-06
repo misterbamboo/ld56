@@ -6,6 +6,9 @@ const AMBIENT_STRENGHT_OFF = 0.05
 @onready var flashLight := $Flashlight
 @onready var ambientLight := $AmbientLight
 
+@onready var audio_on :=$audio_flash_on
+@onready var audio_off :=$audio_flash_off
+
 var flashlight_on := false
 var battery_life_in_seconds_max = 120
 var battery_life_in_seconds = 120
@@ -29,8 +32,10 @@ func toggleFlashlight() -> void:
 	
 	if !flashlight_on:
 		turn_on()
+		audio_on.play(0)
 	else:
 		turn_off()
+		audio_off.play(0)
 
 func turn_on() -> void:
 	flashlight_on = true
