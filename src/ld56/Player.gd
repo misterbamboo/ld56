@@ -99,13 +99,13 @@ func AttachToCart() -> void:
 func DetachFromCart() -> void:
 	is_attached_to_cart = false
 
-func PlayInsideSound(body: Node3D) -> void:
+func PlayInsideSound(_body: Node3D) -> void:
 	print("inside!")
 	if(heavyAudio.playing): return
 	heavyAudio.play(0)
 	outsideAudio.stop()
 	
-func PlayOutsideSound(body: Node3D) -> void:
+func PlayOutsideSound(_body: Node3D) -> void:
 	print("outside!")
 	if(outsideAudio.playing):
 		print("alreadyPlaying")

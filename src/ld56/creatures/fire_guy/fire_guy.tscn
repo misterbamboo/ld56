@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=3 uid="uid://bu7dygyxiyl6n"]
+
+[ext_resource type="Script" path="res://creatures/fire_guy/fire_guy.gd" id="1_c0fn6"]
+[ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="2_oswm0"]
+[ext_resource type="Script" path="res://addons/behaviour_toolkit/finite_state_machine/fsm.gd" id="3_tnrr1"]
+[ext_resource type="Script" path="res://creatures/fire_guy/states/random_patrol.gd" id="4_5vikb"]
+[ext_resource type="Script" path="res://creatures/fire_guy/transitions/patrol_node_reached.gd" id="5_h21ob"]
+[ext_resource type="Script" path="res://creatures/fire_guy/states/chase.gd" id="5_v3m4v"]
+[ext_resource type="Script" path="res://creatures/fire_guy/transitions/player_in_sight.gd" id="6_l3pp6"]
+[ext_resource type="Script" path="res://creatures/fire_guy/transitions/cant_see_player.gd" id="8_v8d8e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wwyw5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4p34"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5xeed"]
+material = SubResource("StandardMaterial3D_n4p34")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_s7q2s"]
+material = ExtResource("2_oswm0")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0qtct"]
+
+[node name="fire_guy" type="CharacterBody3D"]
+script = ExtResource("1_c0fn6")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55107, 0)
+target_position = Vector3(0, 10, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_wwyw5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.451753, 0.452068, 0.162454)
+mesh = SubResource("SphereMesh_5xeed")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451753, 0.452068, 0.162454)
+mesh = SubResource("SphereMesh_s7q2s")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.451753, 0.452068, -0.174017)
+mesh = SubResource("SphereMesh_5xeed")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451753, 0.452068, -0.174017)
+mesh = SubResource("SphereMesh_s7q2s")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_0qtct")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "actor")]
+script = ExtResource("3_tnrr1")
+autostart = true
+initial_state = NodePath("RandomPatrol")
+actor = NodePath("..")
+
+[node name="RandomPatrol" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("4_5vikb")
+
+[node name="PatrolNodeReached" type="Node" parent="FiniteStateMachine/RandomPatrol" node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_h21ob")
+next_state = NodePath("..")
+
+[node name="PlayerInSight" type="Node" parent="FiniteStateMachine/RandomPatrol" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_l3pp6")
+next_state = NodePath("../../Chase")
+
+[node name="Chase" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("5_v3m4v")
+
+[node name="FSMTransition" type="Node" parent="FiniteStateMachine/Chase" node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_v8d8e")
+next_state = NodePath("../../RandomPatrol")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionPolygon3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 1.05922, 0)
+depth = 3.0
+polygon = PackedVector2Array(0.181775, -0.0818585, 16.265, -16.762, 16.1482, 16.0651)
+
+[connection signal="body_entered" from="Area3D" to="." method="bodyEnter"]
+[connection signal="body_exited" from="Area3D" to="." method="bodyExit"]
