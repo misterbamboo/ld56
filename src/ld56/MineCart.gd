@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 			playerRef.reparent(find_parent("Master"))
 		#print("unclick")
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if playerRef == null || !playerRef.is_attached_to_cart:
 		return
 		
@@ -35,7 +35,8 @@ func bodyEnter(body: Node3D) -> void:
 	playerInBox = true
 	playerRef = body
 	print("in")
-func bodyExit(body: Node3D) -> void:
+	
+func bodyExit(_body: Node3D) -> void:
 	print("out")
 	playerInBox = false
 	playerRef = null

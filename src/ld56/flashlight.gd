@@ -10,8 +10,8 @@ const AMBIENT_STRENGHT_OFF = 0.05
 @onready var audio_off :=$audio_flash_off
 
 var flashlight_on := false
-var battery_life_in_seconds_max = 120
-var battery_life_in_seconds = 120
+var battery_life_in_seconds_max: float = 120
+var battery_life_in_seconds: float = 120
 
 func _input(_event: InputEvent)->void:
 	if Input.is_action_just_pressed("toggle_flashlight"):
