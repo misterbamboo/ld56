@@ -2,6 +2,7 @@ class_name Player extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const CART_SPEED_MOD = 0.01
 
 @export var sensitivity = 0.001
 @export var run_speed_modifier = 1.5;
@@ -10,6 +11,7 @@ const JUMP_VELOCITY = 4.5
 @onready var cam := $Neck/Camera3D
 
 var CameraRotation = Vector2(90, 0)
+var is_attached_to_cart = false
 
 var can_move: bool = false
 
@@ -51,6 +53,9 @@ func _physics_process(delta: float) -> void:
 	if !can_move:
 		return
 	
+	if is_attached_to_cart:
+		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -75,5 +80,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-
+	
 	move_and_slide()
+
+func AttachToCart() -> void:
+	is_attached_to_cart = true
+
+func DetachFromCart() -> void:
+	is_attached_to_cart = false
