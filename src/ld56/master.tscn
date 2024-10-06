@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/rustymetal/rustymetal.tres" id="8_ckis4"]
-[ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="10_543e4"]
+[ext_resource type="PackedScene" path="res://MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" path="res://materials/roughstone/roughstone.tres" id="10_bqetd"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 
