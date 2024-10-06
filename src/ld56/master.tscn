@@ -1,4 +1,4 @@
-[gd_scene load_steps=364 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=368 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -6,18 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://dkarfm3j81bq5" path="res://UIs/game_over_screen/game_over_screen.tscn" id="2_mt0q1"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
 [ext_resource type="PackedScene" uid="uid://5tp6sabqqkn5" path="res://UIs/title_screen/title_screen.tscn" id="3_armyj"]
+[ext_resource type="PackedScene" uid="uid://dvmlksex43wc6" path="res://game_timer/game_timer.tscn" id="3_tsssm"]
+[ext_resource type="PackedScene" uid="uid://bavfc8vpsl4bc" path="res://game_money/game_money.tscn" id="4_6ny61"]
+[ext_resource type="Script" path="res://directional_light_3d_auto_shutdown.gd" id="4_eiioc"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
 [ext_resource type="Material" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player/player.tscn" id="6_queu5"]
 [ext_resource type="Material" path="res://materials/surfaces/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
-[ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="8_ckis4"]
+[ext_resource type="Material" uid="uid://4mfqtww1bcwb" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="8_ckis4"]
 [ext_resource type="PackedScene" path="res://MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" path="res://materials/surfaces/roughstone/roughstone.tres" id="10_bqetd"]
 [ext_resource type="Material" path="res://materials/grass/grass.tres" id="11_5i2vl"]
 [ext_resource type="PackedScene" uid="uid://bllrrf5t4j4pt" path="res://nico_map_1/nico_map_1.tscn" id="13_wbm2w"]
 [ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="16_bdq5f"]
 [ext_resource type="PackedScene" uid="uid://dwqd7dkrvo7uw" path="res://items/gold_ring.tscn" id="17_dlste"]
+[ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://shredder/shredder.tscn" id="19_cr5le"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
 sky_top_color = Color(0.0191466, 0.00478081, 0.172609, 1)
@@ -3475,11 +3479,16 @@ environment = SubResource("Environment_h6e2m")
 
 [node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]
 
+[node name="GameTimer" parent="." instance=ExtResource("3_tsssm")]
+
+[node name="GameMoney" parent="." instance=ExtResource("4_6ny61")]
+
 [node name="TitleScreen" parent="." instance=ExtResource("3_armyj")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0389032, 0.998058, 0.048646, 0.499925, -0.0227115, 0.865771, 0.865194, 0.0580006, -0.498071, 13.0812, 15.5289, 11.5561)
 shadow_enabled = true
+script = ExtResource("4_eiioc")
 
 [node name="MainRoom" type="Node3D" parent="."]
 
@@ -3844,6 +3853,9 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OutsideTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144097, 0, -6.97412)
 shape = SubResource("BoxShape3D_qpni6")
+
+[node name="Shredder" parent="." instance=ExtResource("19_cr5le")]
+transform = Transform3D(-0.579537, 0, 0.814946, 0, 1, 0, -0.814946, 0, -0.579537, 25.0538, 0.25, 13.2132)
 
 [connection signal="body_entered" from="InsideTrigger" to="Player" method="PlayInsideSound"]
 [connection signal="body_entered" from="OutsideTrigger" to="Player" method="PlayOutsideSound"]

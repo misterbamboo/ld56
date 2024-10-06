@@ -4,7 +4,15 @@ var _registered_callbacks = {}
 
 var _player_alive: bool = true
 var _player: Player
+
+var money: int = 0
+func get_money() -> int:
+	return money
 	
+func give_money(amount: int) -> void:
+	money += amount
+	GameManager.raise("moneyreceived")
+
 func register_player(player: Player) -> void:
 	_player = player
 	
