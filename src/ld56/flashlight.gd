@@ -1,6 +1,6 @@
 class_name Flashlight extends Node3D
 
-const AMBIENT_STRENGHT_ON = 0.3
+const AMBIENT_STRENGHT_ON = 0.15
 const AMBIENT_STRENGHT_OFF = 0.05
 
 @onready var flashLight := $Flashlight
