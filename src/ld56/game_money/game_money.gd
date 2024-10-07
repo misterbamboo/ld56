@@ -6,8 +6,8 @@ extends Control
 var _previous_money: float = 0
 
 func _ready() -> void:
-	GameManager.register("moneyreceived", _money_received)
-	GameManager.register("gamestart", _money_received)
+	GameManager.register(Events.MoneyReceived, _money_received)
+	GameManager.register(Events.GameStart, _money_received)
 
 func _process(_delta: float) -> void:
 	pass

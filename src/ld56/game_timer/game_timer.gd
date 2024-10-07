@@ -10,8 +10,8 @@ var last_display: String = ""
 var game_started: bool = false
 
 func _ready() -> void:
-	GameManager.register("gamestart", _start_timer)
-	GameManager.register("gameover", func(): game_started = false)
+	GameManager.register(Events.GameStart, _start_timer)
+	GameManager.register(Events.GameOver, func(): game_started = false)
 
 func _start_timer():
 	time = starting_time_mins * 60
@@ -34,7 +34,7 @@ func _display_time() -> void:
 
 func _trigger_timeout() -> void:
 	if game_started and time <= 0:
-		GameManager.raise("gametimeout")
+		GameManager.raise(Events.GameTimeout)
 
 func _get_display(mins: int, secs: int) -> String:
 	var display = ""

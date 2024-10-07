@@ -1,5 +1,5 @@
 extends AudioStreamPlayer3D
 
 func _ready() -> void:
-	GameManager.register("gamestart", func(): play(0))
-	GameManager.register("titlescreen", func(): stop())
+	GameManager.register(Events.GameStart, func(): play(0))
+	GameManager.register(Events.TitleScreen, func(): stop())

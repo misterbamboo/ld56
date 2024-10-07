@@ -28,7 +28,7 @@ func _physics_process(delta:float)->void:
 	var target = to_local(GameManager.get_player().global_position) - Vector3(0,1,0)
 	
 	if (global_position-GameManager.get_player().global_position).length() < 2:
-		GameManager.player_die()
+		GameManager.raise(Events.HitPlayer)
 	raycast.target_position = target
 	var collider = raycast.get_collider()
 	see_player = collider != null && collider.name == "Player"

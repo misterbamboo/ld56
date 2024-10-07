@@ -2,7 +2,7 @@ extends AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameManager.register("gameover", _start_animation)
+	GameManager.register(Events.GameOver, _start_animation)
 	_hide_gameoverscreen()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

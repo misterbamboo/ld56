@@ -12,6 +12,8 @@ const TIME_TO_SCARE_SECONDS = 0.5
 @onready var cam := $Neck/Camera3D
 @onready var footstep := $Footsteps
 @onready var first_flashlight_label = $CanvasLayer/Control/FirstFlashlight
+@onready var actionIcon = $CanvasLayer/Control/ActionIcon
+@onready var actionLabel = $CanvasLayer/Control/ActionLabel
 
 @onready var outsideAudio:AudioStreamPlayer3D = $AudioOutsideAmbiance
 @onready var heavyAudio:AudioStreamPlayer3D = $AudioHeavyAmbiance
@@ -34,13 +36,15 @@ var stamina_recharge_rate_multiplier := 1.2
 var out_of_breath_minimum_refill_percent = 0.75
 var is_out_of_breath := false
 
+var action: String = ""
+
 func _ready() -> void:
 	print_rich("[color=green] playerReady![/color]")
-	GameManager.register("gamestart", func(): can_move = true)
-	GameManager.register("gameover", _uncapture_mouse)
-	GameManager.register("hitplayer", _on_receive_hit)
-	GameManager.register("startchase", _on_start_chase)
-	GameManager.register("stopchase", _on_stop_chase)
+	GameManager.register(Events.GameStart, func(): can_move = true)
+	GameManager.register(Events.GameOver, _uncapture_mouse)
+	GameManager.register(Events.HitPlayer, _on_receive_hit)
+	GameManager.register(Events.StartChase, _on_start_chase)
+	GameManager.register(Events.StopChase, _on_stop_chase)
 	GameManager.register_player(self)
 
 func _on_start_chase() -> void:
@@ -50,6 +54,10 @@ func _on_start_chase() -> void:
 func _on_stop_chase() -> void:
 	scared = false
 	#heavyAudio.play(0)
+
+func _set_action(label:String) -> void:
+	action = label
+	
 
 func _process(delta: float) -> void:
 	if scared:
@@ -68,6 +76,14 @@ func _process(delta: float) -> void:
 		if cam.fov > 90:
 			cam.fov -= 20 * (delta / TIME_TO_SCARE_SECONDS)
 			if cam.fov < 90: cam.fov = 90
+			
+	if Input.is_action_pressed("action") || action == "" :
+		actionIcon.visible = false
+		actionLabel.visible = false
+	else:
+		actionIcon.visible = true
+		actionLabel.text = action
+		actionLabel.visible = true
 
 func _uncapture_mouse() -> void:
 	if chaseAudio.playing: chaseAudio.stop()

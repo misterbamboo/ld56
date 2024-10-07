@@ -10,7 +10,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameManager.register("DayStarted", spawnItem)
+	GameManager.register(Events.StartDay, spawnItem)
 
 func spawnItem() -> void:
 	# 1 in 10 chance

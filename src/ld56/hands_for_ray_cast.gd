@@ -4,15 +4,15 @@ const RAY_LENGTH = 1000
 
 @export var pick_distance: float = 3
 @export var cam: Camera3D
-@export var selectionDot: Control
 
 var _hover_item: BaseItem = null
 var _picked_item: BaseItem = null
+var _last_hover: BaseItem = null
 
 var _last_mouse_pressed: bool = false
 
-func _ready() -> void:
-	selectionDot.visible = false
+var just_hovered = false
+var just_unhovered = false
 
 func _process(_delta: float) -> void:
 	_update_selection_dot()
@@ -29,7 +29,11 @@ func _hold_item() -> void:
 			_release_item()	
 	
 func _update_selection_dot() -> void:
-	selectionDot.visible = _hover_item != null && !Input.is_action_pressed("action")
+	var visible = _hover_item != null && !Input.is_action_pressed("action")
+	if just_hovered:
+		GameManager.set_action("Hold to grab")
+	if just_unhovered:
+		GameManager.set_action("")
 	
 func _move_picked_item() -> void:
 	if _picked_item == null:
@@ -54,6 +58,7 @@ func _move_picked_item() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _picked_item != null: return
+	_last_hover = _hover_item
 	
 	var new_hover_item: BaseItem = null
 	
@@ -77,6 +82,9 @@ func _physics_process(_delta: float) -> void:
 				new_hover_item = parent
 	
 	_hover_item = new_hover_item
+	
+	just_hovered = (_last_hover == null && _hover_item != null)
+	just_unhovered = (_last_hover != null && _hover_item == null)
 
 func _try_pick() -> void:
 	if _hover_item == null:

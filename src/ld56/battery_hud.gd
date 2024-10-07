@@ -11,8 +11,8 @@ var _can_display: bool = false
 
 func _ready() -> void:
 	lights = find_parent("Player").get_node("Neck/Camera3D/Lights")
-	GameManager.register("gamestart", func(): _can_display = true )
-	GameManager.register("gameover", func(): _can_display = false)
+	GameManager.register(Events.GameStart, func(): _can_display = true )
+	GameManager.register(Events.GameOver, func(): _can_display = false)
 
 # Called by signal from timer
 func checkBattery() -> void:

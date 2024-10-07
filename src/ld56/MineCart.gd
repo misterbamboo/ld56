@@ -48,11 +48,13 @@ func _physics_process(delta: float) -> void:
 	progress = clamp(newprogress, 0, get_parent().curve.get_baked_length());
 
 func bodyEnter(body: Node3D) -> void:
+	GameManager.set_action("Hold to push/pull")
 	playerInBox = true
 	playerRef = body
 	print("in")
 	
 func bodyExit(_body: Node3D) -> void:
+	GameManager.set_action("")
 	print("out")
 	playerInBox = false
 	playerRef = null

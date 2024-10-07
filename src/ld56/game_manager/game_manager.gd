@@ -11,7 +11,7 @@ func get_money() -> int:
 	
 func give_money(amount: int) -> void:
 	money += amount
-	GameManager.raise("moneyreceived")
+	GameManager.raise(Events.MoneyReceived)
 
 func register_player(player: Player) -> void:
 	_player = player
@@ -45,7 +45,7 @@ func reset_game() -> void:
 	get_tree().reload_current_scene()
 	_registered_callbacks.clear()
 	_player_alive = true
-	GameManager.raise("titlescreen")
+	GameManager.raise(Events.TitleScreen)
 	
 func is_player_hitable() -> bool:
 	return _player_alive
@@ -53,4 +53,7 @@ func is_player_hitable() -> bool:
 func player_die() -> void:
 	if(!_player_alive): return
 	_player_alive = false
-	GameManager.raise("gameover")
+	GameManager.raise(Events.GameOver)
+	
+func set_action(label: String) -> void:
+	_player._set_action(label)
