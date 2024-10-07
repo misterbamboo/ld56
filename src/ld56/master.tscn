@@ -1,4 +1,4 @@
-[gd_scene load_steps=270 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=271 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -24,6 +24,7 @@
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="17_xpkmh"]
 [ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://shredder/shredder.tscn" id="19_cr5le"]
 [ext_resource type="PackedScene" uid="uid://cdmhmasa0nt2v" path="res://items/item_spawner.tscn" id="20_sn18c"]
+[ext_resource type="PackedScene" uid="uid://pvqi3451q30y" path="res://items/kryptonite.tscn" id="23_bqxij"]
 [ext_resource type="PackedScene" uid="uid://dcf0pbuteeaqh" path="res://items/amethyst.tscn" id="24_35xf8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
@@ -2863,6 +2864,18 @@ material = ExtResource("16_bdq5f")
 
 [node name="amethyst" parent="Items" instance=ExtResource("24_35xf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45741, 2.39036, 5.15889)
+
+[node name="kryptonite" parent="Items" instance=ExtResource("23_bqxij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2454, 1.22876, 5.38224)
+
+[node name="kryptonite2" parent="Items" instance=ExtResource("23_bqxij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80211, 1.22876, 3.57492)
+
+[node name="kryptonite3" parent="Items" instance=ExtResource("23_bqxij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4519, 1.22876, 1.6169)
+
+[node name="kryptonite4" parent="Items" instance=ExtResource("23_bqxij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8912, 1.22876, 3.55752)
 
 [node name="ItemSpawner" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.927, 1, 28.853)

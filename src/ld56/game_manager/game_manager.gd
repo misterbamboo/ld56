@@ -6,7 +6,6 @@ var _player_alive: bool = true
 var _player: Player
 
 var _first_flashlight := true
-var _no_title_screen := false 
 
 var week_duration = 3
 var current_day = 1
@@ -60,20 +59,19 @@ func reset_game(newGame:bool) -> void:
 	_player_alive = true
 	
 	if newGame:
-		_no_title_screen = false
 		quota = first_quota
 		money = 0
 		uncashed_in_money = 0
-		_no_title_screen = false
 	else:
 		GameManager.raise(Events.GameStart)
 
 func next_day() -> void:
 	current_day = current_day + 1
-	if current_day == week_duration:
+	if current_day == week_duration+1:
 		current_day = 1 
-		if quota_reached:
+		if quota_reached():
 			quota = quota * 1.7
+			cash_in_money()
 			proceed_to_next_day()
 		else:
 			raise(Events.GameOver)

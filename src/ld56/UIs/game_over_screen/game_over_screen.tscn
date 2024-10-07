@@ -67,7 +67,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(148, 251), Vector2(148, 149)]
+"values": [Vector2(113, 251), Vector2(113, 160)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -103,23 +103,61 @@ libraries = {
 }
 script = ExtResource("1_375a1")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.568627, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 117.0
+offset_top = -2.0
+offset_right = 274.0
+offset_bottom = 46.0
 theme_override_fonts/font = ExtResource("1_6ylx5")
 theme_override_font_sizes/font_size = 24
-text = "Profit quota: 
-UNMET
-employment status:
-TERMINATED"
+text = "Profit quota:"
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 26.0
+offset_right = 240.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_6ylx5")
+theme_override_font_sizes/font_size = 24
+text = "UNMET"
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 68.0
+offset_right = 320.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("1_6ylx5")
+theme_override_font_sizes/font_size = 24
+text = "Employment status:"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 102.0
+offset_right = 283.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_6ylx5")
+theme_override_font_sizes/font_size = 24
+text = "TERMINATED"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

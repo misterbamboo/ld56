@@ -83,6 +83,7 @@ stream = ExtResource("4_ocrwn")
 bus = &"SFX"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.25098)
