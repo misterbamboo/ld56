@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 4.0
 const JUMP_VELOCITY = 4.5
-const CART_SPEED_MOD = 0.0075
+const CART_SPEED_MOD = 0.008
 const TIME_TO_SCARE_SECONDS = 0.5
 
 @export var sensitivity = 0.001
@@ -16,6 +16,7 @@ const TIME_TO_SCARE_SECONDS = 0.5
 @onready var outsideAudio:AudioStreamPlayer3D = $AudioOutsideAmbiance
 @onready var heavyAudio:AudioStreamPlayer3D = $AudioHeavyAmbiance
 @onready var chaseAudio:AudioStreamPlayer3D = $AudioChase
+@onready var outOfBreathAudio: AudioStreamPlayer3D = $AudioOutOfBreath
 
 var CameraRotation = Vector2(90, 0)
 var is_attached_to_cart = false
@@ -26,6 +27,12 @@ var scared := false
 
 var distance_between_footsteps = 150
 var distance_until_next_footsetp = 150
+
+var total_stamina_in_seconds := 5.0
+var stamina := total_stamina_in_seconds
+var stamina_recharge_rate_multiplier := 1.2
+var out_of_breath_minimum_refill_percent = 0.75
+var is_out_of_breath := false
 
 func _ready() -> void:
 	print_rich("[color=green] playerReady![/color]")
@@ -113,9 +120,20 @@ func _physics_process(delta: float) -> void:
 	
 	var speed:float = SPEED;
 	
-	if Input.is_action_pressed("run"):
-		speed = SPEED * run_speed_modifier
-		
+	if is_out_of_breath:
+		stamina += delta * stamina_recharge_rate_multiplier
+		if stamina > total_stamina_in_seconds * out_of_breath_minimum_refill_percent:
+			is_out_of_breath = false
+	elif Input.is_action_pressed("run"):
+		if stamina > 0:
+			speed = SPEED * run_speed_modifier
+			stamina -= delta
+			if stamina <= 0:
+				is_out_of_breath = true
+				PlayOutOfBreathSound()
+	elif stamina < total_stamina_in_seconds:
+		stamina += delta * stamina_recharge_rate_multiplier
+	
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
@@ -150,3 +168,8 @@ func PlayOutsideSound(_body: Node3D) -> void:
 	print("not happening")
 	outsideAudio.play(0)
 	heavyAudio.stop()
+
+func PlayOutOfBreathSound() -> void:
+	outOfBreathAudio.play()
+	
+	
