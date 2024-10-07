@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4dvpxip72odb"
-path.s3tc="res://.godot/imported/skitter_normal.png-1d3b126fd82a021905a9453996eb9509.s3tc.ctex"
+uid="uid://bu1dipp3pkxeq"
+path.s3tc="res://.godot/imported/skitter_orm.png-3fa77183bb5b92b24b2b6b3cc3a971f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://creatures/skitter/materials/shell/skitter_normal.png"
-dest_files=["res://.godot/imported/skitter_normal.png-1d3b126fd82a021905a9453996eb9509.s3tc.ctex"]
+source_file="res://creatures/skitter_creature/materials/shell/skitter_orm.png"
+dest_files=["res://.godot/imported/skitter_orm.png-3fa77183bb5b92b24b2b6b3cc3a971f3.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://creatures/skitter/materials/shell/skitter_normal.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

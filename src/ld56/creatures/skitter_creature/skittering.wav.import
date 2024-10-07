@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bsfjyjtycoejx"
-path="res://.godot/imported/skittering.wav-a5b426fffbf8f5adb1e96f4c94b7ca98.sample"
+path="res://.godot/imported/skittering.wav-91d8ff95997b3cf73f96232d6cc9f9f3.sample"
 
 [deps]
 
-source_file="res://creatures/skitter/skittering.wav"
-dest_files=["res://.godot/imported/skittering.wav-a5b426fffbf8f5adb1e96f4c94b7ca98.sample"]
+source_file="res://creatures/skitter_creature/skittering.wav"
+dest_files=["res://.godot/imported/skittering.wav-91d8ff95997b3cf73f96232d6cc9f9f3.sample"]
 
 [params]
 
