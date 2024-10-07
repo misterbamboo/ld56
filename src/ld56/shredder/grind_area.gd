@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 		_grind_items(delta)
 
 func _on_body_entered(body: Node3D) -> void:
+	if len(grinding_items) != 0: return
+	
 	if body and body.get_parent() is BaseItem:
 		var base_item: BaseItem = body.get_parent()
 		base_item.grind()

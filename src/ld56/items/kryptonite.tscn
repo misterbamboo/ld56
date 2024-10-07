@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://pvqi3451q30y"]
+
+[ext_resource type="Material" path="res://materials/items/kyptonite/kyptonite.tres" id="1_63ovg"]
+[ext_resource type="Script" path="res://items/base_item.gd" id="1_nu56k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yts5u"]
+radius = 0.20129
+
+[sub_resource type="SphereMesh" id="SphereMesh_a2vys"]
+
+[node name="kryptonite" type="Node3D" node_paths=PackedStringArray("rb")]
+script = ExtResource("1_nu56k")
+rb = NodePath("RigidBody3D")
+price = 100
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_yts5u")
+
+[node name="Model" type="Node3D" parent="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/Model"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("SphereMesh_a2vys")
+surface_material_override/0 = ExtResource("1_63ovg")

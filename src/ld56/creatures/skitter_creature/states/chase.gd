@@ -4,6 +4,7 @@ extends FSMState
 func _on_enter(actor: Node, _blackboard: Blackboard) -> void:
 	actor = actor as Skitter
 	actor.skitter = false
+	GameManager.raise("startchase")
 	
 # Executes every _process call, if the state is active.
 func _on_update(_delta: float, actor: Node, _blackboard: Blackboard) -> void:

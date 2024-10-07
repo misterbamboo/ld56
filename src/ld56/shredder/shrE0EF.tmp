@@ -78,7 +78,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3dku6"]
-size = Vector3(1.32617, 0.513061, 1.23639)
+size = Vector3(1.32617, 0.356445, 1.23639)
 
 [sub_resource type="Resource" id="Resource_66obn"]
 script = ExtResource("2_bq0l2")
@@ -2346,14 +2346,14 @@ grind_start = NodePath("../grind_start")
 grind_end = NodePath("../grind_end")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrindArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567063, 0.658332, 0.820261)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567063, 0.74365, 0.820261)
 shape = SubResource("BoxShape3D_3dku6")
 
 [node name="grind_start" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.986208, 1.12276, 0.3677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.986208, 0.937749, 0.3677)
 
 [node name="grind_end" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02252, 0.045943, 0.3677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02252, 0.417128, 0.3677)
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0628097)

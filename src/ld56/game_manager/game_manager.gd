@@ -51,5 +51,6 @@ func is_player_hitable() -> bool:
 	return _player_alive
 
 func player_die() -> void:
+	if(!_player_alive): return
 	_player_alive = false
 	GameManager.raise("gameover")

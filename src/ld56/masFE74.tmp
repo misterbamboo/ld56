@@ -2403,7 +2403,6 @@ depth = 3
 
 [node name="ItemSpawner16" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.815, 1, 62.2326)
-depth = 1
 
 [node name="ItemSpawner17" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3355, 1, 58.2191)

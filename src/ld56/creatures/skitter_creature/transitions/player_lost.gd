@@ -1,9 +1,10 @@
-@tool
 extends FSMTransition
 
 
 # Executed when the transition is taken.
-func _on_transition(_delta: float, _actor: Node, _blackboard: Blackboard) -> void:
+func _on_transition(_delta: float, actor: Node, _blackboard: Blackboard) -> void:
+	actor = actor as Skitter
+	GameManager.raise("stopchase")
 	pass
 
 

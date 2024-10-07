@@ -14,6 +14,7 @@ radius = 0.341497
 [node name="GoldRing" type="Node3D" node_paths=PackedStringArray("rb")]
 script = ExtResource("1_p61c0")
 rb = NodePath("RigidBody3D")
+price = 45
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

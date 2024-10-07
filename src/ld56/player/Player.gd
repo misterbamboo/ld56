@@ -3,6 +3,7 @@ class_name Player extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const CART_SPEED_MOD = 0.0075
+const TIME_TO_SCARE_SECONDS = 0.5
 
 @export var sensitivity = 0.001
 @export var run_speed_modifier = 1.5;
@@ -14,23 +15,58 @@ const CART_SPEED_MOD = 0.0075
 
 @onready var outsideAudio:AudioStreamPlayer3D = $AudioOutsideAmbiance
 @onready var heavyAudio:AudioStreamPlayer3D = $AudioHeavyAmbiance
+@onready var chaseAudio:AudioStreamPlayer3D = $AudioChase
 
 var CameraRotation = Vector2(90, 0)
 var is_attached_to_cart = false
 
 var can_move: bool = false
 
-var distance_between_footsteps = 120
-var distance_until_next_footsetp = 120
+var scared := false
+
+var distance_between_footsteps = 150
+var distance_until_next_footsetp = 150
 
 func _ready() -> void:
 	print_rich("[color=green] playerReady![/color]")
 	GameManager.register("gamestart", func(): can_move = true)
 	GameManager.register("gameover", _uncapture_mouse)
 	GameManager.register("hitplayer", _on_receive_hit)
+	GameManager.register("startchase", _on_start_chase)
+	GameManager.register("stopchase", _on_stop_chase)
 	GameManager.register_player(self)
 
+func _on_start_chase() -> void:
+	scared = true
+	#heavyAudio.stop()
+	
+func _on_stop_chase() -> void:
+	scared = false
+	#heavyAudio.play(0)
+
+func _process(delta: float) -> void:
+	if scared:
+		if chaseAudio.volume_db < 0:
+			chaseAudio.volume_db += 80 * (delta / TIME_TO_SCARE_SECONDS)
+			if chaseAudio.volume_db > 0: chaseAudio.volume_db = 0
+		
+		if cam.fov < 110:
+			cam.fov += 20 * (delta / TIME_TO_SCARE_SECONDS)
+			if cam.fov > 110: cam.fov = 110
+	else:
+		if chaseAudio.volume_db > -80:
+			chaseAudio.volume_db -= 80 * (delta / TIME_TO_SCARE_SECONDS)
+			if chaseAudio.volume_db < -80: chaseAudio.volume_db = -80
+		
+		if cam.fov > 90:
+			cam.fov -= 20 * (delta / TIME_TO_SCARE_SECONDS)
+			if cam.fov < 90: cam.fov = 90
+
 func _uncapture_mouse() -> void:
+	if chaseAudio.playing: chaseAudio.stop()
+	if heavyAudio.playing: heavyAudio.stop()
+	if outsideAudio.playing: outsideAudio.stop()
+	
 	can_move = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	

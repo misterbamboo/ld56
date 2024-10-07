@@ -9,6 +9,8 @@ class_name Skitter extends CharacterBody3D
 @onready var skitterAudio: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var animator: AnimationPlayer = $AnimationPlayer
 
+const SKITTER_AUDIO_BOOST := 10
+
 var player_in_range := false
 var see_player := false
 var skitter := false
@@ -24,10 +26,12 @@ var skitterstopTimer = skitterStopTimeInSecondsLow
 
 func _physics_process(delta:float)->void:
 	var target = to_local(GameManager.get_player().global_position) - Vector3(0,1,0)
+	
+	if (global_position-GameManager.get_player().global_position).length() < 2:
+		GameManager.player_die()
 	raycast.target_position = target
 	var collider = raycast.get_collider()
 	see_player = collider != null && collider.name == "Player"
-	print(see_player)
 	var look_pos = global_position - velocity.normalized()
 	
 	if skitter:
@@ -55,6 +59,8 @@ func _physics_process(delta:float)->void:
 	
 	if velocity.length() != 0:
 		look_at(Vector3(look_pos.x, global_position.y, look_pos.z))
+		
+
 	
 func bodyEnter(_body: Node3D)->void:
 	player_in_range = true

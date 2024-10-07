@@ -1,6 +1,8 @@
 class_name BaseItem extends Node3D
 
 @export var rb: RigidBody3D
+@export var price := 10
+
 var grinding: bool = false
 
 func _ready() -> void:
@@ -20,5 +22,5 @@ func grind() -> void:
 	grinding = true
 
 func destroy() -> void:
-	GameManager.give_money(10)
+	GameManager.give_money(price)
 	queue_free()

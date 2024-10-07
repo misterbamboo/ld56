@@ -4,9 +4,13 @@
 
 [resource]
 transparency = 1
-albedo_color = Color(0.124792, 0.421875, 0.124792, 1)
-metallic = 1.0
+albedo_color = Color(0, 1, 0, 1)
+metallic = 0.97
+metallic_specular = 1.0
 roughness = 0.0
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 0.0
 normal_enabled = true
 normal_scale = -0.75
 normal_texture = ExtResource("3")

@@ -9,7 +9,7 @@ func _ready() -> void:
 	GameManager.register("moneyreceived", _money_received)
 	GameManager.register("gamestart", _money_received)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _money_received() -> void:
