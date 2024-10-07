@@ -2,7 +2,7 @@ class_name Player extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const CART_SPEED_MOD = 0.01
+const CART_SPEED_MOD = 0.0075
 
 @export var sensitivity = 0.001
 @export var run_speed_modifier = 1.5;
@@ -10,6 +10,7 @@ const CART_SPEED_MOD = 0.01
 @onready var neck := $Neck
 @onready var cam := $Neck/Camera3D
 @onready var footstep := $Footsteps
+@onready var first_flashlight_label = $CanvasLayer/Control/FirstFlashlight
 
 @onready var outsideAudio:AudioStreamPlayer3D = $AudioOutsideAmbiance
 @onready var heavyAudio:AudioStreamPlayer3D = $AudioHeavyAmbiance

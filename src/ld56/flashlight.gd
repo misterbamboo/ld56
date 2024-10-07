@@ -10,6 +10,7 @@ const AMBIENT_STRENGHT_OFF = 0.05
 @onready var audio_off :=$audio_flash_off
 
 var flashlight_on := false
+var first_flashlight = true
 var battery_life_in_seconds_max: float = 120
 var battery_life_in_seconds: float = 120
 
@@ -38,6 +39,10 @@ func toggleFlashlight() -> void:
 		audio_off.play(0)
 
 func turn_on() -> void:
+	if first_flashlight:
+		first_flashlight = false
+		find_parent("Player").get_node("CanvasLayer/Control/FirstFlashlight").visible = false
+		
 	flashlight_on = true
 	flashLight.visible = true
 	ambientLight.light_energy = AMBIENT_STRENGHT_ON

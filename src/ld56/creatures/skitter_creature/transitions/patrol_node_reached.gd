@@ -6,7 +6,7 @@ func _on_transition(_delta: float, _actor: Node, _blackboard: Blackboard) -> voi
 
 # Evaluates true, if the transition conditions are met.
 func is_valid(actor: Node, _blackboard: Blackboard) -> bool:
-	actor = actor as FireGuy
+	actor = actor as Skitter
 	return actor.nav.is_target_reached()
 
 # Add custom configuration warnings

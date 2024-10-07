@@ -29,7 +29,7 @@ func _hold_item() -> void:
 			_release_item()	
 	
 func _update_selection_dot() -> void:
-	selectionDot.visible = _hover_item != null or _picked_item != null
+	selectionDot.visible = _hover_item != null && !Input.is_action_pressed("action")
 	
 func _move_picked_item() -> void:
 	if _picked_item == null:
@@ -53,6 +53,8 @@ func _move_picked_item() -> void:
 	_picked_item.rb.rotation = Vector3(_picked_item.rb.global_rotation.x, yaw, _picked_item.rb.global_rotation.z)
 
 func _physics_process(_delta: float) -> void:
+	if _picked_item != null: return
+	
 	var new_hover_item: BaseItem = null
 	
 	var space_state = get_world_3d().direct_space_state
@@ -61,6 +63,7 @@ func _physics_process(_delta: float) -> void:
 	var origin = cam.project_ray_origin(mousepos)
 	var end = origin + cam.project_ray_normal(mousepos) * RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collision_mask = 4 #bitmask
 	query.collide_with_areas = true
 
 	var result = space_state.intersect_ray(query)

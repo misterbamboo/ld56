@@ -34,7 +34,11 @@ project/assembly_name="ld56"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/cyclops_level_builder/plugin.cfg")
+enabled=PackedStringArray("res://addons/behaviour_toolkit/plugin.cfg", "res://addons/cyclops_level_builder/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
@@ -83,6 +87,8 @@ toggle_flashlight={
 
 3d_physics/layer_1="Obstacles"
 3d_physics/layer_2="Player"
+3d_physics/layer_3="Items"
+3d_physics/layer_4="CartWalls"
 
 [rendering]
 

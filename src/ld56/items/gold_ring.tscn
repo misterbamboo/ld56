@@ -16,6 +16,8 @@ script = ExtResource("1_p61c0")
 rb = NodePath("RigidBody3D")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 13
 
 [node name="CSGTorus3D" type="CSGTorus3D" parent="RigidBody3D"]
 material_override = ExtResource("2_fx4jg")
