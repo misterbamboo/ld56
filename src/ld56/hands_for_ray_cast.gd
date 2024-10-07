@@ -29,7 +29,6 @@ func _hold_item() -> void:
 			_release_item()	
 	
 func _update_selection_dot() -> void:
-	var visible = _hover_item != null && !Input.is_action_pressed("action")
 	if just_hovered:
 		GameManager.set_action("Hold to grab")
 	if just_unhovered:

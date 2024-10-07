@@ -6,7 +6,6 @@ var patrolingToNode: Vector3
 func _on_enter(actor: Node, _blackboard: Blackboard) -> void:
 	actor = actor as Skitter
 	actor.skitter = true
-	var node = actor.patrolNodes.pick_random()
 	patrolingToNode = actor.patrolNodes.pick_random()
 	
 # Executes every _process call, if the state is active.

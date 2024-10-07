@@ -23,7 +23,9 @@ func _process(delta: float) -> void:
 	_trigger_timeout()
 
 func _display_time() -> void:
-	var mins: int = time / 60.0
+	@warning_ignore("narrowing_conversion") 
+	var mins:int = time / 60.0 
+	@warning_ignore("narrowing_conversion") 
 	var timeInt: int = time
 	var secs: int = timeInt % 60
 	

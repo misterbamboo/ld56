@@ -1,3 +1,5 @@
+extends Node
+
 const EndDay = "EndDay"
 const StartDay = "StartDay"
 const GameStart = "GameStart"

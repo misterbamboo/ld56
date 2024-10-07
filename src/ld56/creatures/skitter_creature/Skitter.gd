@@ -25,6 +25,7 @@ var skittergoTimer = skitterGoTimeInSecondsLow
 var skitterstopTimer = skitterStopTimeInSecondsLow
 
 func _physics_process(delta:float)->void:
+	if(!nav.get_navigation_map().is_valid()): return
 	var target = to_local(GameManager.get_player().global_position) - Vector3(0,1,0)
 	
 	if (global_position-GameManager.get_player().global_position).length() < 2:

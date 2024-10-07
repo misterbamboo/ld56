@@ -1,4 +1,4 @@
-[gd_scene load_steps=269 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=270 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
@@ -7,13 +7,12 @@
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
 [ext_resource type="PackedScene" uid="uid://5tp6sabqqkn5" path="res://UIs/title_screen/title_screen.tscn" id="3_armyj"]
 [ext_resource type="PackedScene" uid="uid://cye8c2yhcsa6a" path="res://creatures/skitter_creature/skitter.tscn" id="3_epi44"]
-[ext_resource type="PackedScene" uid="uid://dvmlksex43wc6" path="res://game_timer/game_timer.tscn" id="3_tsssm"]
-[ext_resource type="PackedScene" uid="uid://bavfc8vpsl4bc" path="res://game_money/game_money.tscn" id="4_6ny61"]
 [ext_resource type="Script" path="res://directional_light_3d_auto_shutdown.gd" id="4_eiioc"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
 [ext_resource type="Material" uid="uid://de6m8iad08svi" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
 [ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player/player.tscn" id="6_queu5"]
+[ext_resource type="PackedScene" uid="uid://cu0ui14q86sd2" path="res://NextDayScene/NextDay.tscn" id="7_w4umj"]
 [ext_resource type="PackedScene" uid="uid://btub6i7nlj4d" path="res://truck/scene.gltf" id="8_8idva"]
 [ext_resource type="Material" path="res://materials/surfaces/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="8_ckis4"]
@@ -25,6 +24,7 @@
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="17_xpkmh"]
 [ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://shredder/shredder.tscn" id="19_cr5le"]
 [ext_resource type="PackedScene" uid="uid://cdmhmasa0nt2v" path="res://items/item_spawner.tscn" id="20_sn18c"]
+[ext_resource type="PackedScene" uid="uid://dcf0pbuteeaqh" path="res://items/amethyst.tscn" id="24_35xf8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
 sky_top_color = Color(0.0191466, 0.00478081, 0.172609, 1)
@@ -1628,6 +1628,9 @@ face_vertex_data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_1yg8c"]
 size = Vector3(0.516602, 4.62305, 7.14832)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rtsng"]
+size = Vector3(6.33429, 4.37122, 3.40161)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_snhcc"]
 size = Vector3(7.29443, 4.32507, 5.11316)
 
@@ -2469,11 +2472,7 @@ environment = SubResource("Environment_h6e2m")
 
 [node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]
 
-[node name="GameTimer" parent="." instance=ExtResource("3_tsssm")]
-modulate = Color(1, 1, 1, 0.25098)
-
-[node name="GameMoney" parent="." instance=ExtResource("4_6ny61")]
-modulate = Color(1, 1, 1, 0.25098)
+[node name="NextDay" parent="." instance=ExtResource("7_w4umj")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0389032, 0.998058, 0.048646, 0.499925, -0.0227115, 0.865771, 0.865194, 0.0580006, -0.498071, 13.0812, 15.5289, 11.5561)
@@ -2567,6 +2566,14 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364678, 1.81152, -0.46991)
 shape = SubResource("BoxShape3D_1yg8c")
 
+[node name="StaticBody3D9" type="StaticBody3D" parent="MainRoom/Invisible walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.4094)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainRoom/Invisible walls/StaticBody3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03182, 2.44439, -0.532288)
+shape = SubResource("BoxShape3D_rtsng")
+
 [node name="StaticBody3D2" type="StaticBody3D" parent="MainRoom/Invisible walls"]
 transform = Transform3D(0.843157, 0, -0.537668, 0, 1, 0, 0.537668, 0, 0.843157, 1.23629, 0, 5.8709)
 collision_mask = 2
@@ -2636,6 +2643,8 @@ omni_attenuation = 1.087
 
 [node name="EndDayArea" type="Area3D" parent="MainRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.77839, 1.07982, 12.1175)
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("17_e1ptn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainRoom/EndDayArea"]
@@ -2851,6 +2860,9 @@ mesh = SubResource("PlaneMesh_s0nw8")
 material = ExtResource("16_bdq5f")
 
 [node name="Items" type="Node3D" parent="."]
+
+[node name="amethyst" parent="Items" instance=ExtResource("24_35xf8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.45741, 2.39036, 5.15889)
 
 [node name="ItemSpawner" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.927, 1, 28.853)

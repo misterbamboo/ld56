@@ -5,12 +5,26 @@ var _registered_callbacks = {}
 var _player_alive: bool = true
 var _player: Player
 
+var _first_flashlight := true
+var _no_title_screen := false 
+
+var week_duration = 3
+var current_day = 1
+
+var first_quota = 120
+var quota = first_quota
+
+var uncashed_in_money: int = 0
 var money: int = 0
+
+func get_unchashed_in_money() ->int:
+	return uncashed_in_money
+
 func get_money() -> int:
 	return money
 	
 func give_money(amount: int) -> void:
-	money += amount
+	uncashed_in_money += amount
 	GameManager.raise(Events.MoneyReceived)
 
 func register_player(player: Player) -> void:
@@ -31,7 +45,6 @@ func register(eventName: String, callback: Callable) -> void:
 		callbacks.append(callback)
 
 func raise(eventName: String) -> void:
-	print("raise: " + eventName)
 	if !_registered_callbacks.has(eventName):
 		return
 	
@@ -41,19 +54,49 @@ func raise(eventName: String) -> void:
 		if callback != null:
 			callback.call()
 
-func reset_game() -> void:
+func reset_game(newGame:bool) -> void:
 	get_tree().reload_current_scene()
 	_registered_callbacks.clear()
 	_player_alive = true
-	GameManager.raise(Events.TitleScreen)
 	
+	if newGame:
+		_no_title_screen = false
+		quota = first_quota
+		money = 0
+		uncashed_in_money = 0
+		_no_title_screen = false
+	else:
+		GameManager.raise(Events.GameStart)
+
+func next_day() -> void:
+	current_day = current_day + 1
+	if current_day == week_duration:
+		current_day = 1 
+		if quota_reached:
+			quota = quota * 1.7
+			proceed_to_next_day()
+		else:
+			raise(Events.GameOver)
+	else:
+		proceed_to_next_day()
+
+func quota_reached() -> bool:
+	return uncashed_in_money > quota
+	
+func proceed_to_next_day():
+	reset_game(false)
+	
+func cash_in_money()->void:
+	money += uncashed_in_money
+	uncashed_in_money = 0
+
 func is_player_hitable() -> bool:
 	return _player_alive
 
 func player_die() -> void:
 	if(!_player_alive): return
 	_player_alive = false
-	GameManager.raise(Events.GameOver)
+	GameManager.raise(Events.EndDay)
 	
 func set_action(label: String) -> void:
 	_player._set_action(label)

@@ -14,6 +14,7 @@ const TIME_TO_SCARE_SECONDS = 0.5
 @onready var first_flashlight_label = $CanvasLayer/Control/FirstFlashlight
 @onready var actionIcon = $CanvasLayer/Control/ActionIcon
 @onready var actionLabel = $CanvasLayer/Control/ActionLabel
+@onready var hud = $CanvasLayer
 
 @onready var outsideAudio:AudioStreamPlayer3D = $AudioOutsideAmbiance
 @onready var heavyAudio:AudioStreamPlayer3D = $AudioHeavyAmbiance
@@ -23,8 +24,8 @@ const TIME_TO_SCARE_SECONDS = 0.5
 var CameraRotation = Vector2(90, 0)
 var is_attached_to_cart = false
 
-var can_move: bool = false
-
+var can_move:= false
+var is_inside := false
 var scared := false
 
 var distance_between_footsteps = 150
@@ -40,12 +41,17 @@ var action: String = ""
 
 func _ready() -> void:
 	print_rich("[color=green] playerReady![/color]")
-	GameManager.register(Events.GameStart, func(): can_move = true)
+	GameManager.register(Events.GameStart, _on_game_start)
 	GameManager.register(Events.GameOver, _uncapture_mouse)
+	GameManager.register(Events.EndDay, _uncapture_mouse)
 	GameManager.register(Events.HitPlayer, _on_receive_hit)
 	GameManager.register(Events.StartChase, _on_start_chase)
 	GameManager.register(Events.StopChase, _on_stop_chase)
 	GameManager.register_player(self)
+
+func _on_game_start() -> void:
+	can_move = true
+	display_hud()
 
 func _on_start_chase() -> void:
 	scared = true
@@ -90,8 +96,16 @@ func _uncapture_mouse() -> void:
 	if heavyAudio.playing: heavyAudio.stop()
 	if outsideAudio.playing: outsideAudio.stop()
 	
+	hide_hud()
+	action = "" # stop displaying action by setting it to empty string
 	can_move = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+func display_hud() ->void:
+	hud.visible = true
+	
+func hide_hud() -> void:
+	hud.visible = false
 	
 func _on_receive_hit() -> void:
 	GameManager.player_die()
@@ -172,12 +186,14 @@ func DetachFromCart() -> void:
 
 func PlayInsideSound(_body: Node3D) -> void:
 	print("inside!")
+	is_inside = true
 	if(heavyAudio.playing): return
 	heavyAudio.play(0)
 	outsideAudio.stop()
 	
 func PlayOutsideSound(_body: Node3D) -> void:
 	print("outside!")
+	is_inside = false
 	if(outsideAudio.playing):
 		print("alreadyPlaying")
 		return

@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu0ui14q86sd2"]
+
+[ext_resource type="FontFile" uid="uid://6g7ftni46enm" path="res://fonts/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf" id="1_h5wv6"]
+[ext_resource type="Script" path="res://NextDayScene/next_day.gd" id="1_pui81"]
+
+[node name="NextDay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pui81")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 167.0
+offset_right = 261.0
+offset_bottom = 209.0
+theme_override_fonts/font = ExtResource("1_h5wv6")
+theme_override_font_sizes/font_size = 17
+text = "Next Day"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 377.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("1_h5wv6")
+text = "You died in the mines, all uncashed profits lost."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 51.0
+offset_right = 295.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("1_h5wv6")
+text = "Days left to meet quota:"
+
+[node name="DaysLeftLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 59.0
+offset_right = 214.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_h5wv6")
+theme_override_font_sizes/font_size = 35
+text = "2"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 113.0
+offset_right = 204.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("1_h5wv6")
+theme_override_font_sizes/font_size = 13
+text = "Uncashed profits:"
+
+[node name="UncashedProfitsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 108.0
+offset_right = 313.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0.416708, 0.362973, 0.0876275, 1)
+theme_override_fonts/font = ExtResource("1_h5wv6")
+theme_override_font_sizes/font_size = 18
+text = "0$"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

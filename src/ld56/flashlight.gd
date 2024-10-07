@@ -10,9 +10,14 @@ const AMBIENT_STRENGHT_OFF = 0.05
 @onready var audio_off :=$audio_flash_off
 
 var flashlight_on := false
-var first_flashlight = true
 var battery_life_in_seconds_max: float = 120
 var battery_life_in_seconds: float = 120
+
+func _ready()->void:
+	GameManager.register(Events.GameStart, on_game_start)
+
+func on_game_start()->void:
+	if !GameManager._first_flashlight : remove_flashlight_prompt()
 
 func _input(_event: InputEvent)->void:
 	if Input.is_action_just_pressed("toggle_flashlight"):
@@ -39,9 +44,10 @@ func toggleFlashlight() -> void:
 		audio_off.play(0)
 
 func turn_on() -> void:
-	if first_flashlight:
-		first_flashlight = false
-		find_parent("Player").get_node("CanvasLayer/Control/FirstFlashlight").visible = false
+	if GameManager._first_flashlight:
+		GameManager._first_flashlight = false
+		remove_flashlight_prompt()
+		
 		
 	flashlight_on = true
 	flashLight.visible = true
@@ -51,3 +57,6 @@ func turn_off() -> void:
 	flashlight_on = false
 	flashLight.visible = false
 	ambientLight.light_energy = AMBIENT_STRENGHT_OFF
+
+func remove_flashlight_prompt() -> void:
+	find_parent("Player").get_node("CanvasLayer/Control/FirstFlashlight").visible = false

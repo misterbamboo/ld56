@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dveja88ubh5k4"]
+[gd_scene load_steps=28 format=3 uid="uid://dveja88ubh5k4"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_nfej1"]
 [ext_resource type="Script" path="res://battery_hud.gd" id="2_2tviy"]
@@ -9,7 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://bidye6yt2is4f" path="res://sounds/flash_off.mp3" id="4_ocrwn"]
 [ext_resource type="Texture2D" uid="uid://c28l2lvbdo7ry" path="res://icons/battery-25.png" id="5_nmrjm"]
 [ext_resource type="Texture2D" uid="uid://dxo50ju36n2ts" path="res://icons/T_Mouse_Left_Key_White.png" id="6_3eqwl"]
+[ext_resource type="PackedScene" uid="uid://bavfc8vpsl4bc" path="res://game_money/game_money.tscn" id="6_7buga"]
 [ext_resource type="Texture2D" uid="uid://blnlmeysa2bg8" path="res://icons/battery-50.png" id="6_8fs0f"]
+[ext_resource type="PackedScene" uid="uid://dvmlksex43wc6" path="res://game_timer/game_timer.tscn" id="6_i0m1p"]
 [ext_resource type="Texture2D" uid="uid://q7bclmw6re2v" path="res://icons/battery-75.png" id="7_6j7pn"]
 [ext_resource type="Texture2D" uid="uid://dc31xucw22mkm" path="res://icons/battery-100.png" id="8_qx0xh"]
 [ext_resource type="AudioStream" uid="uid://cccndtc2cifc2" path="res://sounds/heavy ambiance.mp3" id="9_3jlsf"]
@@ -24,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://bivn3fy7lv1ne" path="res://sounds/breath.wav" id="21_t2lyc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c2unh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4t5l"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_now15"]
 random_pitch = 1.2
@@ -90,12 +94,27 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="GameMoney" parent="CanvasLayer/Control" instance=ExtResource("6_7buga")]
+layout_mode = 1
+
+[node name="GameTimer" parent="CanvasLayer/Control" instance=ExtResource("6_i0m1p")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = 32.0
+offset_top = 5.0
+offset_right = 32.0
+offset_bottom = 5.0
+grow_vertical = 1
+
 [node name="FirstFlashlight" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 18.0
-offset_right = 299.0
-offset_bottom = 41.0
+offset_left = 95.0
+offset_top = 93.0
+offset_right = 298.0
+offset_bottom = 116.0
 text = "press E to toggle flashlight"
 
 [node name="ActionIcon" type="TextureRect" parent="CanvasLayer/Control"]
@@ -120,6 +139,7 @@ expand_mode = 1
 
 [node name="ActionLabel" type="Label" parent="CanvasLayer/Control"]
 visible = false
+layout_mode = 0
 offset_left = 93.0
 offset_top = 148.0
 offset_right = 296.0
@@ -172,7 +192,7 @@ grow_vertical = 0
 script = ExtResource("13_n10ot")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/StaminaHUD"]
-custom_minimum_size = Vector2(100, 10)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -180,10 +200,11 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -50.0
-offset_top = -10.0
+offset_top = -4.0
 offset_right = 50.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_f4t5l")
 max_value = 1.0
 step = 0.0
 value = 1.0

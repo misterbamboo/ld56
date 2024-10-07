@@ -15,7 +15,7 @@ func _start_animation() -> void:
 	play("gameover_move_up")
 
 func _on_button_pressed() -> void:
-	GameManager.reset_game()
+	GameManager.reset_game(true)
 
 func _hide_gameoverscreen() -> void:
 	get_parent().hide()

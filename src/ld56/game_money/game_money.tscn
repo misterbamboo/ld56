@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bavfc8vpsl4bc"]
 
 [ext_resource type="Script" path="res://game_money/game_money.gd" id="1_6ygw6"]
-[ext_resource type="FontFile" uid="uid://bdimfcmlcsf12" path="res://fonts/seven_segment/Seven Segment.ttf" id="2_rx4yp"]
+[ext_resource type="FontFile" uid="uid://6g7ftni46enm" path="res://fonts/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf" id="2_ojcw3"]
 [ext_resource type="AudioStream" uid="uid://ct2x44k7wkoub" path="res://game_money/money.wav" id="3_j08wb"]
 
-[node name="GameMoney" type="Control" node_paths=PackedStringArray("label", "audio")]
+[node name="GameMoney" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,25 +16,40 @@ grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 script = ExtResource("1_6ygw6")
-label = NodePath("Label")
-audio = NodePath("AudioStreamPlayer2D")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -74.0
-offset_top = 28.64
-offset_right = -5.0
-offset_bottom = 63.64
+offset_left = -71.0
+offset_top = 3.0
+offset_right = -2.0
+offset_bottom = 41.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("2_rx4yp")
-theme_override_font_sizes/font_size = 27
+theme_override_fonts/font = ExtResource("2_ojcw3")
+theme_override_font_sizes/font_size = 15
+text = "0$"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 22.0
+offset_right = -3.0
+offset_bottom = 57.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.281874, 0.000998809, 0.557256, 1)
+theme_override_fonts/font = ExtResource("2_ojcw3")
+theme_override_font_sizes/font_size = 15
 text = "0$"
 horizontal_alignment = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_j08wb")
 volume_db = -15.437
+bus = &"SFX"

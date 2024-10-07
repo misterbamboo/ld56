@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/money.wav-1845533c7e8e747cc0e0efc92da70291.sa
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

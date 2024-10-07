@@ -28,12 +28,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -1.0
+offset_right = 6.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.0909423, 0.0594644, 1)
 theme_override_fonts/font = ExtResource("2_qc56h")
 theme_override_font_sizes/font_size = 31
-text = " HELL NO ! ! !"
+text = "Enter The Mines"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -44,6 +48,6 @@ offset_bottom = 130.0
 theme_override_colors/font_color = Color(0.954458, 3.60981e-06, 1.34766e-06, 1)
 theme_override_fonts/font = ExtResource("2_qc56h")
 theme_override_font_sizes/font_size = 18
-text = "GO TO HELL"
+text = "START"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
