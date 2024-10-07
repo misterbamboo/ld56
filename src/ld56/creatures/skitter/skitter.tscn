@@ -1,0 +1,131 @@
+[gd_scene load_steps=16 format=3 uid="uid://cye8c2yhcsa6a"]
+
+[ext_resource type="Script" path="res://creatures/skitter/skitter.gd" id="1_a8i3l"]
+[ext_resource type="PackedScene" uid="uid://daq7xp21w6bki" path="res://creatures/skitter/Skitter.glb" id="2_n542x"]
+[ext_resource type="Script" path="res://addons/behaviour_toolkit/finite_state_machine/fsm.gd" id="2_u88xy"]
+[ext_resource type="Script" path="res://creatures/skitter/states/random_patrol.gd" id="3_gbyum"]
+[ext_resource type="Script" path="res://creatures/skitter/transitions/patrol_node_reached.gd" id="4_lu7ue"]
+[ext_resource type="Script" path="res://creatures/skitter/transitions/player_in_sight.gd" id="5_ghk1s"]
+[ext_resource type="Script" path="res://creatures/skitter/states/chase.gd" id="6_6oqal"]
+[ext_resource type="Script" path="res://creatures/skitter/transitions/player_lost.gd" id="7_83fjd"]
+[ext_resource type="Material" uid="uid://3k8bv3n0tkvw" path="res://creatures/skitter/creature1_eyes_material.tres" id="9_djhia"]
+[ext_resource type="AudioStream" uid="uid://bsfjyjtycoejx" path="res://creatures/skitter/skittering.wav" id="10_y2tsg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2e7r"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="Animation" id="Animation_lg6wp"]
+resource_name = "skittering_anim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_8412o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gdnwk"]
+_data = {
+"RESET": SubResource("Animation_8412o"),
+"skittering_anim": SubResource("Animation_lg6wp")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_qtj4j"]
+
+[node name="Skitter" type="CharacterBody3D"]
+script = ExtResource("1_a8i3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.348, 0)
+shape = SubResource("BoxShape3D_v2e7r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 3
+
+[node name="VisonCone" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionPolygon3D" parent="VisonCone"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 1.05922, 0)
+depth = 3.0
+polygon = PackedVector2Array(0.181775, -0.0818585, 8.91686, -9.25058, 8.70164, 8.52388)
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "actor")]
+script = ExtResource("2_u88xy")
+autostart = true
+initial_state = NodePath("RandomPatrol")
+actor = NodePath("..")
+
+[node name="RandomPatrol" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("3_gbyum")
+
+[node name="PatrolNodeReached" type="Node" parent="FiniteStateMachine/RandomPatrol" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_lu7ue")
+next_state = NodePath("..")
+
+[node name="PlayerInSight" type="Node" parent="FiniteStateMachine/RandomPatrol" node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_ghk1s")
+next_state = NodePath("../../Chase")
+
+[node name="Chase" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("6_6oqal")
+
+[node name="PlayerLost" type="Node" parent="FiniteStateMachine/Chase" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_83fjd")
+next_state = NodePath("../../RandomPatrol")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_y2tsg")
+volume_db = 5.0
+max_db = 6.0
+max_distance = 60.0
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gdnwk")
+}
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="body_mesh" parent="Model" instance=ExtResource("2_n542x")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, -0.448631, 0)
+
+[node name="eye1" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.251392, -0.140437, 0.813068)
+mesh = SubResource("SphereMesh_qtj4j")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("9_djhia")
+
+[node name="eye2" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.287912, -0.136671, 0.808485)
+mesh = SubResource("SphereMesh_qtj4j")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("9_djhia")
+
+[connection signal="body_entered" from="VisonCone" to="." method="bodyEnter"]
+[connection signal="body_exited" from="VisonCone" to="." method="bodyExit"]

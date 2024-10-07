@@ -1,4 +1,4 @@
-class_name FireGuy extends CharacterBody3D
+class_name Skitter extends CharacterBody3D
 
 @export var speed: float
 @export var acceleration:float

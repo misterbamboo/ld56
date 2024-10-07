@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://creatures/fire_guy/fire_guy.gd" id="1_c0fn6"]
 [ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="2_oswm0"]
 [ext_resource type="Script" path="res://addons/behaviour_toolkit/finite_state_machine/fsm.gd" id="3_tnrr1"]
-[ext_resource type="Script" path="res://creatures/fire_guy/states/random_patrol.gd" id="4_5vikb"]
-[ext_resource type="Script" path="res://creatures/fire_guy/transitions/patrol_node_reached.gd" id="5_h21ob"]
-[ext_resource type="Script" path="res://creatures/fire_guy/states/chase.gd" id="5_v3m4v"]
-[ext_resource type="Script" path="res://creatures/fire_guy/transitions/player_in_sight.gd" id="6_l3pp6"]
-[ext_resource type="Script" path="res://creatures/fire_guy/transitions/player_lost.gd" id="8_v8d8e"]
+[ext_resource type="Script" path="res://creatures/skitter/states/random_patrol.gd" id="4_5vikb"]
+[ext_resource type="Script" path="res://creatures/skitter/transitions/patrol_node_reached.gd" id="5_h21ob"]
+[ext_resource type="Script" path="res://creatures/skitter/states/chase.gd" id="5_v3m4v"]
+[ext_resource type="Script" path="res://creatures/skitter/transitions/player_in_sight.gd" id="6_l3pp6"]
+[ext_resource type="Script" path="res://creatures/skitter/transitions/player_lost.gd" id="8_v8d8e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wwyw5"]
 
