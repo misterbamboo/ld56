@@ -15,10 +15,10 @@ func _process(_delta: float) -> void:
 	pass
 
 func appear_screen() -> void:
-	if GameManager._player.is_inside:
-		label.text = "The truck left without you, all uncashed profits lost."
-	elif !GameManager._player_alive:
+	if !GameManager._player_alive:
 		label.text = "You died in the mines, all uncashed profits lost."
+	elif GameManager._player.is_inside:
+		label.text = "The truck left without you, \nall uncashed profits lost."
 	else:
 		label.text = "Another day, another trip to the mines"
 		uncashedProfitsLabel.text = "%d $" % GameManager.uncashed_in_money

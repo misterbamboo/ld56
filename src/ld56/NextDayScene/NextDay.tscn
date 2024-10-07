@@ -25,10 +25,12 @@ text = "Next Day"
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 5.0
-offset_top = 7.0
+offset_top = 2.0
 offset_right = 377.0
-offset_bottom = 40.0
+offset_bottom = 35.0
+theme_override_constants/line_spacing = -11
 theme_override_fonts/font = ExtResource("1_h5wv6")
+theme_override_font_sizes/font_size = 15
 text = "You died in the mines, all uncashed profits lost."
 horizontal_alignment = 1
 

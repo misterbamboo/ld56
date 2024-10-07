@@ -97,6 +97,7 @@ text = "quota:"
 horizontal_alignment = 2
 
 [node name="Panel" type="Panel" parent="QuotaDisplay"]
+layout_mode = 0
 offset_left = -108.0
 offset_top = 69.0
 offset_right = -2.0

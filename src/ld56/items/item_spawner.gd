@@ -13,8 +13,8 @@ func _ready() -> void:
 	GameManager.register(Events.StartDay, spawnItem)
 
 func spawnItem() -> void:
-	# 1 in 10 chance
-	if randi() % 10 != 0: return
+	# 1 in 9 chance
+	if randi() % 9 != 0: return
 	
 	var rand = randi()%100
 	match depth:

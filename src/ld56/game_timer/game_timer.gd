@@ -36,7 +36,7 @@ func _display_time() -> void:
 
 func _trigger_timeout() -> void:
 	if game_started and time <= 0:
-		GameManager.raise(Events.GameTimeout)
+		GameManager.raise(Events.EndDay)
 
 func _get_display(mins: int, secs: int) -> String:
 	var display = ""
