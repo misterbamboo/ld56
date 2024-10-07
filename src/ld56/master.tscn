@@ -2067,10 +2067,10 @@ environment = SubResource("Environment_h6e2m")
 [node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]
 
 [node name="GameTimer" parent="." instance=ExtResource("3_tsssm")]
+modulate = Color(1, 1, 1, 0.25098)
 
 [node name="GameMoney" parent="." instance=ExtResource("4_6ny61")]
-
-[node name="TitleScreen" parent="." instance=ExtResource("3_armyj")]
+modulate = Color(1, 1, 1, 0.25098)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0389032, 0.998058, 0.048646, 0.499925, -0.0227115, 0.865771, 0.865194, 0.0580006, -0.498071, 13.0812, 15.5289, 11.5561)
@@ -2346,6 +2346,15 @@ material = ExtResource("16_bdq5f")
 [node name="GoldRing" parent="Items" instance=ExtResource("17_dlste")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9142, 1.6584, 8.57847)
 
+[node name="GoldRing2" parent="Items" instance=ExtResource("17_dlste")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.63039, 1.6584, 8.57847)
+
+[node name="GoldRing3" parent="Items" instance=ExtResource("17_dlste")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.63039, 1.6584, 12.9181)
+
+[node name="GoldRing4" parent="Items" instance=ExtResource("17_dlste")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1964, 1.6584, 10.2448)
+
 [node name="InsideTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1011, 1.59769, 17.527)
 collision_layer = 0
@@ -2364,7 +2373,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144097, 0, -6.97412)
 shape = SubResource("BoxShape3D_qpni6")
 
 [node name="Shredder" parent="." instance=ExtResource("19_cr5le")]
-transform = Transform3D(-0.579537, 0, 0.814946, 0, 1, 0, -0.814946, 0, -0.579537, 25.0538, 0.25, 13.2132)
+transform = Transform3D(-0.891331, 0, -0.453352, 0, 1, 0, 0.453352, 0, -0.891331, 26.9019, 0.25, 8.45832)
 
 [node name="Ceilings" type="Node3D" parent="."]
 visible = false
@@ -2375,6 +2384,8 @@ script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_p1fl8")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 collision_type = 0
+
+[node name="TitleScreen" parent="." instance=ExtResource("3_armyj")]
 
 [connection signal="body_entered" from="InsideTrigger" to="Player" method="PlayInsideSound"]
 [connection signal="body_entered" from="OutsideTrigger" to="Player" method="PlayOutsideSound"]

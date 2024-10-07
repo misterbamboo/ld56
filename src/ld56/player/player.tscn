@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dveja88ubh5k4"]
+[gd_scene load_steps=21 format=3 uid="uid://dveja88ubh5k4"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_nfej1"]
 [ext_resource type="Script" path="res://battery_hud.gd" id="2_2tviy"]
@@ -8,10 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://4gfyntjnkgkv" path="res://icons/battery-0.png" id="4_7135u"]
 [ext_resource type="AudioStream" uid="uid://bidye6yt2is4f" path="res://sounds/flash_off.mp3" id="4_ocrwn"]
 [ext_resource type="Texture2D" uid="uid://c28l2lvbdo7ry" path="res://icons/battery-25.png" id="5_nmrjm"]
+[ext_resource type="Texture2D" uid="uid://dxo50ju36n2ts" path="res://icons/T_Mouse_Left_Key_White.png" id="6_3eqwl"]
 [ext_resource type="Texture2D" uid="uid://blnlmeysa2bg8" path="res://icons/battery-50.png" id="6_8fs0f"]
-[ext_resource type="Texture2D" uid="uid://bnyvy7wwou2hp" path="res://player/selection_dot.png" id="6_s52ag"]
 [ext_resource type="Texture2D" uid="uid://q7bclmw6re2v" path="res://icons/battery-75.png" id="7_6j7pn"]
-[ext_resource type="Script" path="res://player/selection_dot_rotate.gd" id="7_vsp5j"]
 [ext_resource type="Texture2D" uid="uid://dc31xucw22mkm" path="res://icons/battery-100.png" id="8_qx0xh"]
 [ext_resource type="AudioStream" uid="uid://cccndtc2cifc2" path="res://sounds/heavy ambiance.mp3" id="9_3jlsf"]
 [ext_resource type="AudioStream" uid="uid://dbyjvsc4ats0p" path="res://sounds/footsteps/dirt1.mp3" id="10_yoo6j"]
@@ -33,6 +32,7 @@ stream_3/stream = ExtResource("15_1a06v")
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_nfej1")
 sensitivity = 0.004
 
@@ -40,7 +40,7 @@ sensitivity = 0.004
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_str7r")
 cam = NodePath("../Neck/Camera3D")
-selectionDot = NodePath("../CanvasLayer/SelectionDot")
+selectionDot = NodePath("../CanvasLayer/Control/SelectionIcon")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_c2unh")
@@ -77,37 +77,42 @@ bus = &"SFX"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SelectionDot" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(4, 4)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_s52ag")
-script = ExtResource("7_vsp5j")
-
 [node name="Control" type="Control" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 4.0
-offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="FirstFlashlight" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 139.0
+offset_right = 302.0
+offset_bottom = 162.0
+text = "press E to toggle flashlight"
+
+[node name="SelectionIcon" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = 26.0
+offset_right = 16.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_3eqwl")
+expand_mode = 1
 
 [node name="BatteryHUD" type="Control" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(64, 64)

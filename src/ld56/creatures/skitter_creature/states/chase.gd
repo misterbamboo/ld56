@@ -2,7 +2,7 @@ extends FSMState
 
 # Executes after the state is entered.
 func _on_enter(actor: Node, _blackboard: Blackboard) -> void:
-	actor as Skitter
+	actor = actor as Skitter
 	actor.skitter = false
 	
 # Executes every _process call, if the state is active.

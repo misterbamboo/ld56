@@ -56,12 +56,12 @@ func _physics_process(delta:float)->void:
 	if velocity.length() != 0:
 		look_at(Vector3(look_pos.x, global_position.y, look_pos.z))
 	
-func bodyEnter(body: Node3D)->void:
+func bodyEnter(_body: Node3D)->void:
 	player_in_range = true
 	print("body enter")
 	pass
 
-func bodyExit(body: Node3D)->void:
+func bodyExit(_body: Node3D)->void:
 	player_in_range = false
 	print("body exit")
 	pass

@@ -20,7 +20,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.00001, 0, 7.7486e-07, 0, 1, 0, -7.7486e-07, 0, 1.00001, 0.098793, 0.550631, -1.10949)
+transform = Transform3D(1.00001, 0, 7.6741e-07, 0, 1, 0, -7.6741e-07, 0, 1.00001, 0.0861454, 0.550631, -1.26126)
 shape = SubResource("BoxShape3D_jx50r")
 
 [node name="PlayerTarget" type="Node3D" parent="."]
