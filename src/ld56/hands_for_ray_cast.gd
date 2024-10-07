@@ -34,6 +34,9 @@ func _update_selection_dot() -> void:
 func _move_picked_item() -> void:
 	if _picked_item == null:
 		return
+
+	if _picked_item.grinding:
+		return
 	
 	var forward = cam.global_transform.basis.z.normalized() * 2
 	var newPos = global_position - forward

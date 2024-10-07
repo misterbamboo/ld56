@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvmlksex43wc6"]
+
+[ext_resource type="Script" path="res://game_timer/game_timer.gd" id="1_4digq"]
+[ext_resource type="FontFile" uid="uid://bdimfcmlcsf12" path="res://fonts/seven_segment/Seven Segment.ttf" id="1_m5fan"]
+
+[node name="GameTimer" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("1_4digq")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_right = -5.0
+offset_bottom = 35.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_m5fan")
+theme_override_font_sizes/font_size = 27
+text = "05:00"
+horizontal_alignment = 2
