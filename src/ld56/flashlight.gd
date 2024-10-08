@@ -33,8 +33,7 @@ func _process(delta: float) -> void:
 			turn_off()
 	
 func toggleFlashlight() -> void:
-	if(battery_life_in_seconds <= 0):
-		pass
+	if(battery_life_in_seconds <= 0): return
 	
 	if !flashlight_on:
 		turn_on()

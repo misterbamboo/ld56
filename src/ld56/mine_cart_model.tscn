@@ -707,7 +707,7 @@ mesh = SubResource("ArrayMesh_eyabi")
 [node name="OmniLight3D" type="OmniLight3D" parent="LanternModel"]
 transform = Transform3D(2.63158, 0, 0, 0, 2.63158, 0, 0, 0, 2.63158, 1.03179, 0.944635, 0.235874)
 light_color = Color(0.968627, 0.941176, 0.643137, 1)
-light_energy = 0.3
+light_energy = 0.5
 omni_range = 100.0
 omni_attenuation = 2.0
 
