@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=4 uid="uid://c5ngctf8qg54y"]
 
-[ext_resource type="Script" path="res://items/base_item.gd" id="1_8scu0"]
-[ext_resource type="Material" path="res://materials/surfaces/roughstone/roughstone.tres" id="7_r7wsv"]
-[ext_resource type="Material" uid="uid://cd7c37qvv080q" path="res://materials/items/emerald/emerald.tres" id="8_islgx"]
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/BaseItem.cs" id="1_xkkcr"]
+[ext_resource type="Material" path="res://materials/surfaces/roughstone/roughstone.tres" id="2_o3cu0"]
+[ext_resource type="Material" uid="uid://cd7c37qvv080q" path="res://materials/items/emerald/emerald.tres" id="3_rwfvm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5m32b"]
 size = Vector3(0.495239, 0.305267, 0.459442)
@@ -11,7 +11,7 @@ size = Vector3(0.495239, 0.305267, 0.459442)
 _surfaces = [{
 "aabb": AABB(-0.260417, 0, -0.885417, 1.25, 0.25, 1),
 "format": 34359738369,
-"material": ExtResource("7_r7wsv"),
+"material": ExtResource("2_o3cu0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 60,
@@ -27,7 +27,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 60,
 "index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAUABgAHAAgABgAIAAkABgAJAAoABgAKAAsADAANAA4ADwAQABEAEgATABQAEgAUABUAFgAXABgAGQAaABsAHAAdAB4AHAAeAB8AIAAhACIAIwAkACUAJgAnACgAKQAqACsA"),
-"material": ExtResource("7_r7wsv"),
+"material": ExtResource("2_o3cu0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 44,
@@ -40,7 +40,7 @@ shadow_mesh = SubResource("ArrayMesh_skk8o")
 _surfaces = [{
 "aabb": AABB(-0.260417, 0, -0.885417, 1.25, 0.25, 1),
 "format": 34359738369,
-"material": ExtResource("7_r7wsv"),
+"material": ExtResource("2_o3cu0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 60,
@@ -56,7 +56,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 60,
 "index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAUABgAHAAgABgAIAAkABgAJAAoABgAKAAsADAANAA4ADwAQABEAEgATABQAEgAUABUAFgAXABgAGQAaABsAHAAdAB4AHwAgACEAIgAjACQAJQAmACcAKAApACoAKwAsAC0A"),
-"material": ExtResource("7_r7wsv"),
+"material": ExtResource("2_o3cu0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 46,
@@ -69,7 +69,7 @@ shadow_mesh = SubResource("ArrayMesh_jc7l1")
 _surfaces = [{
 "aabb": AABB(-0.25, 0, -1, 1.25, 0.25, 1),
 "format": 34359738369,
-"material": ExtResource("7_r7wsv"),
+"material": ExtResource("2_o3cu0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 60,
@@ -85,7 +85,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 60,
 "index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAUABgAHAAgABgAIAAkABgAJAAoABgAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMA"),
-"material": ExtResource("7_r7wsv"),
+"material": ExtResource("2_o3cu0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -98,7 +98,7 @@ shadow_mesh = SubResource("ArrayMesh_lb2lb")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -114,7 +114,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADwAQABEAEgATABQAEgAUABUAFgAXABgAGQAaABsA"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
@@ -127,7 +127,7 @@ shadow_mesh = SubResource("ArrayMesh_lj4nv")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -143,7 +143,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADwAQABEAEgATABQAEgAUABUAFgAXABgAGQAaABsA"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
@@ -156,7 +156,7 @@ shadow_mesh = SubResource("ArrayMesh_2oe2d")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -172,7 +172,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADAAOAA8AEAARABIAEwAUABUAFgAXABgAFgAYABkAGgAbABwAHQAeAB8A"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 32,
@@ -185,7 +185,7 @@ shadow_mesh = SubResource("ArrayMesh_ijnru")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -201,7 +201,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADAAOAA8AEAARABIAEwAUABUAFgAXABgAFgAYABkAGgAbABwAHQAeAB8A"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 32,
@@ -214,7 +214,7 @@ shadow_mesh = SubResource("ArrayMesh_4o2vq")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -230,7 +230,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADAAOAA8AEAARABIAEwAUABUAFgAXABgAFgAYABkAGgAbABwAHQAeAB8A"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 32,
@@ -243,7 +243,7 @@ shadow_mesh = SubResource("ArrayMesh_ehrg8")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -259,7 +259,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADAAOAA8AEAARABIAEwAUABUAFgAXABgAFgAYABkAGgAbABwAHQAeAB8A"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 32,
@@ -272,7 +272,7 @@ shadow_mesh = SubResource("ArrayMesh_nnfra")
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.25),
 "format": 34359738369,
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 36,
@@ -288,7 +288,7 @@ _surfaces = [{
 "format": 34359742527,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADAAOAA8AEAARABIAEwAUABUAFgAXABgAFgAYABkAGgAbABwAHQAeAB8A"),
-"material": ExtResource("8_islgx"),
+"material": ExtResource("3_rwfvm"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 32,
@@ -297,10 +297,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4rvcc")
 
-[node name="emerald" type="Node3D" node_paths=PackedStringArray("rb")]
-script = ExtResource("1_8scu0")
-rb = NodePath("RigidBody3D")
-price = 25
+[node name="Emerald" type="Node3D"]
+script = ExtResource("1_xkkcr")
+Price = 25
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.232681, -0.415748, 0.141919)

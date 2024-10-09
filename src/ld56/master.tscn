@@ -1,17 +1,15 @@
-[gd_scene load_steps=319 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=317 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
-[ext_resource type="Script" path="res://game_manager/game_manager.gd" id="1_udyua"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_kykoy"]
-[ext_resource type="PackedScene" uid="uid://dkarfm3j81bq5" path="res://UIs/game_over_screen/game_over_screen.tscn" id="2_mt0q1"]
+[ext_resource type="PackedScene" uid="uid://dkarfm3j81bq5" path="res://EnterTheMines/Screens/GameOverScreen.tscn" id="2_mt0q1"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
-[ext_resource type="PackedScene" uid="uid://5tp6sabqqkn5" path="res://UIs/title_screen/title_screen.tscn" id="3_armyj"]
-[ext_resource type="PackedScene" uid="uid://cye8c2yhcsa6a" path="res://creatures/skitter_creature/skitter.tscn" id="3_epi44"]
+[ext_resource type="PackedScene" uid="uid://5tp6sabqqkn5" path="res://EnterTheMines/Screens/TitleScreen.tscn" id="3_armyj"]
 [ext_resource type="Script" path="res://directional_light_3d_auto_shutdown.gd" id="4_eiioc"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
 [ext_resource type="Material" uid="uid://de6m8iad08svi" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
-[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://player/player.tscn" id="6_queu5"]
+[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://EnterTheMines/PlayerCore/Player.tscn" id="6_queu5"]
 [ext_resource type="PackedScene" uid="uid://cu0ui14q86sd2" path="res://NextDayScene/NextDay.tscn" id="7_w4umj"]
 [ext_resource type="PackedScene" uid="uid://btub6i7nlj4d" path="res://truck/scene.gltf" id="8_8idva"]
 [ext_resource type="Material" path="res://materials/surfaces/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
@@ -21,8 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cxingle2fry0x" path="res://LevelGeometry.tscn" id="15_ue0nr"]
 [ext_resource type="Script" path="res://end_day_area.gd" id="17_e1ptn"]
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="17_xpkmh"]
-[ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://shredder/shredder.tscn" id="19_cr5le"]
-[ext_resource type="PackedScene" uid="uid://cdmhmasa0nt2v" path="res://items/item_spawner.tscn" id="20_sn18c"]
+[ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://EnterTheMines/Interactables/ShredderCore/Shredder.tscn" id="19_cr5le"]
+[ext_resource type="PackedScene" uid="uid://cdmhmasa0nt2v" path="res://EnterTheMines/Interactables/Items/ItemSpawner.tscn" id="20_sn18c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
 sky_top_color = Color(0.0191466, 0.00478081, 0.172609, 1)
@@ -713,22 +711,6 @@ category = ""
 data_type = 0
 stride = 1
 
-[sub_resource type="Resource" id="Resource_7vye3"]
-script = ExtResource("3_0f80u")
-data = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-name = &"material_index"
-category = ""
-data_type = 1
-stride = 1
-
-[sub_resource type="Resource" id="Resource_6qegk"]
-script = ExtResource("2_kykoy")
-data = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-name = &"visible"
-category = ""
-data_type = 0
-stride = 1
-
 [sub_resource type="Resource" id="Resource_2uojk"]
 script = ExtResource("4_p4nlr")
 data = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -737,13 +719,13 @@ category = ""
 data_type = 4
 stride = 4
 
-[sub_resource type="Resource" id="Resource_sox43"]
-script = ExtResource("4_p4nlr")
-data = PackedFloat32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
-name = &"uv_transform"
+[sub_resource type="Resource" id="Resource_7vye3"]
+script = ExtResource("3_0f80u")
+data = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+name = &"material_index"
 category = ""
-data_type = 8
-stride = 6
+data_type = 1
+stride = 1
 
 [sub_resource type="Resource" id="Resource_f84yr"]
 script = ExtResource("2_kykoy")
@@ -753,20 +735,20 @@ category = ""
 data_type = 0
 stride = 1
 
-[sub_resource type="Resource" id="Resource_iqre3"]
-script = ExtResource("3_0f80u")
-data = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10)
-name = &"face_index"
+[sub_resource type="Resource" id="Resource_sox43"]
+script = ExtResource("4_p4nlr")
+data = PackedFloat32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
+name = &"uv_transform"
 category = ""
-data_type = 1
-stride = 1
+data_type = 8
+stride = 6
 
-[sub_resource type="Resource" id="Resource_c6n5y"]
-script = ExtResource("3_0f80u")
-data = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 16, 15, 14, 13, 12, 11, 10, 9, 1, 0, 9, 10, 2, 1, 10, 11, 3, 2, 11, 12, 4, 3, 12, 13, 5, 4, 13, 14, 6, 5, 14, 15, 7, 6, 15, 16, 8, 7, 16, 17, 0, 8, 17, 9)
-name = &"vertex_index"
+[sub_resource type="Resource" id="Resource_6qegk"]
+script = ExtResource("2_kykoy")
+data = PackedByteArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+name = &"visible"
 category = ""
-data_type = 1
+data_type = 0
 stride = 1
 
 [sub_resource type="Resource" id="Resource_octia"]
@@ -777,6 +759,14 @@ category = ""
 data_type = 4
 stride = 4
 
+[sub_resource type="Resource" id="Resource_iqre3"]
+script = ExtResource("3_0f80u")
+data = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10)
+name = &"face_index"
+category = ""
+data_type = 1
+stride = 1
+
 [sub_resource type="Resource" id="Resource_mhj16"]
 script = ExtResource("4_p4nlr")
 data = PackedFloat32Array(0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0.999406, 0, -0.0344623, 0.999406, 0, -0.0344623, 0.999406, 0, -0.0344623, 0.999406, 0, -0.0344623, 0.919145, 0, -0.393919, 0.919145, 0, -0.393919, 0.919145, 0, -0.393919, 0.919145, 0, -0.393919, 0.581238, 0, -0.813733, 0.581238, 0, -0.813733, 0.581238, 0, -0.813733, 0.581238, 0, -0.813733, 0.250962, 0, -0.967997, 0.250962, 0, -0.967997, 0.250962, 0, -0.967997, 0.250962, 0, -0.967997, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, -0.544988, 0, -0.838444, -0.544988, 0, -0.838444, -0.544988, 0, -0.838444, -0.544988, 0, -0.838444, -0.645942, 0, -0.763386, -0.645942, 0, -0.763386, -0.645942, 0, -0.763386, -0.645942, 0, -0.763386, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -0.00833304, 0, 0.999965, -0.00833304, 0, 0.999965, -0.00833304, 0, 0.999965, -0.00833304, 0, 0.999965)
@@ -784,6 +774,14 @@ name = &"normal"
 category = ""
 data_type = 6
 stride = 3
+
+[sub_resource type="Resource" id="Resource_c6n5y"]
+script = ExtResource("3_0f80u")
+data = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 16, 15, 14, 13, 12, 11, 10, 9, 1, 0, 9, 10, 2, 1, 10, 11, 3, 2, 11, 12, 4, 3, 12, 13, 5, 4, 13, 14, 6, 5, 14, 15, 7, 6, 15, 16, 8, 7, 16, 17, 0, 8, 17, 9)
+name = &"vertex_index"
+category = ""
+data_type = 1
+stride = 1
 
 [sub_resource type="Resource" id="Resource_8sa8s"]
 script = ExtResource("4_p4nlr")
@@ -2831,22 +2829,6 @@ category = ""
 data_type = 0
 stride = 1
 
-[sub_resource type="Resource" id="Resource_qrc43"]
-script = ExtResource("3_0f80u")
-data = PackedInt32Array(0, 0, 0, 0, 0, 0)
-name = &"material_index"
-category = ""
-data_type = 1
-stride = 1
-
-[sub_resource type="Resource" id="Resource_xp12l"]
-script = ExtResource("2_kykoy")
-data = PackedByteArray(1, 1, 1, 1, 1, 1)
-name = &"visible"
-category = ""
-data_type = 0
-stride = 1
-
 [sub_resource type="Resource" id="Resource_hqtjh"]
 script = ExtResource("4_p4nlr")
 data = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -2855,13 +2837,13 @@ category = ""
 data_type = 4
 stride = 4
 
-[sub_resource type="Resource" id="Resource_g8fr4"]
-script = ExtResource("4_p4nlr")
-data = PackedFloat32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
-name = &"uv_transform"
+[sub_resource type="Resource" id="Resource_qrc43"]
+script = ExtResource("3_0f80u")
+data = PackedInt32Array(0, 0, 0, 0, 0, 0)
+name = &"material_index"
 category = ""
-data_type = 8
-stride = 6
+data_type = 1
+stride = 1
 
 [sub_resource type="Resource" id="Resource_r1gmo"]
 script = ExtResource("2_kykoy")
@@ -2871,20 +2853,20 @@ category = ""
 data_type = 0
 stride = 1
 
-[sub_resource type="Resource" id="Resource_6tqqk"]
-script = ExtResource("3_0f80u")
-data = PackedInt32Array(0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5)
-name = &"face_index"
+[sub_resource type="Resource" id="Resource_g8fr4"]
+script = ExtResource("4_p4nlr")
+data = PackedFloat32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
+name = &"uv_transform"
 category = ""
-data_type = 1
-stride = 1
+data_type = 8
+stride = 6
 
-[sub_resource type="Resource" id="Resource_n7emh"]
-script = ExtResource("3_0f80u")
-data = PackedInt32Array(0, 1, 2, 3, 7, 6, 5, 4, 1, 0, 4, 5, 2, 1, 5, 6, 3, 2, 6, 7, 0, 3, 7, 4)
-name = &"vertex_index"
+[sub_resource type="Resource" id="Resource_xp12l"]
+script = ExtResource("2_kykoy")
+data = PackedByteArray(1, 1, 1, 1, 1, 1)
+name = &"visible"
 category = ""
-data_type = 1
+data_type = 0
 stride = 1
 
 [sub_resource type="Resource" id="Resource_3pyf3"]
@@ -2895,6 +2877,14 @@ category = ""
 data_type = 4
 stride = 4
 
+[sub_resource type="Resource" id="Resource_6tqqk"]
+script = ExtResource("3_0f80u")
+data = PackedInt32Array(0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5)
+name = &"face_index"
+category = ""
+data_type = 1
+stride = 1
+
 [sub_resource type="Resource" id="Resource_x34mf"]
 script = ExtResource("4_p4nlr")
 data = PackedFloat32Array(-1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1)
@@ -2902,6 +2892,14 @@ name = &"normal"
 category = ""
 data_type = 6
 stride = 3
+
+[sub_resource type="Resource" id="Resource_n7emh"]
+script = ExtResource("3_0f80u")
+data = PackedInt32Array(0, 1, 2, 3, 7, 6, 5, 4, 1, 0, 4, 5, 2, 1, 5, 6, 3, 2, 6, 7, 0, 3, 7, 4)
+name = &"vertex_index"
+category = ""
+data_type = 1
+stride = 1
 
 [sub_resource type="Resource" id="Resource_sa5b3"]
 script = ExtResource("4_p4nlr")
@@ -2955,28 +2953,9 @@ face_vertex_data = {
 }
 
 [node name="Master" type="Node3D"]
-script = ExtResource("1_udyua")
 
 [node name="Player" parent="." instance=ExtResource("6_queu5")]
 transform = Transform3D(-0.476898, 0, -0.878959, 0, 1, 0, 0.878959, 0, -0.476898, 15.828, 1.31808, 5.66969)
-
-[node name="Skitter" parent="." instance=ExtResource("3_epi44")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.9963, 0.133361, 50.941)
-speed = 7.0
-acceleration = 2.0
-patrolNodes = [Vector3(15.061, 1, 52.933), Vector3(38.9971, 1, 26.5053), Vector3(82.9497, 1, 27.3614), Vector3(42.4658, 1, 47.744), Vector3(17.0806, 1, 32.4176), Vector3(54.2051, 1, 71.4963)]
-
-[node name="Skitter2" parent="." instance=ExtResource("3_epi44")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9345, 1.07324, 108.321)
-speed = 7.0
-acceleration = 2.0
-patrolNodes = [Vector3(80.7851, 1, 80.976), Vector3(44.9672, 0.999996, 108.608), Vector3(17.1376, 1, 99.8087), Vector3(-7.42949, 1, 119.486), Vector3(-16.4172, 0.999996, 98.738)]
-
-[node name="Skitter3" parent="." instance=ExtResource("3_epi44")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9111, 1.41158, 60.3701)
-speed = 7.0
-acceleration = 2.0
-patrolNodes = [Vector3(1.65766, 1, 80.0996), Vector3(-38.4601, 0.999996, 94.4748), Vector3(-23.8734, 1, 39.6432), Vector3(0.763641, 0.999992, 38.3197)]
 
 [node name="Skitter1 Patrol Points" type="Node3D" parent="."]
 
@@ -3034,7 +3013,7 @@ environment = SubResource("Environment_h6e2m")
 
 [node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]
 
-[node name="NextDay" parent="." instance=ExtResource("7_w4umj")]
+[node name="NextDayScreen" parent="." instance=ExtResource("7_w4umj")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0389032, 0.998058, 0.048646, 0.499925, -0.0227115, 0.865771, 0.865194, 0.0580006, -0.498071, 13.0812, 15.5289, 11.5561)
@@ -3736,235 +3715,177 @@ transform = Transform3D(0.994209, 0, -0.107221, 0, 1.00008, 0, 0.107221, 0, 0.99
 
 [node name="ItemSpawner" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.927, 1, 28.853)
-depth = 1
 
 [node name="ItemSpawner2" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.147, 1, 21.0055)
-depth = 1
 
 [node name="ItemSpawner3" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4449, 1, 47.3712)
-depth = 1
 
 [node name="ItemSpawner4" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.0739, 1, 47.3712)
-depth = 1
 
 [node name="ItemSpawner5" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1707, 1, 55.0918)
-depth = 1
 
 [node name="ItemSpawner6" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.879, 1, 71.701)
-depth = 2
 
 [node name="ItemSpawner7" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.5145, 1, 62.839)
-depth = 2
 
 [node name="ItemSpawner8" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.185, 1, 30.8898)
-depth = 2
 
 [node name="ItemSpawner9" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.4487, 1, 47.3414)
-depth = 2
 
 [node name="ItemSpawner10" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.9867, 1, 35.4708)
-depth = 2
 
 [node name="ItemSpawner11" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.4565, 1, 26.6915)
-depth = 3
 
 [node name="ItemSpawner12" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.7276, 1, 63.1326)
-depth = 2
 
 [node name="ItemSpawner13" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.2907, 1, 60.6113)
-depth = 1
 
 [node name="ItemSpawner14" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.5156, 1, 37.9136)
-depth = 2
 
 [node name="ItemSpawner15" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.7335, 1, 39.4595)
-depth = 2
 
 [node name="ItemSpawner16" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.815, 1, 62.2326)
-depth = 1
 
 [node name="ItemSpawner17" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3355, 1, 58.2191)
-depth = 1
 
 [node name="ItemSpawner18" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5684, 1, 43.9909)
-depth = 1
 
 [node name="ItemSpawner19" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9837, 1, 51.082)
-depth = 1
 
 [node name="ItemSpawner20" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.80614, 1, 51.085)
-depth = 1
 
 [node name="ItemSpawner21" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90593, 1, 37.924)
-depth = 1
 
 [node name="ItemSpawner22" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40437, 1, 33.039)
-depth = 1
 
 [node name="ItemSpawner23" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6121, 1, 31.0427)
-depth = 1
 
 [node name="ItemSpawner24" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.81589, 1, 42.6647)
-depth = 2
 
 [node name="ItemSpawner25" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.58328, 1, 58.45)
-depth = 1
 
 [node name="ItemSpawner26" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3865, 1, 46.5884)
-depth = 2
 
 [node name="ItemSpawner27" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2559, 1, 41.0181)
-depth = 3
 
 [node name="ItemSpawner29" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6184, 1, 51.9398)
-depth = 2
 
 [node name="ItemSpawner30" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7263, 1, 48.4126)
-depth = 2
 
 [node name="ItemSpawner31" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2986, 1, 51.3429)
-depth = 2
 
 [node name="ItemSpawner32" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5316, 1, 64.4764)
-depth = 2
 
 [node name="ItemSpawner33" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1916, 1, 58.3783)
-depth = 3
 
 [node name="ItemSpawner34" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.67588, 1, 63.1579)
-depth = 2
 
 [node name="ItemSpawner35" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42672, 1, 75.0991)
-depth = 3
 
 [node name="ItemSpawner36" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7029, 1, 84.1511)
-depth = 4
 
 [node name="ItemSpawner37" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53745, 1, 82.1486)
-depth = 3
 
 [node name="ItemSpawner38" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.44758, 1, 79.486)
-depth = 3
 
 [node name="ItemSpawner39" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.59, 1, 81.1501)
-depth = 4
 
 [node name="ItemSpawner40" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4266, 1, 71.4979)
-depth = 3
 
 [node name="ItemSpawner41" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2692, 1, 77.8218)
-depth = 3
 
 [node name="ItemSpawner42" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9333, 1, 98.1246)
-depth = 4
 
 [node name="ItemSpawner43" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6814, 1, 103.783)
-depth = 3
 
 [node name="ItemSpawner44" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.44609, 1, 105.447)
-depth = 4
 
 [node name="ItemSpawner45" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3425, 1, 93.2986)
-depth = 4
 
 [node name="ItemSpawner46" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.5646, 1, 78.321)
-depth = 3
 
 [node name="ItemSpawner47" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5766, 1, 106.113)
-depth = 3
 
 [node name="ItemSpawner48" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.78492, 1, 119.759)
-depth = 3
 
 [node name="ItemSpawner49" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.521, 1, 121.756)
-depth = 3
 
 [node name="ItemSpawner50" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.521, 1, 112.756)
-depth = 3
 
 [node name="ItemSpawner51" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.6754, 1, 97.4455)
-depth = 3
 
 [node name="ItemSpawner52" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0322, 1, 82.8008)
-depth = 2
 
 [node name="ItemSpawner53" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.0157, 1, 74.9792)
-depth = 3
 
 [node name="ItemSpawner54" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.0022, 1, 88.2926)
-depth = 3
 
 [node name="ItemSpawner55" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.3051, 1, 91.9537)
-depth = 3
 
 [node name="ItemSpawner56" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9663, 1, 84.7978)
-depth = 3
 
 [node name="ItemSpawner57" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.4985, 1, 105.6)
-depth = 3
 
 [node name="ItemSpawner58" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0502, 1, 109.927)
-depth = 3
 
 [node name="ItemSpawner28" parent="Items" instance=ExtResource("20_sn18c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.2082, 2.3628, 36.1891)
-depth = 3
 
 [node name="InsideTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1011, 1.59769, 17.527)

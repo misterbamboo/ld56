@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bavfc8vpsl4bc"]
 
-[ext_resource type="Script" path="res://game_money/game_money.gd" id="1_6ygw6"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/HUD/MoneyHUD.cs" id="1_4plqa"]
 [ext_resource type="FontFile" uid="uid://6g7ftni46enm" path="res://fonts/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf" id="2_ojcw3"]
 [ext_resource type="AudioStream" uid="uid://ct2x44k7wkoub" path="res://game_money/money.wav" id="3_j08wb"]
 
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-script = ExtResource("1_6ygw6")
+script = ExtResource("1_4plqa")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

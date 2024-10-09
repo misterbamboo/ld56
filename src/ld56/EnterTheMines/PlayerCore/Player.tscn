@@ -1,0 +1,185 @@
+[gd_scene load_steps=22 format=3 uid="uid://dveja88ubh5k4"]
+
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/Player.cs" id="1_u8vim"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/HandsForRayCast.cs" id="2_irjpg"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/Flashlight.cs" id="3_j244m"]
+[ext_resource type="AudioStream" uid="uid://b1dxgcy6cflyk" path="res://sounds/flash_on.mp3" id="4_mvny2"]
+[ext_resource type="AudioStream" uid="uid://bidye6yt2is4f" path="res://sounds/flash_off.mp3" id="5_7d0so"]
+[ext_resource type="PackedScene" uid="uid://bavfc8vpsl4bc" path="res://game_money/game_money.tscn" id="6_2e4q5"]
+[ext_resource type="PackedScene" uid="uid://dvmlksex43wc6" path="res://game_timer/game_timer.tscn" id="7_1qr4d"]
+[ext_resource type="Texture2D" uid="uid://dxo50ju36n2ts" path="res://icons/T_Mouse_Left_Key_White.png" id="8_5bj0l"]
+[ext_resource type="PackedScene" uid="uid://danbnhiorido7" path="res://EnterTheMines/PlayerCore/HUD/BatteryHUD.tscn" id="9_ety85"]
+[ext_resource type="PackedScene" uid="uid://dnbka5lxu11jh" path="res://EnterTheMines/PlayerCore/HUD/StaminaHUD.tscn" id="10_ovasp"]
+[ext_resource type="PackedScene" uid="uid://biuiib30bo7ca" path="res://EnterTheMines/PlayerCore/HUD/CenterDotHUD.tscn" id="11_i6lsy"]
+[ext_resource type="AudioStream" uid="uid://cccndtc2cifc2" path="res://sounds/heavy ambiance.mp3" id="12_0fbjr"]
+[ext_resource type="AudioStream" uid="uid://b6todl2m1tvo5" path="res://sounds/scared.wav" id="13_gnup6"]
+[ext_resource type="AudioStream" uid="uid://bjwmqsjyhlwgb" path="res://sounds/outside.mp3" id="14_l5fwm"]
+[ext_resource type="AudioStream" uid="uid://dbyjvsc4ats0p" path="res://sounds/footsteps/dirt1.mp3" id="15_uaxlf"]
+[ext_resource type="AudioStream" uid="uid://dpgbyg0gwt63m" path="res://sounds/footsteps/dirt2.mp3" id="16_g2dym"]
+[ext_resource type="AudioStream" uid="uid://nv8jx5alj6o1" path="res://sounds/footsteps/dirt3.mp3" id="17_3erl7"]
+[ext_resource type="AudioStream" uid="uid://kaqshko48a4r" path="res://sounds/footsteps/dirt6.mp3" id="18_rlb3d"]
+[ext_resource type="AudioStream" uid="uid://bivn3fy7lv1ne" path="res://sounds/breath.wav" id="19_ykspk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c2unh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_now15"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("15_uaxlf")
+stream_1/stream = ExtResource("16_g2dym")
+stream_2/stream = ExtResource("17_3erl7")
+stream_3/stream = ExtResource("18_rlb3d")
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_u8vim")
+
+[node name="Hands_ForRayCast" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_irjpg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_c2unh")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.660457, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+fov = 90.0
+
+[node name="Lights" type="Node3D" parent="Neck/Camera3D"]
+script = ExtResource("3_j244m")
+
+[node name="Flashlight" type="SpotLight3D" parent="Neck/Camera3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0054307, 0)
+visible = false
+light_color = Color(0.92929, 0.882112, 0.787183, 1)
+spot_range = 40.0
+spot_angle = 30.0
+
+[node name="AmbientLight" type="OmniLight3D" parent="Neck/Camera3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.660457, 0)
+light_color = Color(0.654267, 0.654267, 0.654267, 1)
+light_energy = 0.2
+omni_attenuation = 3.0
+
+[node name="audio_flash_on" type="AudioStreamPlayer3D" parent="Neck/Camera3D/Lights"]
+stream = ExtResource("4_mvny2")
+bus = &"SFX"
+
+[node name="audio_flash_off" type="AudioStreamPlayer3D" parent="Neck/Camera3D/Lights"]
+stream = ExtResource("5_7d0so")
+bus = &"SFX"
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="PlayerHUD"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMoney" parent="PlayerHUD/Control" instance=ExtResource("6_2e4q5")]
+layout_mode = 1
+
+[node name="GameTimer" parent="PlayerHUD/Control" instance=ExtResource("7_1qr4d")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = 32.0
+offset_top = 5.0
+offset_right = 32.0
+offset_bottom = 5.0
+grow_vertical = 1
+
+[node name="FirstFlashlight" type="Label" parent="PlayerHUD/Control"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 93.0
+offset_right = 298.0
+offset_bottom = 116.0
+text = "press E to toggle flashlight"
+
+[node name="ActionIcon" type="TextureRect" parent="PlayerHUD/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = 15.0
+offset_right = 13.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_5bj0l")
+expand_mode = 1
+
+[node name="ActionLabel" type="Label" parent="PlayerHUD/Control"]
+visible = false
+layout_mode = 0
+offset_left = 93.0
+offset_top = 148.0
+offset_right = 296.0
+offset_bottom = 171.0
+horizontal_alignment = 1
+
+[node name="BatteryHUD" parent="PlayerHUD/Control" instance=ExtResource("9_ety85")]
+layout_mode = 1
+
+[node name="StaminaHUD" parent="PlayerHUD/Control" instance=ExtResource("10_ovasp")]
+layout_mode = 1
+
+[node name="CenterDotHUD" parent="PlayerHUD/Control" instance=ExtResource("11_i6lsy")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 23.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AudioHeavyAmbiance" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_0fbjr")
+volume_db = 0.964
+max_distance = 2.0
+bus = &"Ambiance"
+
+[node name="AudioChase" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("13_gnup6")
+volume_db = -80.0
+autoplay = true
+max_distance = 2.0
+bus = &"Ambiance"
+
+[node name="AudioOutsideAmbiance" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_l5fwm")
+volume_db = 0.964
+max_distance = 2.0
+bus = &"Ambiance"
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_now15")
+bus = &"SFX"
+
+[node name="AudioOutOfBreath" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("19_ykspk")

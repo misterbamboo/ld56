@@ -8,8 +8,8 @@ public partial class Player : CharacterBody3D
 {
     const float SPEED = 4.0f;
     const float JUMP_VELOCITY = 4.5f;
-    const double CART_SPEED_MOD = 0.008f;
-    const double TIME_TO_SCARE_SECONDS = 0.5f;
+    const float CART_SPEED_MOD = 0.008f;
+    const float TIME_TO_SCARE_SECONDS = 0.5f;
 
     #region references
     private Node3D neck;
@@ -25,7 +25,7 @@ public partial class Player : CharacterBody3D
     private AudioStreamPlayer3D outOfBreathAudio;
     #endregion
 
-    private float sensitivity = 0.001f;
+    private float sensitivity = 1f;
     private float runSpeedModifier = 1.5f;
     private GameManager gameManager;
 
@@ -46,6 +46,8 @@ public partial class Player : CharacterBody3D
     public float OutOfBreathMinimumRefillPercent { get; private set; } = 0.75f;
     public bool IsOutOfBreath { get; private set; } = false;
 
+    public Vector2 MouseDelta { get; private set; } = Vector2.Zero;
+
     private string action = "";
 
     public override void _Ready()
@@ -64,10 +66,10 @@ public partial class Player : CharacterBody3D
         neck = GetNode<Node3D>("Neck");
         cam = GetNode<Camera3D>("Neck/Camera3D");
         footstep = GetNode<AudioStreamPlayer3D>("Footsteps");
-        firstFlashlightLabel = GetNode<Label>("CanvasLayer/Control/FirstFlashlight");
-        actionIcon = GetNode<TextureRect>("CanvasLayer/Control/ActionIcon");
-        actionLabel = GetNode<Label>("CanvasLayer/Control/ActionLabel");
-        hud = GetNode<CanvasLayer>("CanvasLayer");
+        firstFlashlightLabel = GetNode<Label>("PlayerHUD/Control/FirstFlashlight");
+        actionIcon = GetNode<TextureRect>("PlayerHUD/Control/ActionIcon");
+        actionLabel = GetNode<Label>("PlayerHUD/Control/ActionLabel");
+        hud = GetNode<CanvasLayer>("PlayerHUD");
         outsideAudio = GetNode<AudioStreamPlayer3D>("AudioOutsideAmbiance");
         heavyAudio = GetNode<AudioStreamPlayer3D>("AudioHeavyAmbiance");
         chaseAudio = GetNode<AudioStreamPlayer3D>("AudioChase");
@@ -109,18 +111,20 @@ public partial class Player : CharacterBody3D
 
     public override void _Process(double delta)
     {
+        var deltaf = (float)delta;
+        CameraLook(deltaf);
         if (scared)
         {
             if (chaseAudio.VolumeDb < 0)
             {
-                chaseAudio.VolumeDb += (float)(80 * (delta / TIME_TO_SCARE_SECONDS));
+                chaseAudio.VolumeDb += 80 * (deltaf / TIME_TO_SCARE_SECONDS);
                 if (chaseAudio.VolumeDb > 0) chaseAudio.VolumeDb = 0;
             }
 
 
             if (cam.Fov < 110)
             {
-                cam.Fov += (float)(20 * (delta / TIME_TO_SCARE_SECONDS));
+                cam.Fov += 20 * (deltaf / TIME_TO_SCARE_SECONDS);
                 if (cam.Fov > 110) cam.Fov = 110;
             }
         }
@@ -128,13 +132,13 @@ public partial class Player : CharacterBody3D
         {
             if (chaseAudio.VolumeDb > -80)
             {
-                chaseAudio.VolumeDb -= (float)(80 * (delta / TIME_TO_SCARE_SECONDS));
+                chaseAudio.VolumeDb -= 80 * (deltaf / TIME_TO_SCARE_SECONDS);
                 if (chaseAudio.VolumeDb < -80) chaseAudio.VolumeDb = -80;
             }
 
             if (cam.Fov > 90)
             {
-                cam.Fov -= (float)(20 * (delta / TIME_TO_SCARE_SECONDS));
+                cam.Fov -= 20 * (deltaf / TIME_TO_SCARE_SECONDS);
                 if (cam.Fov < 90) cam.Fov = 90;
             }
         }
@@ -198,23 +202,22 @@ public partial class Player : CharacterBody3D
         {
             if (e is InputEventMouseMotion mouseMotion)
             {
-                CameraLook(mouseMotion.Relative * sensitivity);
+                MouseDelta = mouseMotion.Relative;
+                //CameraLook(mouseMotion.Relative * sensitivity);
             }
         }
     }
 
-    public void CameraLook(Vector2 movement)
+    public void CameraLook(float deltaf)
     {
-        CameraRotation += movement;
-        CameraRotation.Y = Mathf.Clamp(CameraRotation.Y, -1.5f, 1.2f);
+        var upDown = Mathf.Clamp(-MouseDelta.Y * sensitivity * deltaf, -1.5f, 1.2f);
+        var leftRight = -MouseDelta.X * sensitivity * deltaf;
 
-        var transform = Transform;
-        transform.Basis = new Basis();
-        Transform = transform;
+        cam.RotateObjectLocal(new Vector3(1, 0, 0), upDown);
+        RotateObjectLocal(new Vector3(0, 1, 0), leftRight);
 
-        cam.Basis = new Basis();
-        RotateObjectLocal(new Vector3(0, 1, 0), -CameraRotation.X);
-        cam.RotateObjectLocal(new Vector3(1, 0, 0), -CameraRotation.Y);
+        // reset mouse delta so view doesn't keep spinning when mouse has stopped moving
+        MouseDelta = new Vector2();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -223,9 +226,7 @@ public partial class Player : CharacterBody3D
         if (isAttachedToCart) return;
 
         var deltaf = (float)delta;
-        float velocityX = 0;
-        float velocityY = 0;
-        float velocityZ = 0;
+        Vector3 velocity = Velocity;
 
         // Add the gravity.
         if (!IsOnFloor())
@@ -236,7 +237,7 @@ public partial class Player : CharacterBody3D
         // Handle Jump.
         if (Input.IsActionJustPressed("jump") && IsOnFloor())
         {
-            velocityY = JUMP_VELOCITY;
+            velocity.Y = JUMP_VELOCITY;
         }
 
         // Get the input direction and handle the movement/deceleration.
@@ -272,18 +273,18 @@ public partial class Player : CharacterBody3D
             Stamina += deltaf * StaminaRechargeRateMultiplier;
         }
 
-        if(direction != Vector3.Zero)
+        if (direction != Vector3.Zero)
         {
-            velocityX = direction.X * speed;
-            velocityZ = direction.Z * speed;
+            velocity.X = direction.X * speed;
+            velocity.Z = direction.Z * speed;
         }
         else
         {
-            velocityX = Mathf.MoveToward(Velocity.X, 0, speed);
-            velocityZ = Mathf.MoveToward(Velocity.Z, 0, speed);
+            velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
+            velocity.Z = Mathf.MoveToward(Velocity.Z, 0, speed);
         }
 
-        Velocity = new Vector3(velocityX, velocityY, velocityZ);
+        Velocity = velocity;
 
         distanceBetweenFootsteps -= Velocity.Length();
         if (distanceUntilNextFootsetp < 0)

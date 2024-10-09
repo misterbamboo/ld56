@@ -1,18 +1,17 @@
-[gd_scene load_steps=243 format=3 uid="uid://dmbltthdo8cf4"]
+[gd_scene load_steps=242 format=3 uid="uid://dmbltthdo8cf4"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_7xii8"]
-[ext_resource type="Script" path="res://shredder/shredder.gd" id="1_f44gw"]
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/ShredderCore/Shredder.cs" id="1_krdsb"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_bq0l2"]
-[ext_resource type="AudioStream" uid="uid://cm5ijpjqyrnad" path="res://shredder/shred.wav" id="2_m2gtj"]
+[ext_resource type="AudioStream" uid="uid://cm5ijpjqyrnad" path="res://EnterTheMines/Interactables/ShredderCore/Audio/shred.wav" id="2_m2gtj"]
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/ShredderCore/AudioConstantMachine.cs" id="3_euqp8"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_fuaas"]
-[ext_resource type="Script" path="res://shredder/shredder_audio.gd" id="3_md453"]
-[ext_resource type="AudioStream" uid="uid://dtkn84ipdsfr5" path="res://shredder/shred_item.wav" id="4_d5o5c"]
+[ext_resource type="AudioStream" uid="uid://dtkn84ipdsfr5" path="res://EnterTheMines/Interactables/ShredderCore/Audio/shred_item.wav" id="4_d5o5c"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_qyrqw"]
-[ext_resource type="Script" path="res://shredder/shredder_item_audio.gd" id="5_4uodg"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_o5g77"]
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/ShredderCore/AudioShredItem.cs" id="5_xmuu2"]
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="6_1h06q"]
-[ext_resource type="Script" path="res://shredder/shredder_animation.gd" id="6_r6ppm"]
-[ext_resource type="Script" path="res://shredder/grind_area.gd" id="9_6y1ex"]
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/ShredderCore/ShredderAnimationPlayer.cs" id="6_6j1fg"]
 [ext_resource type="Material" uid="uid://hf8cfaxn76gb" path="res://materials/surfaces/metal_plate/metal_plate.tres" id="14_7ni70"]
 [ext_resource type="Material" uid="uid://bi6l4cyr1qy8i" path="res://materials/black_mat.tres" id="15_tkiim"]
 [ext_resource type="Material" uid="uid://32teh0hd0vyp" path="res://materials/flames/flames.tres" id="16_fwgf5"]
@@ -2310,7 +2309,7 @@ face_vertex_data = {
 [sub_resource type="PlaneMesh" id="PlaneMesh_4h0wx"]
 
 [node name="Shredder" type="Node3D"]
-script = ExtResource("1_f44gw")
+script = ExtResource("1_krdsb")
 
 [node name="Audio_ConstantMachine" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.25, 0.7)
@@ -2320,7 +2319,7 @@ unit_size = 20.0
 max_db = 0.0
 max_distance = 30.0
 bus = &"SFX"
-script = ExtResource("3_md453")
+script = ExtResource("3_euqp8")
 
 [node name="Audio_Shred" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.25, 0.7)
@@ -2328,22 +2327,18 @@ stream = ExtResource("4_d5o5c")
 volume_db = -10.0
 max_distance = 20.0
 bus = &"SFX"
-script = ExtResource("5_4uodg")
+script = ExtResource("5_xmuu2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ehvuk")
 }
-script = ExtResource("6_r6ppm")
+script = ExtResource("6_6j1fg")
 
-[node name="GrindArea3D" type="Area3D" parent="." node_paths=PackedStringArray("audioShredItem", "grind_start", "grind_end")]
+[node name="GrindArea3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.468082, 0.779907, -0.327269)
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("9_6y1ex")
-audioShredItem = NodePath("../Audio_Shred")
-grind_start = NodePath("../grind_start")
-grind_end = NodePath("../grind_end")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrindArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567063, 0.658332, 0.820261)
@@ -2507,5 +2502,5 @@ light_indirect_energy = 2.0
 omni_range = 25.0
 omni_attenuation = 1.5
 
-[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
-[connection signal="body_entered" from="GrindArea3D" to="GrindArea3D" method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="OnAnimationFinished"]
+[connection signal="body_entered" from="GrindArea3D" to="." method="OnBodyEntered"]

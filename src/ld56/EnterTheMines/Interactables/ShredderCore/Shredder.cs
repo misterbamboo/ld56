@@ -31,8 +31,7 @@ public partial class Shredder : Node3D
         }
     }
 
-    // TODO: connect signal
-    public void OnBodyEntered(Node body)
+    public void OnBodyEntered(Node3D body)
     {
         if (grindingItems.Count != 0) return;
 

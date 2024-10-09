@@ -97,6 +97,6 @@ public partial class Flashlight : Node3D
 
     private void RemoveFlashlightPrompt()
     {
-        FindParent("Player").GetNode<Label>("CanvasLayer/Control/FirstFlashlight").Visible = false;
+        FindParent("Player").GetNode<Label>("PlayerHUD/Control/FirstFlashlight").Visible = false;
     }
 }

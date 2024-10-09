@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cm5ijpjqyrnad"
-path="res://.godot/imported/shred.wav-98f698ed341c9355fff56e6094c0ec2b.sample"
+path="res://.godot/imported/shred.wav-4f6ccaa71534701775881bb8a754f2af.sample"
 
 [deps]
 
-source_file="res://shredder/shred.wav"
-dest_files=["res://.godot/imported/shred.wav-98f698ed341c9355fff56e6094c0ec2b.sample"]
+source_file="res://EnterTheMines/Interactables/ShredderCore/Audio/shred.wav"
+dest_files=["res://.godot/imported/shred.wav-4f6ccaa71534701775881bb8a754f2af.sample"]
 
 [params]
 

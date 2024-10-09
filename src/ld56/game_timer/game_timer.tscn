@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvmlksex43wc6"]
 
-[ext_resource type="Script" path="res://game_timer/game_timer.gd" id="1_4digq"]
 [ext_resource type="FontFile" uid="uid://bdimfcmlcsf12" path="res://fonts/seven_segment/Seven Segment.ttf" id="1_m5fan"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/HUD/TimerHUD.cs" id="1_mlhi0"]
 
 [node name="GameTimer" type="Control"]
 layout_mode = 3
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-script = ExtResource("1_4digq")
+script = ExtResource("1_mlhi0")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

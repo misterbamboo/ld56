@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc31xucw22mkm"
-path="res://.godot/imported/battery-100.png-9b6ddbdf2b519ef612b9ef66f6444b71.ctex"
+uid="uid://dkh5aq0owcwq2"
+path="res://.godot/imported/title_image.jpg-372e198177e49321b9c5cc6e8cff1614.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/battery-100.png"
-dest_files=["res://.godot/imported/battery-100.png-9b6ddbdf2b519ef612b9ef66f6444b71.ctex"]
+source_file="res://EnterTheMines/Screens/title_image.jpg"
+dest_files=["res://.godot/imported/title_image.jpg-372e198177e49321b9c5cc6e8cff1614.ctex"]
 
 [params]
 

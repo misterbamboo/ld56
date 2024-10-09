@@ -122,6 +122,6 @@ public partial class GameManager : Node
 
 	public void TurnFlashlightOnForTheFirstTime()
     {
-        firstFlashlight = false;
+        FirstFlashlight = false;
     }
 }

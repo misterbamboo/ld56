@@ -9,7 +9,7 @@ public partial class ShredderAnimationPlayer : AnimationPlayer
         Play("grind");
     }
 
-    public void OnAnimationFinished(string animName)
+    public void OnAnimationFinished(StringName animName)
     {
         Play("grind");
     }

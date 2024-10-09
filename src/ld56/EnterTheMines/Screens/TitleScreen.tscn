@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://5tp6sabqqkn5"]
 
-[ext_resource type="Script" path="res://UIs/title_screen/title_screen.gd" id="1_n2l4d"]
-[ext_resource type="Texture2D" uid="uid://dkh5aq0owcwq2" path="res://UIs/title_screen/title_image.jpg" id="1_qlyrb"]
+[ext_resource type="Texture2D" uid="uid://dkh5aq0owcwq2" path="res://EnterTheMines/Screens/title_image.jpg" id="1_qlyrb"]
+[ext_resource type="Script" path="res://EnterTheMines/Screens/TitleScreen.cs" id="1_qmg5b"]
 [ext_resource type="FontFile" uid="uid://6g7ftni46enm" path="res://fonts/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf" id="2_qc56h"]
 
 [node name="TitleScreen" type="Control"]
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_n2l4d")
+script = ExtResource("1_qmg5b")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -50,4 +50,4 @@ theme_override_fonts/font = ExtResource("2_qc56h")
 theme_override_font_sizes/font_size = 18
 text = "START"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="OnButtonPressed"]

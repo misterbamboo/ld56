@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkarfm3j81bq5"]
 
 [ext_resource type="FontFile" uid="uid://6g7ftni46enm" path="res://fonts/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf" id="1_6ylx5"]
-[ext_resource type="Script" path="res://UIs/game_over_screen/game_over_animation_script.gd" id="1_375a1"]
+[ext_resource type="Script" path="res://EnterTheMines/Screens/GameOverScreen.cs" id="1_41d7p"]
 
 [sub_resource type="Animation" id="Animation_ndbgd"]
 length = 0.001
@@ -95,13 +95,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_41d7p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Label")
 libraries = {
 "": SubResource("AnimationLibrary_33gbh")
 }
-script = ExtResource("1_375a1")
 
 [node name="Label" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -177,4 +177,4 @@ theme_override_fonts/font = ExtResource("1_6ylx5")
 theme_override_font_sizes/font_size = 18
 text = "Leave the mines"
 
-[connection signal="pressed" from="Button" to="AnimationPlayer" method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="OnButtonPressed"]

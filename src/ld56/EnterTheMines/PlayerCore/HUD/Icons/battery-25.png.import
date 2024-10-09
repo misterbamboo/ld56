@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c28l2lvbdo7ry"
-path="res://.godot/imported/battery-25.png-a4f8f52d12aef0900ad5f015ec43b2de.ctex"
+path="res://.godot/imported/battery-25.png-ded93a39056d13de54c5ec52fa6c967c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/battery-25.png"
-dest_files=["res://.godot/imported/battery-25.png-a4f8f52d12aef0900ad5f015ec43b2de.ctex"]
+source_file="res://EnterTheMines/PlayerCore/HUD/Icons/battery-25.png"
+dest_files=["res://.godot/imported/battery-25.png-ded93a39056d13de54c5ec52fa6c967c.ctex"]
 
 [params]
 

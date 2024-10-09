@@ -14,6 +14,7 @@ public partial class BatteryHUD : Control
     public override void _Ready()
     {
         lights = FindParent("Player").GetNode<Flashlight>("Neck/Camera3D/Lights");
+        batteryIcon = GetNode<TextureRect>("BatteryIcon");
     }
 
     public void CheckBattery()

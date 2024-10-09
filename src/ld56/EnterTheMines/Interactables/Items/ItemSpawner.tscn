@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdmhmasa0nt2v"]
+
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/ItemSpawner.cs" id="1_u1rf5"]
+[ext_resource type="PackedScene" uid="uid://dwqd7dkrvo7uw" path="res://EnterTheMines/Interactables/Items/GoldRing.tscn" id="2_mjybt"]
+[ext_resource type="PackedScene" uid="uid://c5ngctf8qg54y" path="res://EnterTheMines/Interactables/Items/Emerald.tscn" id="3_sm86p"]
+[ext_resource type="PackedScene" uid="uid://dcf0pbuteeaqh" path="res://EnterTheMines/Interactables/Items/Amethyst.tscn" id="4_ojl75"]
+[ext_resource type="PackedScene" uid="uid://pvqi3451q30y" path="res://EnterTheMines/Interactables/Items/kryptonite.tscn" id="5_k206t"]
+
+[node name="ItemSpawner" type="Node3D"]
+script = ExtResource("1_u1rf5")
+GoldRing = ExtResource("2_mjybt")
+Emerald = ExtResource("3_sm86p")
+Amethyst = ExtResource("4_ojl75")
+Kryptonite = ExtResource("5_k206t")

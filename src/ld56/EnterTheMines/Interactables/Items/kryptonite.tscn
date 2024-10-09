@@ -1,17 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://pvqi3451q30y"]
 
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/BaseItem.cs" id="1_1yjah"]
 [ext_resource type="Material" path="res://materials/items/kyptonite/kyptonite.tres" id="1_63ovg"]
-[ext_resource type="Script" path="res://items/base_item.gd" id="1_nu56k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yts5u"]
 radius = 0.20129
 
 [sub_resource type="SphereMesh" id="SphereMesh_a2vys"]
 
-[node name="kryptonite" type="Node3D" node_paths=PackedStringArray("rb")]
-script = ExtResource("1_nu56k")
-rb = NodePath("RigidBody3D")
-price = 100
+[node name="Kryptonite" type="Node3D"]
+script = ExtResource("1_1yjah")
+Price = 100
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

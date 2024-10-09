@@ -1,5 +1,5 @@
-﻿using EnterTheMines.EnterTheMines.Items;
-using EnterTheMines.Services;
+﻿using EnterTheMines.EnterTheMines.Interactables.Items;
+using EnterTheMines.EnterTheMines.Services;
 using Godot;
 using System.Linq;
 
@@ -102,8 +102,9 @@ public partial class HandsForRayCast : Node3D
         query.CollideWithAreas = true;
 
         var result = spaceState.IntersectRay(query);
-        if (result.Any() && result["collider"].As<RigidBody3D>() is RigidBody3D collider)
+        if (result.Any())
         {
+            var collider = result["collider"].As<Node3D>();
             var distanceVector = result["position"].AsVector3() - GlobalPosition;
             var distance = distanceVector.Length();
             if(distance < pickDistance)

@@ -4,7 +4,7 @@ using Godot;
 
 namespace EnterTheMines.EnterTheMines.Screens;
 
-public partial class NextDay : Control
+public partial class NextDayScreen : Control
 {
     private GameManager gameManager;
     private Label label;
@@ -44,7 +44,7 @@ public partial class NextDay : Control
         Visible = true;
     }
 
-    private void _OnButtonPressed()
+    public void OnButtonPressed()
     {
         gameManager.NextDay();
     }
