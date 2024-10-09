@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://f124j4bqakjx"]
+[gd_scene load_steps=51 format=4 uid="uid://f124j4bqakjx"]
 
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="1_0t8vo"]
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="2_lqqxa"]
@@ -555,8 +555,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wl161")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l4mdy"]
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_hubty"]
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.5),
@@ -585,8 +583,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hubty")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_if5or"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_seta5"]
 _surfaces = [{
@@ -617,8 +613,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_seta5")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tbiux"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_anwyp"]
 size = Vector3(0.954285, 0.26265, 1.40344)
 
@@ -626,13 +620,13 @@ size = Vector3(0.954285, 0.26265, 1.40344)
 size = Vector3(1, 1.09767, 0.336823)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f1a5n"]
-size = Vector3(1, 1.22235, 0.294983)
+size = Vector3(1.17, 1.222, 0.295)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kofqd"]
 size = Vector3(0.152924, 0.969391, 1.26259)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fofdm"]
-size = Vector3(0.240967, 0.941528, 1.66559)
+size = Vector3(0.240967, 0.941528, 1.54764)
 
 [node name="MineCartModel" type="Node3D"]
 
@@ -785,11 +779,6 @@ metadata/_edit_group_ = true
 mesh = SubResource("ArrayMesh_v7qhh")
 skeleton = NodePath("../../block2")
 
-[node name="block1_col" type="StaticBody3D" parent="CartModel/block2"]
-
-[node name="block1_col_shp" type="CollisionShape3D" parent="CartModel/block2/block1_col"]
-shape = SubResource("ConvexPolygonShape3D_l4mdy")
-
 [node name="Block_10" type="Node3D" parent="CartModel"]
 transform = Transform3D(0.419489, 0, 0, 0, 0.51343, -0.0765427, 0, 0.0620683, 0.633163, 0.814363, 2.02562, -1.86854)
 metadata/_edit_group_ = true
@@ -798,11 +787,6 @@ metadata/_edit_group_ = true
 mesh = SubResource("ArrayMesh_fw55u")
 skeleton = NodePath("../../Block_10")
 
-[node name="Block_4_col" type="StaticBody3D" parent="CartModel/Block_10"]
-
-[node name="Block_4_col_shp" type="CollisionShape3D" parent="CartModel/Block_10/Block_4_col"]
-shape = SubResource("ConvexPolygonShape3D_if5or")
-
 [node name="Block_11" type="Node3D" parent="CartModel"]
 transform = Transform3D(0.419, 0, 0, 0, 0.514854, -0.0784761, 0, 0.0622404, 0.649157, -0.576599, 2.02562, -1.86854)
 metadata/_edit_group_ = true
@@ -810,11 +794,6 @@ metadata/_edit_group_ = true
 [node name="Block_9_mesh" type="MeshInstance3D" parent="CartModel/Block_11"]
 mesh = SubResource("ArrayMesh_w67h7")
 skeleton = NodePath("../../Block_10")
-
-[node name="Block_9_col" type="StaticBody3D" parent="CartModel/Block_11"]
-
-[node name="Block_9_col_shp" type="CollisionShape3D" parent="CartModel/Block_11/Block_9_col"]
-shape = SubResource("ConvexPolygonShape3D_tbiux")
 
 [node name="bottom" type="StaticBody3D" parent="."]
 collision_layer = 8
@@ -854,7 +833,7 @@ collision_layer = 8
 physics_material_override = ExtResource("3_ojhm2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="right_wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.400504, 1.08064, -0.0196236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.400504, 1.08064, 0.039352)
 shape = SubResource("BoxShape3D_fofdm")
 
 [node name="interaction_blocker" type="Area3D" parent="."]
@@ -862,5 +841,5 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interaction_blocker"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128784, 1.24992, -0.745765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0820947, 1.24992, -0.745765)
 shape = SubResource("BoxShape3D_f1a5n")
