@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="1_0t8vo"]
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="2_lqqxa"]
-[ext_resource type="PhysicsMaterial" uid="uid://ch72mcan8xbsu" path="res://minecraft_physics_material.tres" id="3_ojhm2"]
+[ext_resource type="PhysicsMaterial" uid="uid://ch72mcan8xbsu" path="res://EnterTheMines/Interactables/MinecartCore/MinecartPhysicsMaterial.tres" id="3_ojhm2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rw5wj"]
 _surfaces = [{

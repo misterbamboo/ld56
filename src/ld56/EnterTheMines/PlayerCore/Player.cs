@@ -6,10 +6,10 @@ namespace EnterTheMines.EnterTheMines.PlayerCore;
 
 public partial class Player : CharacterBody3D
 {
-    const float SPEED = 4.0f;
-    const float JUMP_VELOCITY = 4.5f;
-    const float CART_SPEED_MOD = 0.008f;
-    const float TIME_TO_SCARE_SECONDS = 0.5f;
+    public const float SPEED = 4.0f;
+    public const float JUMP_VELOCITY = 4.5f;
+    public const float CART_SPEED_MOD = 0.008f;
+    public const float TIME_TO_SCARE_SECONDS = 0.5f;
 
     #region references
     private Node3D neck;
@@ -26,11 +26,11 @@ public partial class Player : CharacterBody3D
     #endregion
 
     private float sensitivity = 1f;
-    private float runSpeedModifier = 1.5f;
+    public float RunSpeedModifier { get; private set; } = 1.5f;
     private GameManager gameManager;
 
     private Vector2 CameraRotation = new Vector2(90, 0);
-    private bool isAttachedToCart = false;
+    public bool IsAttachedToCart { get; private set; } = false;
 
     private bool canMove = false;
     public bool IsInside { get; private set; }
@@ -41,10 +41,10 @@ public partial class Player : CharacterBody3D
     private float distanceUntilNextFootsetp = 150f;
 
     public float TotalStaminaInSeconds { get; private set; } = 5.0f;
-    public float Stamina { get; private set; } = 5.0f;
+    public float Stamina { get; set; } = 5.0f;
     public float StaminaRechargeRateMultiplier { get; private set; } = 1.2f;
     public float OutOfBreathMinimumRefillPercent { get; private set; } = 0.75f;
-    public bool IsOutOfBreath { get; private set; } = false;
+    public bool IsOutOfBreath { get; set; } = false;
 
     public Vector2 MouseDelta { get; private set; } = Vector2.Zero;
 
@@ -223,7 +223,7 @@ public partial class Player : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         if (!canMove) return;
-        if (isAttachedToCart) return;
+        if (IsAttachedToCart) return;
 
         var deltaf = (float)delta;
         Vector3 velocity = Velocity;
@@ -259,7 +259,7 @@ public partial class Player : CharacterBody3D
         {
             if (Stamina > 0)
             {
-                speed = speed * runSpeedModifier;
+                speed = speed * RunSpeedModifier;
                 Stamina -= deltaf;
                 if (Stamina <= 0)
                 {
@@ -298,12 +298,12 @@ public partial class Player : CharacterBody3D
 
     public void AttachToCart()
     {
-        isAttachedToCart = true;
+        IsAttachedToCart = true;
     }
 
     public void DetachFromCart()
     {
-        isAttachedToCart = false;
+        IsAttachedToCart = false;
     }
 
     public void PlayInsideSound(Node3D body)

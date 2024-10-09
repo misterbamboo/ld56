@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://btub6i7nlj4d" path="res://truck/scene.gltf" id="8_8idva"]
 [ext_resource type="Material" path="res://materials/surfaces/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="8_ckis4"]
-[ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://MineCart.tscn" id="10_543e4"]
+[ext_resource type="PackedScene" uid="uid://8rerogu6gar5" path="res://EnterTheMines/Interactables/MinecartCore/MineCart.tscn" id="10_543e4"]
 [ext_resource type="Material" uid="uid://poamfxbl457o" path="res://materials/grass/grass.tres" id="11_5i2vl"]
 [ext_resource type="PackedScene" uid="uid://cxingle2fry0x" path="res://LevelGeometry.tscn" id="15_ue0nr"]
 [ext_resource type="Script" path="res://end_day_area.gd" id="17_e1ptn"]
