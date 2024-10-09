@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game_timer/game_timer.gd" id="1_4digq"]
 [ext_resource type="FontFile" uid="uid://bdimfcmlcsf12" path="res://fonts/seven_segment/Seven Segment.ttf" id="1_m5fan"]
 
-[node name="GameTimer" type="Control" node_paths=PackedStringArray("label")]
+[node name="GameTimer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,6 @@ grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 script = ExtResource("1_4digq")
-label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

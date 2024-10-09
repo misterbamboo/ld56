@@ -1,8 +1,8 @@
 ﻿using EnterTheMines.EnterTheMines.Events;
-using EnterTheMines.Services;
+using EnterTheMines.EnterTheMines.Services;
 using Godot;
 
-namespace EnterTheMines.EnterTheMines.Player;
+namespace EnterTheMines.EnterTheMines.PlayerCore;
 
 public partial class Player : CharacterBody3D
 {
@@ -40,11 +40,11 @@ public partial class Player : CharacterBody3D
     private float distanceBetweenFootsteps = 150f;
     private float distanceUntilNextFootsetp = 150f;
 
-    private float totalStaminaInSeconds = 5.0f;
-    private float stamina = 5.0f;
-    private float staminaRechargeRateMultiplier = 1.2f;
-    private float outOfBreathMinimumRefillPercent = 0.75f;
-    private bool isOutOfBreath = false;
+    public float TotalStaminaInSeconds { get; private set; } = 5.0f;
+    public float Stamina { get; private set; } = 5.0f;
+    public float StaminaRechargeRateMultiplier { get; private set; } = 1.2f;
+    public float OutOfBreathMinimumRefillPercent { get; private set; } = 0.75f;
+    public bool IsOutOfBreath { get; private set; } = false;
 
     private string action = "";
 
@@ -206,7 +206,7 @@ public partial class Player : CharacterBody3D
     public void CameraLook(Vector2 movement)
     {
         CameraRotation += movement;
-        CameraRotation.Y = (float)Mathf.Clamp(CameraRotation.Y, -1.5, 1.2);
+        CameraRotation.Y = Mathf.Clamp(CameraRotation.Y, -1.5f, 1.2f);
 
         var transform = Transform;
         transform.Basis = new Basis();
@@ -246,30 +246,30 @@ public partial class Player : CharacterBody3D
 
         var speed = SPEED;
 
-        if (isOutOfBreath)
+        if (IsOutOfBreath)
         {
-            stamina += deltaf * staminaRechargeRateMultiplier;
-            if (stamina >= totalStaminaInSeconds * outOfBreathMinimumRefillPercent)
+            Stamina += deltaf * StaminaRechargeRateMultiplier;
+            if (Stamina >= TotalStaminaInSeconds * OutOfBreathMinimumRefillPercent)
             {
-                isOutOfBreath = false;
+                IsOutOfBreath = false;
             }
         }
         else if (Input.IsActionPressed("run"))
         {
-            if (stamina > 0)
+            if (Stamina > 0)
             {
                 speed = speed * runSpeedModifier;
-                stamina -= deltaf;
-                if (stamina <= 0)
+                Stamina -= deltaf;
+                if (Stamina <= 0)
                 {
-                    isOutOfBreath = true;
+                    IsOutOfBreath = true;
                     PlayOutOfBreathSound();
                 }
             }
         }
-        else if (stamina < totalStaminaInSeconds)
+        else if (Stamina < TotalStaminaInSeconds)
         {
-            stamina += deltaf * staminaRechargeRateMultiplier;
+            Stamina += deltaf * StaminaRechargeRateMultiplier;
         }
 
         if(direction != Vector3.Zero)

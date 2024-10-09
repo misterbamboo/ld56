@@ -1,10 +1,10 @@
 using EnterTheMines.EnterTheMines.Events;
-using EnterTheMines.EnterTheMines.Player;
+using EnterTheMines.EnterTheMines.PlayerCore;
 using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace EnterTheMines.Services;
+namespace EnterTheMines.EnterTheMines.Services;
 
 public partial class GameManager : Node
 {
@@ -12,21 +12,22 @@ public partial class GameManager : Node
 
 	private Dictionary<string, Action> registeredCallbacks = [];
 
-	private bool playerAlive = true;
+	public bool PlayerAlive { get; private set; } = true;
 
-	public Player player { get; private set; }
+	public Player Player { get; private set; }
 
-	private bool firstFlashlight = true;
+	public bool FirstFlashlight { get; private set; } = true;
 
-	private int weekDuration = 3;
-	private int currentDay = 1;
+	public int WeekDuration { get; private set; } = 3;
+	public int CurrentDay { get; private set; } = 1;
 
 	private float firstQuota = 120;
-	private float quota = 120;
 
-	public int uncashedInMoney { get; private set; }
+	public float Quota { get; private set; } = 120;
 
-	public int money { get; private set; }
+	public int UncashedInMoney { get; private set; }
+
+	public int Money { get; private set; }
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -36,26 +37,26 @@ public partial class GameManager : Node
 
 	public void GiveMoney(int amount)
 	{
-        uncashedInMoney += amount;
+        UncashedInMoney += amount;
         GameEvents.Raise(new MoneyReceivedGameEvent(amount));
     }
 
 	public void RegisterPlayer(Player player)
 	{
-		this.player = player;
+		this.Player = player;
     }
 
 	public void ResetGame(bool newGame)
 	{
 		GetTree().ReloadCurrentScene();
 		GameEvents.ClearCallbacks();
-        playerAlive = true;
+        PlayerAlive = true;
 
 		if (newGame)
 		{
-			quota = firstQuota;
-			money = 0;
-            uncashedInMoney = 0;
+			Quota = firstQuota;
+			Money = 0;
+            UncashedInMoney = 0;
         }
 		else
 		{
@@ -65,13 +66,13 @@ public partial class GameManager : Node
 
 	public void NextDay()
 	{
-		currentDay++;
-		if (currentDay > weekDuration+1)
+		CurrentDay++;
+		if (CurrentDay > WeekDuration+1)
         {
-			currentDay = 1;
+			CurrentDay = 1;
 			if (QuotaReached)
 			{
-				quota *= 1.7f;
+				Quota *= 1.7f;
 				CashInMoney();
 				ProceedToNextDay();
 			}
@@ -86,13 +87,13 @@ public partial class GameManager : Node
         }
     }
 
-	public bool QuotaReached => uncashedInMoney >= quota;
+	public bool QuotaReached => UncashedInMoney >= Quota;
 
 	public void ProceedToNextDay()
 	{
-		if (player.IsInside || !playerAlive)
+		if (Player.IsInside || !PlayerAlive)
 		{
-			uncashedInMoney = 0;
+			UncashedInMoney = 0;
 		}
 
 		ResetGame(false);
@@ -100,22 +101,27 @@ public partial class GameManager : Node
 
     public void CashInMoney()
     {
-        money += uncashedInMoney;
-        uncashedInMoney = 0;
+        Money += UncashedInMoney;
+        UncashedInMoney = 0;
     }
 
-	public bool IsPlayerHittable => playerAlive;
+	public bool IsPlayerHittable => PlayerAlive;
 
 	public void PlayerDie()
 	{
-		if (!playerAlive) return;
-        playerAlive = false;
+		if (!PlayerAlive) return;
+        PlayerAlive = false;
 		GameEvents.Raise(new EndDayGameEvent());
     }
 
 	// quick method pour set le action a display dans le UI du player
 	public void SetAction(string label)
 	{
-		player.SetAction(label);
+		Player.SetAction(label);
+    }
+
+	public void TurnFlashlightOnForTheFirstTime()
+    {
+        firstFlashlight = false;
     }
 }
