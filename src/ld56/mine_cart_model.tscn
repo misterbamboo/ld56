@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://f124j4bqakjx"]
+[gd_scene load_steps=51 format=4 uid="uid://f124j4bqakjx"]
 
 [ext_resource type="Material" path="res://materials/surfaces/rustymetal/rustymetal.tres" id="1_0t8vo"]
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="2_lqqxa"]
@@ -555,8 +555,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wl161")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l4mdy"]
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_hubty"]
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.5),
@@ -586,8 +584,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hubty")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_if5or"]
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_seta5"]
 _surfaces = [{
 "aabb": AABB(0, 0, 0, 0.25, 0.25, 0.5),
@@ -616,8 +612,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_seta5")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tbiux"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_anwyp"]
 size = Vector3(0.954285, 0.26265, 1.40344)
@@ -707,7 +701,6 @@ mesh = SubResource("ArrayMesh_eyabi")
 [node name="OmniLight3D" type="OmniLight3D" parent="LanternModel"]
 transform = Transform3D(2.63158, 0, 0, 0, 2.63158, 0, 0, 0, 2.63158, 1.03179, 0.944635, 0.235874)
 light_color = Color(0.968627, 0.941176, 0.643137, 1)
-light_energy = 0.5
 omni_range = 100.0
 omni_attenuation = 2.0
 
@@ -785,11 +778,6 @@ metadata/_edit_group_ = true
 mesh = SubResource("ArrayMesh_v7qhh")
 skeleton = NodePath("../../block2")
 
-[node name="block1_col" type="StaticBody3D" parent="CartModel/block2"]
-
-[node name="block1_col_shp" type="CollisionShape3D" parent="CartModel/block2/block1_col"]
-shape = SubResource("ConvexPolygonShape3D_l4mdy")
-
 [node name="Block_10" type="Node3D" parent="CartModel"]
 transform = Transform3D(0.419489, 0, 0, 0, 0.51343, -0.0765427, 0, 0.0620683, 0.633163, 0.814363, 2.02562, -1.86854)
 metadata/_edit_group_ = true
@@ -798,11 +786,6 @@ metadata/_edit_group_ = true
 mesh = SubResource("ArrayMesh_fw55u")
 skeleton = NodePath("../../Block_10")
 
-[node name="Block_4_col" type="StaticBody3D" parent="CartModel/Block_10"]
-
-[node name="Block_4_col_shp" type="CollisionShape3D" parent="CartModel/Block_10/Block_4_col"]
-shape = SubResource("ConvexPolygonShape3D_if5or")
-
 [node name="Block_11" type="Node3D" parent="CartModel"]
 transform = Transform3D(0.419, 0, 0, 0, 0.514854, -0.0784761, 0, 0.0622404, 0.649157, -0.576599, 2.02562, -1.86854)
 metadata/_edit_group_ = true
@@ -810,11 +793,6 @@ metadata/_edit_group_ = true
 [node name="Block_9_mesh" type="MeshInstance3D" parent="CartModel/Block_11"]
 mesh = SubResource("ArrayMesh_w67h7")
 skeleton = NodePath("../../Block_10")
-
-[node name="Block_9_col" type="StaticBody3D" parent="CartModel/Block_11"]
-
-[node name="Block_9_col_shp" type="CollisionShape3D" parent="CartModel/Block_11/Block_9_col"]
-shape = SubResource("ConvexPolygonShape3D_tbiux")
 
 [node name="bottom" type="StaticBody3D" parent="."]
 collision_layer = 8

@@ -66,13 +66,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0054307, 0)
 visible = false
 light_color = Color(0.92929, 0.882112, 0.787183, 1)
 spot_range = 40.0
+spot_attenuation = 0.9
 spot_angle = 30.0
 
 [node name="AmbientLight" type="OmniLight3D" parent="Neck/Camera3D/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.660457, 0)
 light_color = Color(0.654267, 0.654267, 0.654267, 1)
-light_energy = 0.2
-omni_attenuation = 3.0
+light_energy = 0.3
+omni_attenuation = 2.5
 
 [node name="audio_flash_on" type="AudioStreamPlayer3D" parent="Neck/Camera3D/Lights"]
 stream = ExtResource("3_e6qeo")

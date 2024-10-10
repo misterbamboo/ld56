@@ -12,7 +12,7 @@ var _previous_money: float = 0
 
 func _ready() -> void:
 	GameManager.register(Events.MoneyReceived, _money_received)
-	GameManager.register(Events.GameStart, _money_received)
+	GameManager.register(Events.GameStart, _show_money)
 	modulate = Color(1,1,1,0)
 
 func _process(delta: float) -> void:
@@ -37,6 +37,16 @@ func _money_received() -> void:
 		audio.play(0)
 
 	_previous_money = current_money
+	
+	opacity = 1
+	should_hide = false
+	displayTimer.start()
+	
+func _show_money()->void:
+	var current_money = GameManager.get_unchashed_in_money()
+	label.text = "%d $" % GameManager.get_money()
+	label2.text = "%d $" % current_money
+	label3.text = "%d $" % GameManager.quota
 	
 	opacity = 1
 	should_hide = false

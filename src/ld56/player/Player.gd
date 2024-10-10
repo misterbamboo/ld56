@@ -31,7 +31,7 @@ var scared := false
 var distance_between_footsteps = 150
 var distance_until_next_footsetp = 150
 
-var total_stamina_in_seconds := 5.0
+var total_stamina_in_seconds := 7.0
 var stamina := total_stamina_in_seconds
 var stamina_recharge_rate_multiplier := 1.2
 var out_of_breath_minimum_refill_percent = 0.75
