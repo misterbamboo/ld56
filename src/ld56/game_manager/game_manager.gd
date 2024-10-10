@@ -82,7 +82,7 @@ func quota_reached() -> bool:
 	return uncashed_in_money > quota
 	
 func proceed_to_next_day():
-	if _player.is_inside || _player_alive:
+	if _player.is_inside || !_player_alive:
 		uncashed_in_money = 0
 	reset_game(false)
 	
