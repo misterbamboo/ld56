@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://dclma6i5s330m"]
+
+[ext_resource type="Script" path="res://EnterTheMines/Levels/MPTest/MultiplayerTestScene.cs" id="1_q42sn"]
+[ext_resource type="PackedScene" uid="uid://b2l5whfvm8mj6" path="res://EnterTheMines/PlayerCore/MPPlayer.tscn" id="2_814af"]
+[ext_resource type="Material" uid="uid://poamfxbl457o" path="res://materials/grass/grass.tres" id="2_munur"]
+[ext_resource type="FontFile" uid="uid://6g7ftni46enm" path="res://fonts/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf" id="3_1s36j"]
+[ext_resource type="FontFile" uid="uid://bdimfcmlcsf12" path="res://fonts/seven_segment/Seven Segment.ttf" id="4_eua0a"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pima5"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iw88o"]
+
+[node name="MultiplayerTestScene" type="Node3D"]
+script = ExtResource("1_q42sn")
+PlayerScene = ExtResource("2_814af")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("PlaneMesh_pima5")
+surface_material_override/0 = ExtResource("2_munur")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_iw88o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_1s36j")
+theme_override_font_sizes/font_size = 26
+text = "Enter The Mines"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Host side" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Host side"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_1s36j")
+theme_override_font_sizes/font_size = 18
+text = "Host"
+
+[node name="JoinSide" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Adress" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/JoinSide"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_eua0a")
+placeholder_text = "ip address"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/JoinSide"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_1s36j")
+theme_override_font_sizes/font_size = 18
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://EnterTheMines/PlayerCore/MPPlayer.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Host side/HostButton" to="." method="OnHostClicked"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/JoinSide/JoinButton" to="." method="OnJoinClicked"]

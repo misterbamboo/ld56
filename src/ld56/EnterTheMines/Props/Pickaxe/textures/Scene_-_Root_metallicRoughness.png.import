@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc7pxixgorw58"
-path="res://.godot/imported/grass_albedo.png-0494b86ae7731b8e5a11c306ddc68d91.ctex"
+uid="uid://dfci3bkyind5e"
+path.s3tc="res://.godot/imported/Scene_-_Root_metallicRoughness.png-49a64686661596157c145533515a46d2.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://materials/grass/grass_albedo.png"
-dest_files=["res://.godot/imported/grass_albedo.png-0494b86ae7731b8e5a11c306ddc68d91.ctex"]
+source_file="res://EnterTheMines/Props/Pickaxe/textures/Scene_-_Root_metallicRoughness.png"
+dest_files=["res://.godot/imported/Scene_-_Root_metallicRoughness.png-49a64686661596157c145533515a46d2.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

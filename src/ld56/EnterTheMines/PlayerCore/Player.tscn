@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dveja88ubh5k4"]
+[gd_scene load_steps=23 format=3 uid="uid://dveja88ubh5k4"]
 
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/Player.cs" id="1_u8vim"]
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/HandsForRayCast.cs" id="2_irjpg"]
@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://kaqshko48a4r" path="res://sounds/footsteps/dirt6.mp3" id="18_rlb3d"]
 [ext_resource type="AudioStream" uid="uid://bivn3fy7lv1ne" path="res://sounds/breath.wav" id="19_ykspk"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t1feb"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c2unh"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_now15"]
@@ -35,6 +37,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_u8vim")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_t1feb")
 
 [node name="Hands_ForRayCast" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

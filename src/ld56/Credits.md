@@ -1,0 +1,1 @@
+pickaxe model: (https://sketchfab.com/3d-models/steel-pickaxe-733dcab65ab34ab880d9f77823cdede2) by DrKryzel (https://sketchfab.com/DrKryzel) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
