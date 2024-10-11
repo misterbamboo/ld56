@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="ld56"
-run/main_scene="res://EnterTheMines/Levels/MPTest/MultiplayerTestScene.tscn"
+run/main_scene="res://EnterTheMines/Master.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+MPClient="*res://EnterTheMines/Services/MPClient.cs"
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
 StatsScreen="*res://debug/stats_screen.gd"
 Events="*res://events.gd"

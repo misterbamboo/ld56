@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2l5whfvm8mj6"]
+[gd_scene load_steps=15 format=3 uid="uid://b2l5whfvm8mj6"]
 
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayer.cs" id="1_do6fy"]
 [ext_resource type="PackedScene" uid="uid://cwae5tktxwq85" path="res://EnterTheMines/Props/Pickaxe/scene.gltf" id="1_mu0ci"]
@@ -18,6 +18,65 @@ properties/2/path = NodePath("Camera3D:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
+[sub_resource type="Animation" id="Animation_0vjnd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Pickaxe:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4hkjh"]
+resource_name = "run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Pickaxe:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5, 0.733333, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 2),
+"update": 0,
+"values": [Vector3(-0.436332, 0, 0), Vector3(0, 0, 0), Vector3(-0.436332, 0, 0), Vector3(-0.872665, 0, 0), Vector3(-0.436332, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5awxg"]
+_data = {
+"RESET": SubResource("Animation_0vjnd"),
+"run": SubResource("Animation_4hkjh")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i2ln"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_16hu0"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6waj3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fov55"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i85p"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0af31"]
+states/RESET/node = SubResource("AnimationNodeAnimation_2i2ln")
+states/RESET/position = Vector2(304, 154)
+states/Start/position = Vector2(132, 154)
+states/run/node = SubResource("AnimationNodeAnimation_16hu0")
+states/run/position = Vector2(570, 154)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_6waj3"), "RESET", "run", SubResource("AnimationNodeStateMachineTransition_fov55"), "run", "RESET", SubResource("AnimationNodeStateMachineTransition_8i85p")]
+graph_offset = Vector2(47, -25)
+
 [node name="MPPlayer" type="CharacterBody3D"]
 script = ExtResource("1_do6fy")
 
@@ -29,7 +88,7 @@ shape = SubResource("CapsuleShape3D_ooqxr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53705, 0)
 
 [node name="Pickaxe" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.53705, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.53705, 0.0792518)
 
 [node name="PickaxeModel" parent="Camera3D/Pickaxe" instance=ExtResource("1_mu0ci")]
 transform = Transform3D(30, 0, 0, 0, -1.31134e-06, 30, 0, -30, -1.31134e-06, 0.543309, 0.225597, -0.485278)
@@ -43,3 +102,12 @@ skeleton = NodePath("../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_36j1o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5awxg")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_0af31")
+anim_player = NodePath("../AnimationPlayer")

@@ -1,15 +1,15 @@
 [gd_scene load_steps=317 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
+[ext_resource type="Script" path="res://EnterTheMines/Levels/Mines/Mines.cs" id="1_poepk"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_kykoy"]
 [ext_resource type="PackedScene" uid="uid://dkarfm3j81bq5" path="res://EnterTheMines/Screens/GameOverScreen.tscn" id="2_mt0q1"]
+[ext_resource type="PackedScene" uid="uid://b2l5whfvm8mj6" path="res://EnterTheMines/PlayerCore/MPPlayer.tscn" id="2_v7710"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
-[ext_resource type="PackedScene" uid="uid://5tp6sabqqkn5" path="res://EnterTheMines/Screens/TitleScreen.tscn" id="3_armyj"]
 [ext_resource type="Script" path="res://directional_light_3d_auto_shutdown.gd" id="4_eiioc"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
 [ext_resource type="Material" uid="uid://de6m8iad08svi" path="res://materials/surfaces/dirt(lowrez)/dirt_low_rez.tres" id="6_c7pdw"]
-[ext_resource type="PackedScene" uid="uid://dveja88ubh5k4" path="res://EnterTheMines/PlayerCore/Player.tscn" id="6_queu5"]
 [ext_resource type="PackedScene" uid="uid://cu0ui14q86sd2" path="res://NextDayScene/NextDay.tscn" id="7_w4umj"]
 [ext_resource type="PackedScene" uid="uid://btub6i7nlj4d" path="res://truck/scene.gltf" id="8_8idva"]
 [ext_resource type="Material" path="res://materials/surfaces/stone_brick_wall/stonebrickwall.tres" id="8_btndr"]
@@ -2952,10 +2952,12 @@ face_vertex_data = {
 "vertex_index": SubResource("Resource_n7emh")
 }
 
-[node name="Master" type="Node3D"]
+[node name="Mines" type="Node3D"]
+script = ExtResource("1_poepk")
+playerScene = ExtResource("2_v7710")
 
-[node name="Player" parent="." instance=ExtResource("6_queu5")]
-transform = Transform3D(-0.476898, 0, -0.878959, 0, 1, 0, 0.878959, 0, -0.476898, 15.828, 1.31808, 5.66969)
+[node name="PlayerSpawnLocation" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 1, 4.07)
 
 [node name="Skitter1 Patrol Points" type="Node3D" parent="."]
 
@@ -3916,9 +3918,11 @@ mesh_vector_data = SubResource("Resource_spfwp")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 collision_type = 0
 
-[node name="TitleScreen" parent="." instance=ExtResource("3_armyj")]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://EnterTheMines/PlayerCore/MPPlayer.tscn")
+spawn_path = NodePath("../PlayerContainer")
+
+[node name="PlayerContainer" type="Node3D" parent="."]
 
 [connection signal="body_entered" from="MainRoom/EndDayArea" to="MainRoom/EndDayArea" method="bodyEntered"]
 [connection signal="body_exited" from="MainRoom/EndDayArea" to="MainRoom/EndDayArea" method="bodyExited"]
-[connection signal="body_entered" from="InsideTrigger" to="Player" method="PlayInsideSound"]
-[connection signal="body_entered" from="OutsideTrigger" to="Player" method="PlayOutsideSound"]

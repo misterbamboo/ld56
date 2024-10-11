@@ -15,6 +15,8 @@ public partial class MPPlayer : CharacterBody3D
     private float sensitivity = 0.001f;
     public float RunSpeedModifier { get; private set; } = 1.5f;
     private GameManager gameManager;
+    private AnimationNodeStateMachinePlayback animationStateMachine;
+
     private Vector2 CameraRotation = new Vector2(90, 0);
     public float TotalStaminaInSeconds { get; private set; } = 5.0f;
     public float Stamina { get; set; } = 5.0f;
@@ -31,25 +33,19 @@ public partial class MPPlayer : CharacterBody3D
     public override void _EnterTree()
     {
         SetMultiplayerAuthority(int.Parse(Name));
-        Rpc(MethodName.Test);
     }
 
     public override void _Ready()
     {
         gameManager = GetNode<GameManager>(GameManager.Path);
         camera = GetNode<Camera3D>("Camera3D");
+        animationStateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback").As<AnimationNodeStateMachinePlayback>();
 
         if (!IsMultiplayerAuthority()) return;
         
         Input.SetMouseMode(Input.MouseModeEnum.Captured);
         GD.PrintRich($"[color=green] MPPlayer {Name} Ready![/color]");
         camera.Current = true;
-    }
-
-    [Rpc]
-    public void Test()
-    {
-
     }
 
     public override void _UnhandledInput(InputEvent e)
@@ -125,20 +121,30 @@ public partial class MPPlayer : CharacterBody3D
         Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
         if (direction != Vector3.Zero)
         {
-            IsMoving = true;
+            Rpc(MethodName.RunAnim);
             velocity.X = direction.X * speed;
             velocity.Z = direction.Z * speed;
         }
         else
         {
-            IsMoving = false;
+            Rpc(MethodName.IdleAnim);
             velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
             velocity.Z = Mathf.MoveToward(Velocity.Z, 0, speed);
         }
        
         Velocity = velocity;
         MoveAndSlide();
+    }
 
-        
+    [Rpc(CallLocal = true)]
+    public void RunAnim()
+    {
+        animationStateMachine.Travel("run");
+    }
+
+    [Rpc(CallLocal = true)]
+    public void IdleAnim()
+    {
+        animationStateMachine.Travel("RESET");
     }
 }

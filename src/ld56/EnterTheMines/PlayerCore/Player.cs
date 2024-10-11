@@ -234,7 +234,6 @@ public partial class Player : CharacterBody3D
             velocity += GetGravity() * deltaf;
         }
 
-        GD.Print(IsOnFloor());
         // Handle Jump.
         if (Input.IsActionJustPressed("jump") && IsOnFloor())
         {

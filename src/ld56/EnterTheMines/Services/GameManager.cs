@@ -1,8 +1,7 @@
 using EnterTheMines.EnterTheMines.Events;
+using EnterTheMines.EnterTheMines.Levels;
 using EnterTheMines.EnterTheMines.PlayerCore;
 using Godot;
-using System;
-using System.Collections.Generic;
 
 namespace EnterTheMines.EnterTheMines.Services;
 
@@ -10,30 +9,89 @@ public partial class GameManager : Node
 {
 	public const string Path = "/root/GameManager";
 
-	private Dictionary<string, Action> registeredCallbacks = [];
+	public CanvasLayer UIRoot;
+	public Node3D WorldRoot;
+	public MPClient mpClient;
 
 	public bool PlayerAlive { get; private set; } = true;
-
 	public Player Player { get; private set; }
-
 	public bool FirstFlashlight { get; private set; } = true;
-
 	public int WeekDuration { get; private set; } = 3;
 	public int CurrentDay { get; private set; } = 1;
-
 	private float firstQuota = 120;
-
 	public float Quota { get; private set; } = 120;
-
 	public int UncashedInMoney { get; private set; }
-
 	public int Money { get; private set; }
+	public string CurrentLevelName { get; private set; }
+	public ILevel CurrentLevel { get; private set; }
 
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
+		GameEvents.Register<StartedHostingSessionGameEvent>(LoadLevelForHost);
+		GameEvents.Register<GameLaunchedGameEvent>(OnGameLaunched);
+        mpClient = GetNode<MPClient>(MPClient.Path);
+        mpClient.OnPeerConnected += ConnectPeer;
+    }
+
+	public void _UnhandledInput(InputEvent e)
+	{
+		if(e.IsActionPressed("ui_cancel"))
+        {
+			if(Input.MouseMode == Input.MouseModeEnum.Visible)
+			{
+				GetTree().Quit();
+				return;
+			}
+
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+        }
+    }
+
+    public void ConnectPeer(int peerId)
+	{
+		GD.PrintRich($"[color=orange]Player with id {peerId} Connected![/color]");
+		if (Multiplayer.IsServer())
+		{
+			//Rpc(MethodName.JoinLevel, peerId, CurrentLevelName);
+            CurrentLevel.SpawnPlayer(peerId);
+        }
 	}
+
+    public void OnGameLaunched(GameLaunchedGameEvent _)
+	{
+		UIRoot = GetNode<CanvasLayer>("/root/Master/UI");
+		WorldRoot = GetNode<Node3D>("/root/Master/World");
+
+		var mainMenu = ResourceLoader.Load<PackedScene>("res://EnterTheMines/UI/MainMenu.tscn");
+        var mainMenuInstance = mainMenu.Instantiate();
+        UIRoot.AddChild(mainMenuInstance);
+    }
+
+	[Rpc]
+	public void JoinLevel(int peerId, string levelName)
+	{
+		GD.Print($"JoinLevel {Multiplayer.GetUniqueId()}");
+		if(Multiplayer.GetUniqueId() == peerId)
+        {
+            CurrentLevelName = levelName;
+            var scene = ResourceLoader.Load<PackedScene>($"res://EnterTheMines/Levels/{levelName}/{levelName}.tscn");
+            var sceneInstance = scene.Instantiate();
+
+            WorldRoot.AddChild(sceneInstance);
+        }
+    }
+
+	public void LoadLevelForHost(StartedHostingSessionGameEvent _)
+	{
+		var scene = ResourceLoader.Load<PackedScene>("res://EnterTheMines/Levels/Mines/Mines.tscn");
+        var sceneInstance = scene.Instantiate();
+		CurrentLevel = sceneInstance as ILevel;
+		CurrentLevelName = "Mines";
+
+        WorldRoot.AddChild(sceneInstance);
+		CurrentLevel.SpawnPlayer(Multiplayer.GetUniqueId());
+    }
 
 	public void GiveMoney(int amount)
 	{

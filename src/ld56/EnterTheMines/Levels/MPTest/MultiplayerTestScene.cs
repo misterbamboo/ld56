@@ -1,6 +1,4 @@
-using EnterTheMines.EnterTheMines.PlayerCore;
 using Godot;
-using System;
 
 namespace EnterTheMines.EnterTheMines.Levels.MPTest;
 
