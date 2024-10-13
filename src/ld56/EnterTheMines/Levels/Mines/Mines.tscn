@@ -2956,8 +2956,14 @@ face_vertex_data = {
 script = ExtResource("1_poepk")
 playerScene = ExtResource("2_v7710")
 
-[node name="PlayerSpawnLocation" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 1, 4.07)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://EnterTheMines/PlayerCore/MPPlayer.tscn")
+spawn_path = NodePath("../PlayerContainer")
+
+[node name="PlayerContainer" type="Node3D" parent="."]
+
+[node name="PlayerSpawnLocation" type="Node3D" parent="PlayerContainer"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.658, 1, 6.792)
 
 [node name="Skitter1 Patrol Points" type="Node3D" parent="."]
 
@@ -3917,12 +3923,6 @@ script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_spfwp")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 collision_type = 0
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://EnterTheMines/PlayerCore/MPPlayer.tscn")
-spawn_path = NodePath("../PlayerContainer")
-
-[node name="PlayerContainer" type="Node3D" parent="."]
 
 [connection signal="body_entered" from="MainRoom/EndDayArea" to="MainRoom/EndDayArea" method="bodyEntered"]
 [connection signal="body_exited" from="MainRoom/EndDayArea" to="MainRoom/EndDayArea" method="bodyExited"]

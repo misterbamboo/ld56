@@ -1,7 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2l5whfvm8mj6"]
+[gd_scene load_steps=20 format=3 uid="uid://b2l5whfvm8mj6"]
 
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayer.cs" id="1_do6fy"]
 [ext_resource type="PackedScene" uid="uid://cwae5tktxwq85" path="res://EnterTheMines/Props/Pickaxe/scene.gltf" id="1_mu0ci"]
+[ext_resource type="Texture2D" uid="uid://3wp37pik6dw" path="res://EnterTheMines/PlayerCore/flashlightPattern.png" id="2_fj3lm"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayerInputSync.cs" id="3_cehdt"]
+[ext_resource type="AudioStream" uid="uid://b1dxgcy6cflyk" path="res://EnterTheMines/PlayerCore/flash_on.mp3" id="3_oyauc"]
+[ext_resource type="AudioStream" uid="uid://bidye6yt2is4f" path="res://EnterTheMines/PlayerCore/flash_off.mp3" id="4_vk2cw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ooqxr"]
 
@@ -11,10 +15,10 @@
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
+properties/1/path = NodePath(".:PlayerId")
 properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("Camera3D:rotation")
+properties/1/replication_mode = 0
+properties/2/path = NodePath(".:currentAnimation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
@@ -51,12 +55,12 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5awxg"]
 _data = {
-"RESET": SubResource("Animation_0vjnd"),
+"idle": SubResource("Animation_0vjnd"),
 "run": SubResource("Animation_4hkjh")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i2ln"]
-animation = &"RESET"
+animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_16hu0"]
 animation = &"run"
@@ -69,13 +73,30 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i85p"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0af31"]
-states/RESET/node = SubResource("AnimationNodeAnimation_2i2ln")
-states/RESET/position = Vector2(304, 154)
 states/Start/position = Vector2(132, 154)
+states/idle/node = SubResource("AnimationNodeAnimation_2i2ln")
+states/idle/position = Vector2(304, 154)
 states/run/node = SubResource("AnimationNodeAnimation_16hu0")
-states/run/position = Vector2(570, 154)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_6waj3"), "RESET", "run", SubResource("AnimationNodeStateMachineTransition_fov55"), "run", "RESET", SubResource("AnimationNodeStateMachineTransition_8i85p")]
+states/run/position = Vector2(573, 154)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_6waj3"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_fov55"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8i85p")]
 graph_offset = Vector2(47, -25)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nrvg8"]
+properties/0/path = NodePath(".:InputDirection")
+properties/0/spawn = false
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:Running")
+properties/1/spawn = false
+properties/1/replication_mode = 1
+properties/2/path = NodePath("../Camera3D:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("..:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:DoJump")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="MPPlayer" type="CharacterBody3D"]
 script = ExtResource("1_do6fy")
@@ -86,9 +107,31 @@ shape = SubResource("CapsuleShape3D_ooqxr")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53705, 0)
+fov = 90.0
+
+[node name="Lights" type="Node3D" parent="Camera3D"]
+
+[node name="Flashlight" type="SpotLight3D" parent="Camera3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.547414, -0.650836, 0)
+visible = false
+light_projector = ExtResource("2_fj3lm")
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 35.0
+
+[node name="AmbientLight" type="OmniLight3D" parent="Camera3D/Lights"]
+light_energy = 0.5
+omni_attenuation = 3.0
+
+[node name="AudioFlashlightOn" type="AudioStreamPlayer3D" parent="Camera3D/Lights"]
+stream = ExtResource("3_oyauc")
+
+[node name="AudioFlashlightOff" type="AudioStreamPlayer3D" parent="Camera3D/Lights"]
+stream = ExtResource("4_vk2cw")
 
 [node name="Pickaxe" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.53705, 0.0792518)
+visible = false
 
 [node name="PickaxeModel" parent="Camera3D/Pickaxe" instance=ExtResource("1_mu0ci")]
 transform = Transform3D(30, 0, 0, 0, -1.31134e-06, 30, 0, -30, -1.31134e-06, 0.543309, 0.225597, -0.485278)
@@ -100,7 +143,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_1t5s1")
 skeleton = NodePath("../..")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MPPlayerServerSync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_36j1o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -111,3 +154,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_0af31")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="MPPlayerInputSync" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_nrvg8")
+script = ExtResource("3_cehdt")

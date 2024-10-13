@@ -28,13 +28,18 @@ public partial class GameManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		GameEvents.Register<StartedHostingSessionGameEvent>(LoadLevelForHost);
+		GameEvents.Register<StartedHostingSessionGameEvent>(OnStartHostingSession);
 		GameEvents.Register<GameLaunchedGameEvent>(OnGameLaunched);
         mpClient = GetNode<MPClient>(MPClient.Path);
         mpClient.OnPeerConnected += ConnectPeer;
     }
 
-	public void _UnhandledInput(InputEvent e)
+	public void OnStartHostingSession(StartedHostingSessionGameEvent _)
+    {
+        CallDeferred("LoadLevelForHostDeferred");
+    }
+
+    public void _UnhandledInput(InputEvent e)
 	{
 		if(e.IsActionPressed("ui_cancel"))
         {
@@ -54,9 +59,14 @@ public partial class GameManager : Node
 		if (Multiplayer.IsServer())
 		{
 			//Rpc(MethodName.JoinLevel, peerId, CurrentLevelName);
-            CurrentLevel.SpawnPlayer(peerId);
+			CallDeferred("SpawnPlayerDeferred", peerId); 
         }
 	}
+
+	public void SpawnPlayerDeferred(int peerId)
+	{
+        CurrentLevel.SpawnPlayer(peerId);
+    }
 
     public void OnGameLaunched(GameLaunchedGameEvent _)
 	{
@@ -82,7 +92,7 @@ public partial class GameManager : Node
         }
     }
 
-	public void LoadLevelForHost(StartedHostingSessionGameEvent _)
+	public void LoadLevelForHostDeferred()
 	{
 		var scene = ResourceLoader.Load<PackedScene>("res://EnterTheMines/Levels/Mines/Mines.tscn");
         var sceneInstance = scene.Instantiate();
@@ -181,5 +191,12 @@ public partial class GameManager : Node
 	public void TurnFlashlightOnForTheFirstTime()
     {
         FirstFlashlight = false;
+    }
+
+    public override void _ExitTree()
+    {
+        GameEvents.UnRegister<StartedHostingSessionGameEvent>(OnStartHostingSession);
+        GameEvents.UnRegister<GameLaunchedGameEvent>(OnGameLaunched);
+        mpClient.OnPeerConnected -= ConnectPeer;
     }
 }

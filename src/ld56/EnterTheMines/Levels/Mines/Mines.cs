@@ -7,17 +7,13 @@ public partial class Mines : Node3D, ILevel
 {
     [Export] private PackedScene playerScene;
 
-    private Node3D playerSpawnLocation;
     private Node3D PlayerContainer;
+    private Node3D PlayerSpawnLocation;
 
     public override void _Ready()
 	{
-        playerSpawnLocation = GetNode<Node3D>("PlayerSpawnLocation");
         PlayerContainer = GetNode<Node3D>("PlayerContainer");
-
-        Input.MouseMode = Input.MouseModeEnum.Captured;
-		GameEvents.Raise(new LevelLoadedGameEvent("Mines"));
-		GameEvents.Raise(new GameStartGameEvent());
+        PlayerSpawnLocation = GetNode<Node3D>("PlayerContainer/PlayerSpawnLocation");
     }
 
     // Should only be called by the server
@@ -26,9 +22,9 @@ public partial class Mines : Node3D, ILevel
         if (!Multiplayer.IsServer()) return;
 
         var player = playerScene.Instantiate() as MPPlayer;
-        player.Name = peerId.ToString();
-        player.Position = playerSpawnLocation.Position;
-        player.Rotation = playerSpawnLocation.Rotation;
-        PlayerContainer.AddChild(player);
+        player.InitMP(peerId);
+
+        PlayerContainer.AddChild(player, true);
+        player.SpawnAtPositionServer(PlayerSpawnLocation);
     }
 }
