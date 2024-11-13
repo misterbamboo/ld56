@@ -13,7 +13,7 @@ public partial class Hotkeys : Node
 
 	private static void HandleEscapeKey(InputEventKey keyEvent)
 	{
-		if (keyEvent.Keycode == Key.Escape)
+		if (keyEvent.IsActionReleased("exit"))
 		{
 			GameEvents.Raise(new ExitRequestedGameEvent());
 		}
