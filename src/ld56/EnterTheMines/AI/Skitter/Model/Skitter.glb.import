@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://daq7xp21w6bki"
-path="res://.godot/imported/Skitter.glb-84b5a8716e25e7fd545cf3100ca622f5.scn"
+path="res://.godot/imported/Skitter.glb-def866251de8e89531f06d205517fabf.scn"
 
 [deps]
 
-source_file="res://creatures/skitter_creature/Skitter.glb"
-dest_files=["res://.godot/imported/Skitter.glb-84b5a8716e25e7fd545cf3100ca622f5.scn"]
+source_file="res://EnterTheMines/AI/Skitter/Model/Skitter.glb"
+dest_files=["res://.godot/imported/Skitter.glb-def866251de8e89531f06d205517fabf.scn"]
 
 [params]
 

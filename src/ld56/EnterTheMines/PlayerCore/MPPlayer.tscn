@@ -131,7 +131,6 @@ stream = ExtResource("4_vk2cw")
 
 [node name="Pickaxe" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.53705, 0.0792518)
-visible = false
 
 [node name="PickaxeModel" parent="Camera3D/Pickaxe" instance=ExtResource("1_mu0ci")]
 transform = Transform3D(30, 0, 0, 0, -1.31134e-06, 30, 0, -30, -1.31134e-06, 0.543309, 0.225597, -0.485278)
