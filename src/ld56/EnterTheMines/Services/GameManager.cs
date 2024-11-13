@@ -2,6 +2,7 @@ using EnterTheMines.EnterTheMines.Events;
 using EnterTheMines.EnterTheMines.Levels;
 using EnterTheMines.EnterTheMines.PlayerCore;
 using Godot;
+using System;
 
 namespace EnterTheMines.EnterTheMines.Services;
 
@@ -30,11 +31,23 @@ public partial class GameManager : Node
 	{
 		GameEvents.Register<StartedHostingSessionGameEvent>(OnStartHostingSession);
 		GameEvents.Register<GameLaunchedGameEvent>(OnGameLaunched);
+        GameEvents.Register<ExitRequestedGameEvent>(OnExitRequested);
+
         mpClient = GetNode<MPClient>(MPClient.Path);
         mpClient.OnPeerConnected += ConnectPeer;
     }
 
-	public void OnStartHostingSession(StartedHostingSessionGameEvent _)
+    private void OnExitRequested(ExitRequestedGameEvent e)
+    {
+        UncaptureMouse();
+    }
+
+    private void UncaptureMouse()
+    {
+        Input.SetMouseMode(Input.MouseModeEnum.Visible);
+    }
+
+    public void OnStartHostingSession(StartedHostingSessionGameEvent _)
     {
         CallDeferred("LoadLevelForHostDeferred");
     }
@@ -197,6 +210,8 @@ public partial class GameManager : Node
     {
         GameEvents.UnRegister<StartedHostingSessionGameEvent>(OnStartHostingSession);
         GameEvents.UnRegister<GameLaunchedGameEvent>(OnGameLaunched);
+        GameEvents.UnRegister<ExitRequestedGameEvent>(OnExitRequested);
+        
         mpClient.OnPeerConnected -= ConnectPeer;
     }
 }
