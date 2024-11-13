@@ -1,6 +1,7 @@
 ﻿using EnterTheMines.EnterTheMines.Events;
 using EnterTheMines.EnterTheMines.Services;
 using Godot;
+using System;
 
 namespace EnterTheMines.EnterTheMines.PlayerCore;
 
@@ -61,7 +62,6 @@ public partial class Player : CharacterBody3D
         GameEvents.Register<HitPlayerGameEvent>(OnReceiveHit);
         GameEvents.Register<StartChaseGameEvent>(OnStartChase);
         GameEvents.Register<StopChaseGameEvent>(OnStopChase);
-
 
         neck = GetNode<Node3D>("Neck");
         cam = GetNode<Camera3D>("Neck/Camera3D");

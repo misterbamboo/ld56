@@ -5,26 +5,26 @@ using Godot;
 
 public partial class Mines : Node3D, ILevel
 {
-    [Export] private PackedScene playerScene;
+	[Export] private PackedScene playerScene;
 
-    private Node3D PlayerContainer;
-    private Node3D PlayerSpawnLocation;
+	private Node3D PlayerContainer;
+	private Node3D PlayerSpawnLocation;
 
-    public override void _Ready()
+	public override void _Ready()
 	{
-        PlayerContainer = GetNode<Node3D>("PlayerContainer");
-        PlayerSpawnLocation = GetNode<Node3D>("PlayerContainer/PlayerSpawnLocation");
-    }
+		PlayerContainer = GetNode<Node3D>("PlayerContainer");
+		PlayerSpawnLocation = GetNode<Node3D>("PlayerContainer/PlayerSpawnLocation");
+	}
 
-    // Should only be called by the server
-    public void SpawnPlayer(int peerId)
-    {
-        if (!Multiplayer.IsServer()) return;
+	// Should only be called by the server
+	public void SpawnPlayer(int peerId)
+	{
+		if (!Multiplayer.IsServer()) return;
 
-        var player = playerScene.Instantiate() as MPPlayer;
-        player.InitMP(peerId);
+		var player = playerScene.Instantiate() as MPPlayer;
+		player.InitMP(peerId);
 
-        PlayerContainer.AddChild(player, true);
-        player.SpawnAtPositionServer(PlayerSpawnLocation);
-    }
+		PlayerContainer.AddChild(player, true);
+		player.SpawnAtPositionServer(PlayerSpawnLocation);
+	}
 }

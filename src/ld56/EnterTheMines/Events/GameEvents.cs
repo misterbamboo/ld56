@@ -10,11 +10,12 @@ namespace EnterTheMines.EnterTheMines.Events
     public class StartDayGameEvent : IGameEvent;
     public class GameStartGameEvent : IGameEvent;
     public class GameOverGameEvent : IGameEvent;
-    public class  TitleScreenGameEvent : IGameEvent;
+    public class TitleScreenGameEvent : IGameEvent;
     public class StartChaseGameEvent : IGameEvent;
     public class StopChaseGameEvent : IGameEvent;
     public class GameTimeoutGameEvent : IGameEvent;
     public class HitPlayerGameEvent : IGameEvent;
+    public class ExitRequestedGameEvent : IGameEvent;
 
     /// <summary>
     /// http://msdn.microsoft.com/en-gb/magazine/ee236415.aspx#id0400046
