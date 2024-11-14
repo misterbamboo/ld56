@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=3 uid="uid://cye8c2yhcsa6a"]
 
 [ext_resource type="Script" path="res://creatures/skitter_creature/Skitter.gd" id="1_a8i3l"]
-[ext_resource type="PackedScene" uid="uid://daq7xp21w6bki" path="res://creatures/skitter_creature/Skitter.glb" id="2_n542x"]
+[ext_resource type="PackedScene" uid="uid://daq7xp21w6bki" path="res://EnterTheMines/AI/Skitter/Model/Skitter.glb" id="2_n542x"]
 [ext_resource type="Script" path="res://addons/behaviour_toolkit/finite_state_machine/fsm.gd" id="2_u88xy"]
 [ext_resource type="Script" path="res://creatures/skitter_creature/states/random_patrol.gd" id="3_gbyum"]
 [ext_resource type="Script" path="res://creatures/skitter_creature/transitions/patrol_node_reached.gd" id="4_lu7ue"]
 [ext_resource type="Script" path="res://creatures/skitter_creature/transitions/player_in_sight.gd" id="5_ghk1s"]
 [ext_resource type="Script" path="res://creatures/skitter_creature/states/chase.gd" id="6_6oqal"]
 [ext_resource type="Script" path="res://creatures/skitter_creature/transitions/player_lost.gd" id="7_83fjd"]
-[ext_resource type="Material" uid="uid://3k8bv3n0tkvw" path="res://creatures/skitter_creature/creature1_eyes_material.tres" id="9_djhia"]
+[ext_resource type="Material" uid="uid://3k8bv3n0tkvw" path="res://EnterTheMines/AI/Skitter/Model/SkitterEyesMaterial.tres" id="9_djhia"]
 [ext_resource type="AudioStream" uid="uid://bsfjyjtycoejx" path="res://creatures/skitter_creature/skittering.wav" id="10_y2tsg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2e7r"]

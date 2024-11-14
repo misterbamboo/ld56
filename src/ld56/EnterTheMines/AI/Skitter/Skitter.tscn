@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxxi7o3kn87ve"]
+
+[ext_resource type="PackedScene" uid="uid://daq7xp21w6bki" path="res://EnterTheMines/AI/Skitter/Model/Skitter.glb" id="1_cm0hv"]
+[ext_resource type="Material" uid="uid://dorl8okkd122g" path="res://EnterTheMines/AI/Skitter/Model/SkitterPupilMaterial.tres" id="2_4rwyd"]
+[ext_resource type="Material" uid="uid://3k8bv3n0tkvw" path="res://EnterTheMines/AI/Skitter/Model/SkitterEyesMaterial.tres" id="3_6tr7a"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/BehaviorTree.cs" id="4_drfdf"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Composites/BTSequence.cs" id="5_luylm"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Leaves/FindClosestPlayer.cs" id="6_aquci"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6cqmb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_crn44"]
+
+[node name="Skitter" type="Node3D"]
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Body" parent="Model" instance=ExtResource("1_cm0hv")]
+
+[node name="Eye" type="Node3D" parent="Model"]
+
+[node name="Pupil" type="MeshInstance3D" parent="Model/Eye"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.4, 1.67351, 0.870806, 0.0191437)
+material_override = ExtResource("2_4rwyd")
+mesh = SubResource("SphereMesh_6cqmb")
+skeleton = NodePath("../..")
+
+[node name="Eye2" type="MeshInstance3D" parent="Model/Eye"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54606, 0.803567, 0.026543)
+material_override = ExtResource("3_6tr7a")
+mesh = SubResource("SphereMesh_crn44")
+skeleton = NodePath("../..")
+
+[node name="BehaviorTree" type="Node" parent="." node_paths=PackedStringArray("Actor")]
+script = ExtResource("4_drfdf")
+Actor = NodePath("..")
+
+[node name="Selector" type="Node" parent="BehaviorTree"]
+script = ExtResource("5_luylm")
+
+[node name="FindClosestPlayer" type="Node" parent="BehaviorTree/Selector"]
+script = ExtResource("6_aquci")
