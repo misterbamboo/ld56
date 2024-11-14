@@ -1,4 +1,4 @@
-[gd_scene load_steps=317 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=318 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://EnterTheMines/Levels/Mines/Mines.cs" id="1_poepk"]
@@ -21,6 +21,7 @@
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="17_xpkmh"]
 [ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://EnterTheMines/Interactables/ShredderCore/Shredder.tscn" id="19_cr5le"]
 [ext_resource type="PackedScene" uid="uid://cdmhmasa0nt2v" path="res://EnterTheMines/Interactables/Items/ItemSpawner.tscn" id="20_sn18c"]
+[ext_resource type="PackedScene" uid="uid://cw6848xivym4g" path="res://EnterTheMines/Interactables/ShopCore/Shop.tscn" id="22_jotlf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
 sky_top_color = Color(0.0191466, 0.00478081, 0.172609, 1)
@@ -3923,6 +3924,9 @@ script = ExtResource("1_035vx")
 mesh_vector_data = SubResource("Resource_spfwp")
 materials = Array[Material]([ExtResource("6_c7pdw")])
 collision_type = 0
+
+[node name="Shop" parent="." instance=ExtResource("22_jotlf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0947, 0.25, 14.4829)
 
 [connection signal="body_entered" from="MainRoom/EndDayArea" to="MainRoom/EndDayArea" method="bodyEntered"]
 [connection signal="body_exited" from="MainRoom/EndDayArea" to="MainRoom/EndDayArea" method="bodyExited"]
