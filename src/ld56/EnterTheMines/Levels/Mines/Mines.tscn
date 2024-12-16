@@ -1,4 +1,4 @@
-[gd_scene load_steps=317 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=319 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://EnterTheMines/Levels/Mines/Mines.cs" id="1_poepk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkarfm3j81bq5" path="res://EnterTheMines/Screens/GameOverScreen.tscn" id="2_mt0q1"]
 [ext_resource type="PackedScene" uid="uid://b2l5whfvm8mj6" path="res://EnterTheMines/PlayerCore/MPPlayer.tscn" id="2_v7710"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
+[ext_resource type="PackedScene" uid="uid://dxxi7o3kn87ve" path="res://EnterTheMines/AI/Skitter/Skitter.tscn" id="3_ybffd"]
 [ext_resource type="Script" path="res://directional_light_3d_auto_shutdown.gd" id="4_eiioc"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
@@ -20,6 +21,7 @@
 [ext_resource type="Script" path="res://end_day_area.gd" id="17_e1ptn"]
 [ext_resource type="Material" uid="uid://ivody80hkvan" path="res://materials/surfaces/wood/wood.tres" id="17_xpkmh"]
 [ext_resource type="PackedScene" uid="uid://dmbltthdo8cf4" path="res://EnterTheMines/Interactables/ShredderCore/Shredder.tscn" id="19_cr5le"]
+[ext_resource type="PackedScene" uid="uid://dwqd7dkrvo7uw" path="res://EnterTheMines/Interactables/Items/GoldRing.tscn" id="20_pxkyx"]
 [ext_resource type="PackedScene" uid="uid://cdmhmasa0nt2v" path="res://EnterTheMines/Interactables/Items/ItemSpawner.tscn" id="20_sn18c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vk36"]
@@ -2960,6 +2962,9 @@ playerScene = ExtResource("2_v7710")
 _spawnable_scenes = PackedStringArray("res://EnterTheMines/PlayerCore/MPPlayer.tscn")
 spawn_path = NodePath("../PlayerContainer")
 
+[node name="Skitter" parent="." instance=ExtResource("3_ybffd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8504, 0, 10.6313)
+
 [node name="PlayerContainer" type="Node3D" parent="."]
 
 [node name="PlayerSpawnLocation" type="Node3D" parent="PlayerContainer"]
@@ -3718,6 +3723,9 @@ curve = SubResource("Curve3D_xsurh")
 transform = Transform3D(0.994209, 0, -0.107221, 0, 1.00008, 0, 0.107221, 0, 0.994209, 16.25, 1.13249e-05, 11.1887)
 
 [node name="LevelGeometry" parent="." instance=ExtResource("15_ue0nr")]
+
+[node name="GoldRing" parent="." instance=ExtResource("20_pxkyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.931, 1.63484, 5.70519)
 
 [node name="Items" type="Node3D" parent="."]
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b837tdhf5jbch"]
+
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/HUD/MPPlayerHUD.cs" id="1_m4ocv"]
+[ext_resource type="PackedScene" uid="uid://biuiib30bo7ca" path="res://EnterTheMines/PlayerCore/HUD/CenterDotHUD.tscn" id="2_xq7t7"]
+
+[node name="MPPlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4ocv")
+
+[node name="CenterDotHUD" parent="." instance=ExtResource("2_xq7t7")]
+layout_mode = 0
+anchors_preset = 0

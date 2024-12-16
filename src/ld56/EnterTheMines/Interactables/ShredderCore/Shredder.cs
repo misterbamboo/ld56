@@ -60,12 +60,12 @@ public partial class Shredder : Node3D
         BaseItem grinding_item = grindingItems[index];
         float t = grindingTimes[index];
 
-        grinding_item.Rb.GlobalPosition = grindStart.GlobalPosition.Lerp(grindEnd.GlobalPosition, t);
+        grinding_item.GlobalPosition = grindStart.GlobalPosition.Lerp(grindEnd.GlobalPosition, t);
 
         var xrot = _Shake(t);
         var zrot = _Shake(t + 0.25f);
         var targetRot = new Vector3(xrot, 0, zrot);
-        grinding_item.Rb.Rotation = targetRot;
+        grinding_item.Rotation = targetRot;
 
         // allow 1 removal by frame
         if (!any_removed && t >= 1)

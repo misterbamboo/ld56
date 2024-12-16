@@ -2,6 +2,7 @@ using EnterTheMines.EnterTheMines.Events;
 using EnterTheMines.EnterTheMines.Levels;
 using EnterTheMines.EnterTheMines.PlayerCore;
 using Godot;
+using System.Collections.Generic;
 
 public partial class Mines : Node3D, ILevel
 {
@@ -27,4 +28,18 @@ public partial class Mines : Node3D, ILevel
 		PlayerContainer.AddChild(player, true);
 		player.SpawnAtPositionServer(PlayerSpawnLocation);
 	}
+
+    public List<MPPlayer> GetPlayers()
+    {
+		var playersAndSpawns = PlayerContainer.GetChildren();
+        var playerList = new List<MPPlayer>();
+		foreach (var pns in playersAndSpawns) {
+            if (pns is MPPlayer mpplayer)
+			{
+                playerList.Add(mpplayer);
+            }
+        }
+
+        return playerList;
+    }
 }

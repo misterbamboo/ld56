@@ -3,29 +3,27 @@ using Godot;
 
 namespace EnterTheMines.EnterTheMines.Interactables.Items;
 
-public partial class BaseItem : Node3D
+public partial class BaseItem : RigidBody3D
 {
     private GameManager gameManager;
     [Export]public int Price { get; private set; }
-    public RigidBody3D Rb { get; private set; }
     public bool Grinding { get; private set; }
 
     public override void _Ready()
 	{
         gameManager = GetNode<GameManager>(GameManager.Path);
-        Rb = GetNode<RigidBody3D>("RigidBody3D");
-        Rb.FreezeMode = RigidBody3D.FreezeModeEnum.Kinematic;
+        FreezeMode = RigidBody3D.FreezeModeEnum.Kinematic;
     }
 
-	public void Freeze()
+	public void FreezeMe()
     {
-        Rb.Rotation = Vector3.Zero;
-        Rb.Freeze = true;
+        Rotation = Vector3.Zero;
+        Freeze = true;
     }
 
-    public void Unfreeze()
+    public void UnfreezeMe()
     {
-        Rb.Freeze = false;
+        Freeze = false;
     }
 
     public void Grind()

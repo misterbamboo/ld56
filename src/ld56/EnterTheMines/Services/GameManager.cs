@@ -2,7 +2,7 @@ using EnterTheMines.EnterTheMines.Events;
 using EnterTheMines.EnterTheMines.Levels;
 using EnterTheMines.EnterTheMines.PlayerCore;
 using Godot;
-using System;
+using System.Collections.Generic;
 
 namespace EnterTheMines.EnterTheMines.Services;
 
@@ -15,7 +15,10 @@ public partial class GameManager : Node
 	public MPClient mpClient;
 
 	public bool PlayerAlive { get; private set; } = true;
-	public Player Player { get; private set; }
+
+	public List<Player> allPlayers = new List<Player>();
+
+    public Player Player { get; private set; }
 	public bool FirstFlashlight { get; private set; } = true;
 	public int WeekDuration { get; private set; } = 3;
 	public int CurrentDay { get; private set; } = 1;
@@ -91,26 +94,14 @@ public partial class GameManager : Node
         UIRoot.AddChild(mainMenuInstance);
     }
 
-	[Rpc]
-	public void JoinLevel(int peerId, string levelName)
-	{
-		GD.Print($"JoinLevel {Multiplayer.GetUniqueId()}");
-		if(Multiplayer.GetUniqueId() == peerId)
-        {
-            CurrentLevelName = levelName;
-            var scene = ResourceLoader.Load<PackedScene>($"res://EnterTheMines/Levels/{levelName}/{levelName}.tscn");
-            var sceneInstance = scene.Instantiate();
-
-            WorldRoot.AddChild(sceneInstance);
-        }
-    }
-
 	public void LoadLevelForHostDeferred()
 	{
 		var scene = ResourceLoader.Load<PackedScene>("res://EnterTheMines/Levels/Mines/Mines.tscn");
         var sceneInstance = scene.Instantiate();
-		CurrentLevel = sceneInstance as ILevel;
+		sceneInstance.Name = "Level";
+        CurrentLevel = sceneInstance as ILevel;
 		CurrentLevelName = "Mines";
+		
 
         WorldRoot.AddChild(sceneInstance);
 		CurrentLevel.SpawnPlayer(Multiplayer.GetUniqueId());

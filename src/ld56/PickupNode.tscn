@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp31o3k13x17h"]
+
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/MPPickupHandle.cs" id="1_cn5gj"]
+
+[node name="PickupNode" type="Node3D"]
+script = ExtResource("1_cn5gj")

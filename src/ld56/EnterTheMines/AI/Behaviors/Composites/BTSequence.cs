@@ -2,7 +2,6 @@
 
 namespace EnterTheMines.EnterTheMines.AI.Behaviors.Composites;
 
-[Tool]
 [Icon("res://EnterTheMines/AI/Behaviors/icons/BTCompositeSequence.svg")]
 public partial class BTSequence : BTComposite
 {

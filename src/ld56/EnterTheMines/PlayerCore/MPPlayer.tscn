@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2l5whfvm8mj6"]
+[gd_scene load_steps=21 format=3 uid="uid://b2l5whfvm8mj6"]
 
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayer.cs" id="1_do6fy"]
 [ext_resource type="PackedScene" uid="uid://cwae5tktxwq85" path="res://EnterTheMines/Props/Pickaxe/scene.gltf" id="1_mu0ci"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/RayCastHands.cs" id="2_4efoh"]
 [ext_resource type="Texture2D" uid="uid://3wp37pik6dw" path="res://EnterTheMines/PlayerCore/flashlightPattern.png" id="2_fj3lm"]
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayerInputSync.cs" id="3_cehdt"]
 [ext_resource type="AudioStream" uid="uid://b1dxgcy6cflyk" path="res://EnterTheMines/PlayerCore/flash_on.mp3" id="3_oyauc"]
@@ -108,6 +109,15 @@ shape = SubResource("CapsuleShape3D_ooqxr")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53705, 0)
 fov = 90.0
+
+[node name="RayCastHands" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -4)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.904, 0.36, 1, 1)
+debug_shape_thickness = 3
+script = ExtResource("2_4efoh")
 
 [node name="Lights" type="Node3D" parent="Camera3D"]
 

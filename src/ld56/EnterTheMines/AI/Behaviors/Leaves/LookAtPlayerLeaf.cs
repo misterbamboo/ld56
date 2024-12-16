@@ -1,17 +1,16 @@
-using EnterTheMines.EnterTheMines.AI.Behaviors;
+﻿using EnterTheMines.EnterTheMines.AI.Behaviors;
 using EnterTheMines.EnterTheMines.Levels;
 using Godot;
 
-
 [Icon("res://EnterTheMines/AI/Behaviors/icons/BTLeaf.svg")]
-public partial class FindClosestPlayer : BTLeaf
+public partial class LookAtPlayerLeaf : BTLeaf
 {
     public override BTStatus Tick(double delta, Node actor, Blackboard blackboard)
     {
-        var skitter = actor as Node3D;
-        var players = GetParent<ILevel>().GetPlayers();
+        var actor3D = actor as Node3D;
+        var players = (FindParent("Level") as ILevel).GetPlayers();
 
-        if (skitter == null || players == null || players.Count == 0)
+        if (actor3D == null || players == null || players.Count == 0)
         {
             return BTStatus.Failure;
         }
@@ -21,7 +20,7 @@ public partial class FindClosestPlayer : BTLeaf
 
         foreach (Node3D player in players)
         {
-            float distanceSquared = skitter.GlobalPosition.DistanceSquaredTo(player.GlobalPosition);
+            float distanceSquared = actor3D.GlobalPosition.DistanceSquaredTo(player.GlobalPosition);
             if (distanceSquared < closestDistanceSquared)
             {
                 closestDistanceSquared = distanceSquared;
@@ -31,7 +30,8 @@ public partial class FindClosestPlayer : BTLeaf
 
         if (closestPlayer != null)
         {
-            blackboard.SetValue("Target", closestPlayer);
+            Vector3 direction = (closestPlayer.GlobalPosition - actor3D.GlobalPosition).Normalized();
+            actor3D.LookAt(closestPlayer.GlobalPosition, Vector3.Up);
             return BTStatus.Success;
         }
 

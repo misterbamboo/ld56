@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunhi3513b8rm"
+uid="uid://crk1xxv2h432v"
 path.s3tc="res://.godot/imported/Skitter_skitter_blend_rough.png-d4e799e3518dd71f9cfb75d27d2d889a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "77e25513b60cf72f1cbb35d261b20b59"
 }
 
 [deps]

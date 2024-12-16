@@ -1,23 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxxi7o3kn87ve"]
+[gd_scene load_steps=13 format=3 uid="uid://dxxi7o3kn87ve"]
 
 [ext_resource type="PackedScene" uid="uid://daq7xp21w6bki" path="res://EnterTheMines/AI/Skitter/Model/Skitter.glb" id="1_cm0hv"]
 [ext_resource type="Material" uid="uid://dorl8okkd122g" path="res://EnterTheMines/AI/Skitter/Model/SkitterPupilMaterial.tres" id="2_4rwyd"]
 [ext_resource type="Material" uid="uid://3k8bv3n0tkvw" path="res://EnterTheMines/AI/Skitter/Model/SkitterEyesMaterial.tres" id="3_6tr7a"]
 [ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/BehaviorTree.cs" id="4_drfdf"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Composites/BTSelector.cs" id="5_644dq"]
 [ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Composites/BTSequence.cs" id="5_luylm"]
-[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Leaves/FindClosestPlayer.cs" id="6_aquci"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Leaves/LookAtPlayerLeaf.cs" id="7_qd71r"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Decorators/AlwaysSuccess.cs" id="9_jabny"]
+[ext_resource type="Script" path="res://EnterTheMines/AI/Behaviors/Leaves/NoOpLeaf.cs" id="10_desmk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_6cqmb"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_crn44"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nsbb7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Skitter" type="Node3D"]
 
 [node name="Model" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Body" parent="Model" instance=ExtResource("1_cm0hv")]
 
 [node name="Eye" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0265617, -0.177435, -1.16105e-09)
 
 [node name="Pupil" type="MeshInstance3D" parent="Model/Eye"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.4, 1.67351, 0.870806, 0.0191437)
@@ -33,10 +46,26 @@ skeleton = NodePath("../..")
 
 [node name="BehaviorTree" type="Node" parent="." node_paths=PackedStringArray("Actor")]
 script = ExtResource("4_drfdf")
+AutoStart = true
 Actor = NodePath("..")
 
 [node name="Selector" type="Node" parent="BehaviorTree"]
+script = ExtResource("5_644dq")
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Selector"]
 script = ExtResource("5_luylm")
 
-[node name="FindClosestPlayer" type="Node" parent="BehaviorTree/Selector"]
-script = ExtResource("6_aquci")
+[node name="LookAtPlayer" type="Node" parent="BehaviorTree/Selector/Sequence"]
+script = ExtResource("7_qd71r")
+
+[node name="NoOpLeaf" type="Node" parent="BehaviorTree/Selector/Sequence"]
+script = ExtResource("10_desmk")
+
+[node name="AlwaysSuccess" type="Node" parent="BehaviorTree/Selector"]
+script = ExtResource("9_jabny")
+
+[node name="NoOpLeaf" type="Node" parent="BehaviorTree/Selector/AlwaysSuccess"]
+script = ExtResource("10_desmk")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nsbb7")

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace EnterTheMines.EnterTheMines.AI.Behaviors;
 
-[Tool]
 [Icon("res://EnterTheMines/AI/Behaviors/icons/BTRoot.svg")]
 public partial class BehaviorTree : Node
 {
@@ -28,9 +27,11 @@ public partial class BehaviorTree : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+		GD.Print("BEHAVIOR TREE READY BOIS!!!");
         // Do not run in editor
-        if (Engine.IsEditorHint())
+        if (Engine.IsEditorHint() || !Multiplayer.IsServer())
 		{
+			GD.Print("Behavior tree Canceled because not on server");
 			SetPhysicsProcess(false);
 			SetProcess(false);
 			return;
@@ -55,7 +56,7 @@ public partial class BehaviorTree : Node
 
     public override void _PhysicsProcess(double delta)
     {
-		Tick(delta);
+        Tick(delta);
     }
 
 	public void Tick(double delta)

@@ -3,9 +3,7 @@
 class_name BTSelector extends BTComposite
 ## Selects the first child that succeeds, or fails if none do.
 
-
 var current_leaf: int = 0
-
 
 func tick(delta: float, actor: Node, blackboard: Blackboard):
 	if current_leaf > leaves.size() -1:

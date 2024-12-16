@@ -6,7 +6,6 @@ namespace EnterTheMines.EnterTheMines.AI.Behaviors.Composites
     /// Returns at first successful child. continues to next child otherwise.
     /// Fails if all children fail.
     /// </summary>
-    [Tool]
     [Icon("res://EnterTheMines/AI/Behaviors/icons/BTCompositeSelector.svg")]
     public partial class BTSelector : BTComposite
     {
