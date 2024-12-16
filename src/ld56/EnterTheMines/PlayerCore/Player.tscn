@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://dveja88ubh5k4"]
 
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/Player.cs" id="1_u8vim"]
-[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/RayCastHands.cs" id="2_irjpg"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPRayCastHands.cs" id="2_irjpg"]
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/Flashlight.cs" id="3_j244m"]
 [ext_resource type="AudioStream" uid="uid://b1dxgcy6cflyk" path="res://EnterTheMines/PlayerCore/flash_on.mp3" id="4_mvny2"]
 [ext_resource type="AudioStream" uid="uid://bidye6yt2is4f" path="res://EnterTheMines/PlayerCore/flash_off.mp3" id="5_7d0so"]

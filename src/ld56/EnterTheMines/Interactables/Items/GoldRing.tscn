@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwqd7dkrvo7uw"]
+[gd_scene load_steps=9 format=3 uid="uid://dwqd7dkrvo7uw"]
 
 [ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/BaseItem.cs" id="1_8wxvv"]
 [ext_resource type="Material" path="res://materials/items/gold/gold.tres" id="2_bqdrb"]
 [ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/MPPickupHandle.cs" id="2_h7lts"]
+[ext_resource type="Script" path="res://EnterTheMines/Interactables/Items/ItemProperties.cs" id="2_ssxg2"]
+
+[sub_resource type="Resource" id="Resource_c3572"]
+script = ExtResource("2_ssxg2")
+ItemName = "Gold Ring"
+ItemPrice = 45
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lxfby"]
 size = Vector3(0.785614, 0.206596, 0.764221)
@@ -18,7 +24,7 @@ radius = 0.341497
 [node name="Gold Ring" type="RigidBody3D"]
 collision_layer = 4
 script = ExtResource("1_8wxvv")
-Price = 45
+ItemProperties = SubResource("Resource_c3572")
 
 [node name="MPPickupHandle" type="Area3D" parent="."]
 collision_layer = 4

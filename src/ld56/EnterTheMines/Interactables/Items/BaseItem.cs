@@ -6,7 +6,9 @@ namespace EnterTheMines.EnterTheMines.Interactables.Items;
 public partial class BaseItem : RigidBody3D
 {
     private GameManager gameManager;
-    [Export]public int Price { get; private set; }
+    
+    [Export]public ItemProperties ItemProperties { get; private set; }
+
     public bool Grinding { get; private set; }
 
     public override void _Ready()
@@ -33,7 +35,7 @@ public partial class BaseItem : RigidBody3D
 
     public void Destroy()
     {
-        gameManager.GiveMoney(Price);
+        gameManager.GiveMoney(ItemProperties.ItemPrice);
         QueueFree();
     }
 }

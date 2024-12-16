@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayer.cs" id="1_do6fy"]
 [ext_resource type="PackedScene" uid="uid://cwae5tktxwq85" path="res://EnterTheMines/Props/Pickaxe/scene.gltf" id="1_mu0ci"]
-[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/RayCastHands.cs" id="2_4efoh"]
+[ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPRayCastHands.cs" id="2_4efoh"]
 [ext_resource type="Texture2D" uid="uid://3wp37pik6dw" path="res://EnterTheMines/PlayerCore/flashlightPattern.png" id="2_fj3lm"]
 [ext_resource type="Script" path="res://EnterTheMines/PlayerCore/MPPlayerInputSync.cs" id="3_cehdt"]
 [ext_resource type="AudioStream" uid="uid://b1dxgcy6cflyk" path="res://EnterTheMines/PlayerCore/flash_on.mp3" id="3_oyauc"]

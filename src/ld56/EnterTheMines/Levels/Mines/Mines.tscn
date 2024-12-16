@@ -1,4 +1,4 @@
-[gd_scene load_steps=319 format=3 uid="uid://dhwd31n8xw5ef"]
+[gd_scene load_steps=320 format=3 uid="uid://dhwd31n8xw5ef"]
 
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_035vx"]
 [ext_resource type="Script" path="res://EnterTheMines/Levels/Mines/Mines.cs" id="1_poepk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b2l5whfvm8mj6" path="res://EnterTheMines/PlayerCore/MPPlayer.tscn" id="2_v7710"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_0f80u"]
 [ext_resource type="PackedScene" uid="uid://dxxi7o3kn87ve" path="res://EnterTheMines/AI/Skitter/Skitter.tscn" id="3_ybffd"]
+[ext_resource type="PackedScene" uid="uid://b837tdhf5jbch" path="res://EnterTheMines/PlayerCore/HUD/MPPlayerHUD.tscn" id="4_bpm2n"]
 [ext_resource type="Script" path="res://directional_light_3d_auto_shutdown.gd" id="4_eiioc"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_p4nlr"]
 [ext_resource type="Script" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_8tlsv"]
@@ -3024,9 +3025,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.763641, 0.999992, 38.3197)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h6e2m")
 
+[node name="MPPlayerHUD" parent="." instance=ExtResource("4_bpm2n")]
+
 [node name="GameOverScreen" parent="." instance=ExtResource("2_mt0q1")]
+visible = false
 
 [node name="NextDayScreen" parent="." instance=ExtResource("7_w4umj")]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0389032, 0.998058, 0.048646, 0.499925, -0.0227115, 0.865771, 0.865194, 0.0580006, -0.498071, 13.0812, 15.5289, 11.5561)
